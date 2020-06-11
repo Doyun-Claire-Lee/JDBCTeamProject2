@@ -7,7 +7,10 @@ public class TeacherMain {
 	int sel;
 
 	public void TeacherMainmenu(TeacherUser teacherUser) {
-
+		
+		TeacherUser tuser = new TeacherUser();
+		
+		
 		System.out.println("1. 강의 스케줄 조회");
 		System.out.println("2. 배점 입출력");
 		System.out.println("3. 성적 입출력");
@@ -23,10 +26,12 @@ public class TeacherMain {
 			// 강의 스케줄 조회
 			if (sel == 1) {
 				TeacherCheckSchedule checkSchedule = new TeacherCheckSchedule();
+				checkSchedule.checkS(tuser);
 			}
 			// 배점 입출력
 			else if (sel == 2) {
 				TeacherInsertRatio ratio = new TeacherInsertRatio();
+				ratio.menu();
 			}
 			// 성적 입출력
 			else if (sel == 3) {

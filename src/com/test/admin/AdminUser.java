@@ -4,55 +4,89 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class AdminUser {
-	
+
 	int num;
 	String id;
 	String pw;
 
-
 	public void login(AdminUser adminUser) {
 
-
+		// Database connection
+		// 데이터베이스 연동
 		Connection conn = null;
 		Statement stat = null;
 		ResultSet rs = null;
 		DBUtil util = new DBUtil();
-		
-		// 사용자에게 ID,PW 입력받기
-		
-		// 데이터베이스에서 가져올 id,pw 데이터를 넣을 변수
-		ArrayList<String> ID = new ArrayList<String>();
-		ArrayList<String> PSW = new ArrayList<String>();
-		
+		Scanner scan = new Scanner(System.in);
+
+		// Variable for Admin Info
+		// 교사 계정 데이터를 넣어줄 변수
+		HashMap<String, String> loginInfo = new HashMap<String, String>();
+
 		try {
-			
+
 			conn = util.open("localhost", "project", "java1234");
 			stat = conn.createStatement();
 
 			String sql = String.format("select * from tbladmin");
 			rs = stat.executeQuery(sql);
-			
-			// 아이디 넣고
+
+			// Insert info to loginInfo map
+			// 데이터 입력
 			while (rs.next()) {
-				System.out.println("test");
-				System.out.println(rs.getString(1));
-				System.out.println(rs.getString(2));
-
+				loginInfo.put(rs.getString("id"), rs.getString("password"));
 			}
-			System.out.println("connection complete");
-			// 검사
-			
-			// 로그인 성공시 메인메뉴 생성
-			AdminMain Auser = new AdminMain();
-			// setter로 adminUser에 데이터 넣기
-			AdminUser aUser = adminUser;
-			
-			
-			// 메인 메뉴에 데이터가 들어가있는 adminUser 객체를 넣어줌
-			Auser.mainmenu(adminUser);
 
+			// input id,pw
+			// 사용자에게 id,pw 입력받기
+			System.out.print("▷ ID: \n");
+			String inputId = scan.nextLine();
+			System.out.print("▷ PW: \n");
+			String inputPw = scan.nextLine();
+
+			// iterator
+			Iterator<String> keys = loginInfo.keySet().iterator();
+
+			// loginInfo search
+			// id 탐색
+			for (String id : loginInfo.keySet()) {
+
+				// id matching
+				if (id.equals(inputId)) {
+
+					// password get
+					String pw = loginInfo.get(id);
+
+					// password matching
+					if (pw.equals(inputPw)) {
+
+						// new main instance
+						System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
+						System.out.printf("아이디 : %s\n", id);
+						System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
+
+						AdminMain adminMain = new AdminMain();
+						AdminUser aUser = adminUser;
+
+						// set info
+						aUser.setId(id);
+						aUser.setPw(pw);
+
+						// mainmenu method
+						// 메인메뉴 메소드 실행
+						adminMain.mainmenu(aUser);
+
+					}
+				}
+			}
+			System.out.println("아이디와 비밀번호를 다시 입력해주세요.");
+
+			// Database connection close
 			stat.close();
 			conn.close();
 
@@ -60,28 +94,28 @@ public class AdminUser {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// getter & setter
 	public int getNum() {
 		return num;
 	}
-	
+
 	public void setNum(int num) {
 		this.num = num;
 	}
-	
+
 	public String getId() {
 		return id;
 	}
-	
+
 	public void setId(String id) {
 		this.id = id;
 	}
-	
+
 	public String getPw() {
 		return pw;
 	}
-	
+
 	public void setPw(String pw) {
 		this.pw = pw;
 	}

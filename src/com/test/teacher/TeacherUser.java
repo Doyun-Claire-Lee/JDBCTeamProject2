@@ -4,58 +4,100 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Scanner;
 
+import com.test.admin.AdminMain;
+import com.test.admin.AdminUser;
 import com.test.admin.DBUtil;
 import com.test.student.StudentMain;
 
 public class TeacherUser {
-	
+
 	int num;
 	String name;
 	String tel;
 	String ssn;
-	
+
 	public void login(TeacherUser teacherUser) {
-		// TODO Auto-generated method stub
-		
+
+		// Database connection
 		// 데이터베이스 연동
-		
 		Connection conn = null;
 		Statement stat = null;
 		ResultSet rs = null;
 		DBUtil util = new DBUtil();
+		Scanner scan = new Scanner(System.in);
 
-		// 사용자에게 ID,PW 입력받기
-
-		// 데이터베이스에서 가져올 id,pw 데이터를 넣을 변수
-		ArrayList<String> ID = new ArrayList<String>();
-		ArrayList<String> PSW = new ArrayList<String>();
+		// Variable for teacher Info
+		// 관리자 계정 데이터를 넣어줄 변수
+		HashMap<String, ArrayList<String>> teacherInfo = new HashMap<String, ArrayList<String>>();
 
 		try {
-
 			conn = util.open("localhost", "project", "java1234");
 			stat = conn.createStatement();
 
 			String sql = String.format("select * from tblTeacher");
 			rs = stat.executeQuery(sql);
 
-			// 아이디 넣고
+			// Insert info to loginInfo map
+			// 데이터 입력
 			while (rs.next()) {
-				System.out.println("test");
-				System.out.println(rs.getString(1));
-				System.out.println(rs.getString(2));
+				ArrayList<String> temp = new ArrayList<String>();
+
+				// only used data
+				if (rs.getString("deleteStatus").equals("0")) {
+					// ssn, num, name
+					temp.add(rs.getString("ssn"));
+					temp.add(rs.getString("num"));
+					temp.add(rs.getString("name"));
+					teacherInfo.put(rs.getString("tel"), temp);
+				}
 
 			}
-			System.out.println("connection complete");
-			// 검사
 
-			// 로그인 성공시 메인메뉴 생성
-			TeacherMain tMain = new TeacherMain(); // sUser 전달
-			// setter로 adminUser에 데이터 넣기
+			// input id, pw
+			System.out.print("▷ ID: \n");
+			String inputId = scan.nextLine();
+			System.out.println(inputId);
+			System.out.print("▷ PW: \n");
+			String inputPw = scan.nextLine();
 
-			// 메인 메뉴에 데이터가 들어가있는 adminUser 객체를 넣어줌
-			TeacherUser tUser = teacherUser;
-			tMain.TeacherMainmenu(tUser);
+			// iterator
+			Iterator<String> keys = teacherInfo.keySet().iterator();
+
+			// loginInfo search
+			for (String id : teacherInfo.keySet()) {
+				// id matching
+				if (id.equals(inputId)) {
+
+					// password get
+					String ssn = teacherInfo.get(id).get(0);
+					String pw = ssn.substring(ssn.indexOf('-') + 1);
+
+					// pw matching
+					if (pw.equals(inputPw)) {
+						System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
+						System.out.printf("아이디 : %s\n", id);
+						System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
+
+						TeacherMain teacherMain = new TeacherMain();
+						TeacherUser tUser = teacherUser;
+
+						// set info
+						tUser.setSsn(teacherInfo.get(id).get(0));
+						tUser.setNum(Integer.parseInt(teacherInfo.get(id).get(1)));
+						tUser.setName(teacherInfo.get(id).get(2));
+						tUser.setTel(id);
+
+						teacherMain.TeacherMainmenu(tUser);
+					}
+
+				}
+
+			}
+			System.out.println("아이디와 비밀번호를 다시 입력해주세요");
 
 			stat.close();
 			conn.close();
@@ -64,11 +106,6 @@ public class TeacherUser {
 			e.printStackTrace();
 		}
 
-		// 로그인 성공시
-		
-		TeacherMain tMain = new TeacherMain();
-		// setter
-		tMain.TeacherMainmenu(teacherUser);
 	}
 
 	// getter & setter
@@ -103,6 +140,5 @@ public class TeacherUser {
 	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
-
 
 }

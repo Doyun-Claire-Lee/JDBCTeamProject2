@@ -5,12 +5,10 @@ import java.util.Scanner;
 public class AdminMain {
 
 	public void mainmenu(AdminUser adminUser) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("============================================");
-		System.out.println("\t교육센터 관리 시스템");
-		System.out.println("============================================");
-		
-		
+
+		AdminUser user = adminUser;
+
+		System.out.println("〓〓〓〓〓〓〓〓〓〓〓 M E N U 〓〓〓〓〓〓〓〓〓");
 		System.out.println("1.기초 정보 관리");
 		System.out.println("2.교사 계정 관리");
 		System.out.println("3.개설 과정 관리");
@@ -19,38 +17,58 @@ public class AdminMain {
 		System.out.println("6.시험 관리");
 		System.out.println("7.출결 관리");
 		System.out.println("8.기자재 관리");
-		
-		System.out.println("============================================");
-		System.out.print("▷입력:");
-		int cho = sc.nextInt();
-		if(cho == 1) {
-			AdminBasic basic = new AdminBasic();
-			
+		System.out.println("0. 뒤로가기");
+		System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.print("▷ 입력:");
+
+		Scanner scan = new Scanner(System.in);
+		String sel = "";
+
+		while (true) {
+			// 사용자에게 번호 입력받음
+			sel = scan.nextLine();
+
+			// 기초 정보 관리
+			if (sel.equals("1")) {
+				AdminBasic basic = new AdminBasic();
+			}
+			// 교사 계정 관리
+			else if (sel.equals("2")) {
+				AdminTeacher teacher = new AdminTeacher();
+			}
+			// 개설 과정 관리
+			else if (sel.equals("3")) {
+				AdminOpencourse opencourse = new AdminOpencourse();
+			}
+			// 개설 과목 관리
+			else if (sel.equals("4")) {
+				AdminSubject subject = new AdminSubject();
+			}
+			// 교육생 관리
+			else if (sel.equals("5")) {
+				AdminStudent student = new AdminStudent();
+			}
+			// 시험 관리
+			else if (sel.equals("6")) {
+				AdminExam exam = new AdminExam();
+			}
+			// 출결 관리
+			else if (sel.equals("7")) {
+				AdminAttendanceM attendance = new AdminAttendanceM();
+			}
+			// 기자재 관리
+			else if (sel.equals("8")) {
+				AdminEquipment equipment = new AdminEquipment();
+			}
+			// 뒤로 가기
+			else if (sel.equals("0")) {
+				break;
+			}
+			// 예외
+			else {
+				System.out.println("번호를 다시 입력해주세요");
+			}
 		}
-		else if(cho == 2) {
-			AdminTeacher teacher = new AdminTeacher();
-			
-		}
-		else if(cho == 3) {
-			AdminOpencourse opencourse = new AdminOpencourse();
-		}
-		else if(cho == 4) {
-			AdminSubject subject = new AdminSubject();
-			
-		}
-		else if(cho == 5) {
-			AdminStudent student = new AdminStudent();
-		
-		}
-		else if(cho == 6) {
-			AdminExam exam = new AdminExam();
-		}
-		else if(cho == 7) {
-			AdminAttendanceM attendance = new AdminAttendanceM();
-		}
-		else if(cho == 8) {
-			AdminEquipment equipment = new AdminEquipment();
-		}
-		
+
 	}
 }

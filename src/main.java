@@ -26,17 +26,17 @@ public class main {
 
 			if (cho == 1) {
 				// 관리자 로그인
-				AdminUser adminmain = new AdminUser();
-				adminmain.login(adminmain);
+				AdminUser adminUser = new AdminUser();
+				adminUser.login(adminUser);
 
 			} else if (cho == 2) {
-				TeacherUser tUser = new TeacherUser();
-	            tUser.login(tUser);
+				TeacherUser teacherUser = new TeacherUser();
+	            teacherUser.login(teacherUser);
 			} else if (cho == 3) {
 				
-				StudentUser sUser = new StudentUser();
+				StudentUser studentUser = new StudentUser();
 				// 로그인
-				sUser.login(sUser);
+				studentUser.login(studentUser);
 
 			} else {
 				break;

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class AdminMain {
 
-	public void menu() {
+	public void mainmenu(AdminUser adminUser) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("============================================");
 		System.out.println("\t교육센터 관리 시스템");

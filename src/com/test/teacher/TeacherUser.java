@@ -84,7 +84,7 @@ public class TeacherUser {
 
 						TeacherMain teacherMain = new TeacherMain();
 						TeacherUser tUser = teacherUser;
-
+						
 						// set info
 						tUser.setSsn(teacherInfo.get(id).get(0));
 						tUser.setNum(Integer.parseInt(teacherInfo.get(id).get(1)));

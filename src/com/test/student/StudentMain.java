@@ -12,17 +12,20 @@ public class StudentMain {
 		// 우리가 메뉴에서 사용할 학생 유저
 		StudentUser user = sUser;
 		
-		System.out.println("〓〓〓〓〓〓〓〓〓〓〓 M E N U 〓〓〓〓〓〓〓〓〓");
-		System.out.println("1. 성적 조회");
-		System.out.println("2. 출결 관리 및 출결 조회");
-		System.out.println("3. 상담신청");
-		System.out.println("4. 교사평가");
-		System.out.println("5. 취업활동목록");
-		System.out.println("0. 뒤로가기");
-		System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		
 		Scanner scan = new Scanner(System.in);
 		String sel = "";
+		
 		while(true) {
+			System.out.println("〓〓〓〓〓〓〓〓〓〓〓 M E N U 〓〓〓〓〓〓〓〓〓");
+			System.out.println("1. 성적 조회");
+			System.out.println("2. 출결 관리 및 출결 조회");
+			System.out.println("3. 상담신청");
+			System.out.println("4. 교사평가");
+			System.out.println("5. 취업활동목록");
+			System.out.println("0. 뒤로가기");
+			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("▷ 입력: \n");
 			// 사용자에게 번호 입력받음
 			sel = scan.nextLine();
 			

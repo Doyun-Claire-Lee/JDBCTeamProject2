@@ -35,7 +35,9 @@ public class AdminUser {
 
 			String sql = String.format("select * from tbladmin");
 			rs = stat.executeQuery(sql);
-
+			
+			// 여기만 삭제하고 주석 풀면 됨
+			
 			// Insert info to loginInfo map
 			// 데이터 입력
 			while (rs.next()) {
@@ -72,7 +74,7 @@ public class AdminUser {
 
 						AdminMain adminMain = new AdminMain();
 						AdminUser aUser = adminUser;
-
+						
 						// set info
 						aUser.setId(id);
 						aUser.setPw(pw);
@@ -80,15 +82,17 @@ public class AdminUser {
 						// mainmenu method
 						// 메인메뉴 메소드 실행
 						adminMain.mainmenu(aUser);
+						
+						// Database connection close
+						stat.close();
+						conn.close();
 
 					}
 				}
 			}
 			System.out.println("아이디와 비밀번호를 다시 입력해주세요.");
 
-			// Database connection close
-			stat.close();
-			conn.close();
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();

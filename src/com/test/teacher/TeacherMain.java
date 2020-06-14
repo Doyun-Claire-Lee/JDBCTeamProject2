@@ -10,21 +10,20 @@ public class TeacherMain {
 		
 		TeacherUser user = teacherUser;
 		
-		System.out.println("〓〓〓〓〓〓〓〓〓〓〓 M E N U 〓〓〓〓〓〓〓〓〓");
-		System.out.println("1. 강의 스케줄 조회");
-		System.out.println("2. 배점 입출력");
-		System.out.println("3. 성적 입출력");
-		System.out.println("4. 출결 관리 및 출결 조회");
-		System.out.println("5. 교사 평가 조회");
-		System.out.println("6. 성적 우수자 / 보강수업 대상자 조회");
-		System.out.println("0. 뒤로가기");
-		System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-		System.out.print("▷ 입력: \n");
-		
 		Scanner scan = new Scanner(System.in);
 		String sel = "";
 		
 		while (true) {
+			System.out.println("〓〓〓〓〓〓〓〓〓〓〓 M E N U 〓〓〓〓〓〓〓〓〓");
+			System.out.println("1. 강의 스케줄 조회");
+			System.out.println("2. 배점 입출력");
+			System.out.println("3. 성적 입출력");
+			System.out.println("4. 출결 관리 및 출결 조회");
+			System.out.println("5. 교사 평가 조회");
+			System.out.println("6. 성적 우수자 / 보강수업 대상자 조회");
+			System.out.println("0. 뒤로가기");
+			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("▷ 입력: \n");
 			// 사용자에게 번호 입력받음
 			sel = scan.nextLine();
 
@@ -39,6 +38,7 @@ public class TeacherMain {
 			// 성적 입출력
 			else if (sel.equals("3")) {
 				TeacherInsertRatio score = new TeacherInsertRatio();
+				score.main(user);
 			}
 			// 출결 관리 및 출결 조회
 			else if (sel.equals("4")) {

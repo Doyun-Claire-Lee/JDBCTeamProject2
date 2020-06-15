@@ -14,33 +14,44 @@ public class AdminBasic {
 	public void menu() {
 		while (true) {
 			Scanner sc = new Scanner(System.in);
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 기초데이터 관리 〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t1.과정 관리"); // tblOpencourse
-			System.out.println("\t\t\t2.과목 관리"); // tblSubjectByCourse
-			System.out.println("\t\t\t3.강의실"); // tblClassroom
-			System.out.println("\t\t\t4.교재"); // tblBook
-			System.out.println("\t\t\t5.교육생");
-			System.out.println("\t\t\t0.뒤로가기");
+			
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.print("\t\t\t▷입력:");
+			System.out.println("\t\t\t\t\t기초데이터 관리");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t1. 과정 관리"); // tblOpencourse
+			System.out.println("\t\t\t2. 과목 관리"); // tblSubjectByCourse
+			System.out.println("\t\t\t3. 강의실"); // tblClassroom
+			System.out.println("\t\t\t4. 교재"); // tblBook
+			System.out.println("\t\t\t5. 교육생");
+			System.out.println("\t\t\t0. 뒤로가기");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("\t\t\t▷입력: ");
 			String num = sc.nextLine();
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
+			
 			if (num.equals("1")) {
 				// 1.추가 2.수정 3.삭제
 				
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓과정 관리〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t\t\t   과정 관리");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t1. 과정 추가");
 				System.out.println("\t\t\t2. 과정 수정");
 				System.out.println("\t\t\t3. 과정 삭제");
 				System.out.println("\t\t\t0. 뒤로가기");
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-				System.out.println("\t\t\t▷입력:");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.print("\t\t\t▷입력: ");
 				String room = sc.nextLine();
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println();
+				
 				if (room.equals("1")) {
 					procAddAllcourse();
 				} else if (room.equals("2")) {
 					procUpdateAllcourse();
 				} else if (room.equals("3")) {
-					//
+					procDeleteAllcourse();
 				} else if (room.equals("0")) {
 					break;
 				} else {
@@ -49,16 +60,21 @@ public class AdminBasic {
 			} else if (num.equals("2")) {while (true) {
 				Connection conn =  new DBUtil().open("211.63.89.64", "project", "java1234");
 				// 1.추가 2.수정 3.삭제
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓과목 관리〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t\t\t   과목 관리");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				
 				System.out.println("\t\t\t1. 과목 조회");
 				System.out.println("\t\t\t2. 과목 추가");
 				System.out.println("\t\t\t3. 과목 수정");
 				System.out.println("\t\t\t4. 과목 삭제");
 				System.out.println("\t\t\t0. 뒤로가기");
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-				System.out.println("\t\t\t▷입력:");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.print("\t\t\t▷입력: ");
 				String room = sc.nextLine();
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println();
+				
 				if(room.equals("1")) {
 					viewSubjectList(conn);
 				}
@@ -67,7 +83,7 @@ public class AdminBasic {
 				} else if (room.equals("3")) {
 					procUpdateSubject();
 				} else if (room.equals("4")) {
-//					procDeleteSubject();
+					procDeleteSubject();
 				} else if (room.equals("0")) {
 					break;
 				} else {
@@ -77,20 +93,25 @@ public class AdminBasic {
 			} else if (num.equals("3")) {
 				while (true) {
 					// 강의실 1.추가(insert) 2.수정(update) 3.삭제
-					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 강의실 관리 〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t\t\t강의실 관리");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 					System.out.println("\t\t\t1. 강의실 추가");
 					System.out.println("\t\t\t2. 강의실 수정");
 					System.out.println("\t\t\t3. 강의실 삭제");
 					System.out.println("\t\t\t0. 뒤로가기");
-					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-					System.out.println("\t\t\t▷입력:");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t▷입력: ");
 					String room = sc.nextLine();
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println();
+					
 					if (room.equals("1")) {
 						procAddclassroom();
 					} else if (room.equals("2")) {
 						procUpdateClassRoom();
 					} else if (room.equals("3")) {
-						procdeleteclassroom();
+						procDeleteClassroom();
 					} else if (room.equals("0")) {
 						break;
 					} else {
@@ -100,20 +121,25 @@ public class AdminBasic {
 			} 
 			 else if (num.equals("4")) {
 				// 1.추가 2.수정 3.삭제
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓교재 관리〓〓〓〓〓〓〓〓〓〓");
+				 System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t\t\t   교재 관리");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t1. 교재 추가");
 				System.out.println("\t\t\t2. 교재 수정");
 				System.out.println("\t\t\t3. 교재 삭제");
 				System.out.println("\t\t\t0. 뒤로가기");
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t▷입력:");
 				String room = sc.nextLine();
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println();
+				
 				if (room.equals("1")) {
 					procAddBook();
 				} else if (room.equals("2")) {
 					procUpdateBook();
 				} else if (room.equals("3")) {
-					// procDeleteBook();
+					 procDeleteBook();
 				} else if (room.equals("0")) {
 					break;
 				} else {
@@ -125,14 +151,20 @@ public class AdminBasic {
 
 			else if (num.equals("5")) {
 				// 1.추가 2.수정 3.삭제
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓교육생 관리〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t\t\t교육생 관리");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t1. 교육생 추가");
 				System.out.println("\t\t\t2. 교육생 수정");
 				System.out.println("\t\t\t3. 교육생 삭제");
 				System.out.println("\t\t\t0. 뒤로가기");
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t▷입력:");
 				String room = sc.nextLine();
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println();
+				
+				
 				if (room.equals("1")) {
 					// procAddStudent();
 				} else if (room.equals("2")) {
@@ -163,20 +195,24 @@ public class AdminBasic {
 			DBUtil util = new DBUtil();
 			conn = util.open("211.63.89.64", "project", "java1234");
 
-			System.out.println("〓〓〓〓〓〓〓 전 체 과 목 관 리 〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("1. 조회");
-			System.out.println("2. 신규 등록");
-			System.out.println("3. 수정");
-			System.out.println("4. 삭제");
-			System.out.println("0. 뒤로가기");
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.print("▷ 입력: \n");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t전체 과목 관리");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t1. 조회");
+			System.out.println("\t\t\t2. 신규 등록");
+			System.out.println("\t\t\t3. 수정");
+			System.out.println("\t\t\t4. 삭제");
+			System.out.println("\t\t\t0. 뒤로가기");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("\t\t\t▷ 입력: ");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
 
 			String sel = scan.nextLine();
 
 			if (sel.equals("1")) {
 				
-				System.out.println("계속하시려면 엔터를 입력해주세요.");
+				System.out.println("\t\t\t계속하시려면 엔터를 입력해주세요.");
 				scan.nextLine();
 			}
 			// 등록
@@ -199,7 +235,7 @@ public class AdminBasic {
 			else if (sel.equals("0")) {
 				break;
 			} else {
-				System.out.println("번호를 다시 입력해주세요.");
+				System.out.println("\t\t\t번호를 다시 입력해주세요.");
 			}
 
 		}
@@ -214,16 +250,18 @@ public class AdminBasic {
 			viewSubjectList(conn);
 
 			// input subjectName, type
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓 수 정 〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t   과목 삭제");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t0: 뒤로가기");
-
-			System.out.println("과목번호: ");
+			System.out.print("\t\t\t과목번호: ");
+			
 			String subjectNum = scan.nextLine();
 			if (subjectNum.equals("0")) {
 				break;
 			}
 
-			System.out.println("\t\t\t삭제하시겠습니까? y/n ");
+			System.out.print("\t\t\t삭제하시겠습니까? y/n");
 			String yesOrNo = scan.nextLine();
 			if (yesOrNo.equals("0")) {
 				break;
@@ -270,27 +308,31 @@ public class AdminBasic {
 		while (true) {
 
 			// input subjectName, type
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓 수 정 〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t   과목 수정");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
 			System.out.println("\t\t\t0: 뒤로가기");
 
-			System.out.println("과목번호: ");
+			System.out.print("\t\t\t과목번호: ");
 			String subjectNum = scan.nextLine();
 			if (subjectNum.equals("0")) {
 				break;
 			}
 
-			System.out.println("과목명: ");
+			System.out.println("\t\t\t과목명: ");
 			String subjectName = scan.nextLine();
 			if (subjectName.equals("0")) {
 				break;
 			}
 
-			System.out.println("구분: ");
+			System.out.println("\t\t\t구분: ");
 			String essentialType = scan.nextLine();
 			if (essentialType.equals("0")) {
 				break;
 			}
-
+			
+			System.out.println();
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			try {
@@ -307,6 +349,7 @@ public class AdminBasic {
 
 				// fin message
 				System.out.println("\t\t\t수정이 완료되었습니다.");
+				System.out.println();
 				stat.close();
 				conn.close();
 				break;
@@ -322,14 +365,18 @@ public class AdminBasic {
 		// input subjectName, type
 		while (true) {
 
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓 신 규 등 록 〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t0. 뒤로가기");
-			System.out.println("\t\t\t과목명: ");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t과목 신규 등록");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t0: 뒤로가기");
+			System.out.print("\t\t\t과목명: ");
 			String subjectName = scan.nextLine();
+			
+			
 			if (subjectName.equals("0")) {
 				break;
 			}
-			System.out.println("\t\t\t구분: ");
+			System.out.print("\t\t\t구분: ");
 			String essentialType = scan.nextLine();
 			if (essentialType.equals("0")) {
 				break;
@@ -368,17 +415,22 @@ public class AdminBasic {
 			Statement stat = conn.createStatement();
 			String sql = "select * from VWSUBJECT";
 			ResultSet rs = stat.executeQuery(sql);
+			
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t전체 과목 조회");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
-			System.out.println("\t\t\t[과목번호]\t[과목명]\t\t\t[구분]");
+			System.out.println("\t\t\t[과목번호] [과목명]\t\t[구분]");
 
 			// print subject list
 			// 과목 목록 출력
 			while (rs.next()) {
-				System.out.printf("%s\t%s\t\t\t%s\n", rs.getString("num"), rs.getString("name"),
-						rs.getString("essentialtype"));
+				System.out.printf("\t\t\t%s\t%-20s\t%s\n", rs.getString("num")
+															, rs.getString("name")
+															, rs.getString("essentialtype"));
 
 			}
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -398,6 +450,11 @@ public class AdminBasic {
 
 			conn.setAutoCommit(false);
 			stat = conn.prepareCall(sql);
+			
+
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t   과정 수정");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			System.out.print("\t\t\t강의 시작 날짜:");
 			String start = scan.nextLine();
@@ -412,6 +469,7 @@ public class AdminBasic {
 			System.out.print("\t\t\t변경할 강의 번호:");
 			int num = scan.nextInt();
 			scan.close();
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			stat.setString(1, start);
 
@@ -434,6 +492,9 @@ public class AdminBasic {
 				System.out.println("\t\t\t과정 수정 실패!");
 				conn.rollback();
 			}
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
+			
 			stat.close();
 			conn.close();
 
@@ -457,6 +518,10 @@ public class AdminBasic {
 			conn.setAutoCommit(false);
 			stat = conn.prepareCall(sql);
 
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t   과정 추가");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			
 			System.out.print("\t\t\t강의 시작 날짜:");
 			String start = scan.nextLine();
 			System.out.print("\t\t\t강의 끝 날짜:");
@@ -467,6 +532,7 @@ public class AdminBasic {
 			int teacher = scan.nextInt();
 			System.out.print("\t\t\t강의 번호:");
 			int course = scan.nextInt();
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			stat.setString(1, start);
 
@@ -487,107 +553,12 @@ public class AdminBasic {
 				System.out.println("\t\t\t과정 개설 실패!");
 				conn.rollback();
 			}
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
+			
 			stat.close();
 			conn.close();
 		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public void vwBasicData() {
-		Connection conn = null;
-		Statement stat = null;
-		ResultSet rs = null;
-		DBUtil util = new DBUtil();
-
-		try {
-			conn = util.open("211.63.89.64", "project", "java1234");
-			stat = conn.createStatement();
-
-			String sql = String.format("select * from vwBasicData");
-
-			rs = stat.executeQuery(sql); // select -> rs
-
-			while (rs.next()) {
-				System.out.printf("과정명 :%s 과목명:%s 교재명:%s 강의실명:%s 강의실정원:%s \n", rs.getString("과정명"), rs.getString("과목명"),
-						rs.getString("교재명"), rs.getString("강의실명"), rs.getString("강의실정원"));
-			}
-
-			stat.close();
-			conn.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public void procCourseJobActivity() {
-		Connection conn = null;
-		CallableStatement stat = null;
-		ResultSet rs = null;
-		DBUtil util = new DBUtil();
-		Scanner sc = new Scanner(System.in);
-
-		try {
-			conn = util.open("localhost", "project", "java1234");
-			System.out.println("\t\t\t과정별 취업활동내역");
-
-			String sql = ("{ call PROCCOURSEJOBACTIVITY(?,?)}");
-
-			stat = conn.prepareCall(sql);
-			System.out.print("\t\t\t과정번호:");
-			int cnum = sc.nextInt();
-
-			stat.registerOutParameter(1, OracleTypes.CURSOR);
-			stat.setInt(2, cnum);
-
-			stat.executeQuery();
-
-			rs = (ResultSet) stat.getObject(1);
-
-			while (rs.next()) {
-				System.out.printf("이름:%s 과정번호:%s 취업활동:%s\n", rs.getString(3), rs.getInt(1), rs.getString(2));
-			}
-			stat.close();
-			conn.close();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	private void procStudentjobActivity() {
-		Connection conn = null;
-		CallableStatement stat = null;
-		DBUtil util = new DBUtil();
-		ResultSet rs = null;
-		Scanner scan = new Scanner(System.in);
-
-		try {
-
-			conn = util.open("211.63.89.64", "project", "java1234");
-			String sql = "{ call procStudentjobActivity(?,?) }";
-			stat = conn.prepareCall(sql);
-
-			System.out.print("\t\t\t학생번호:");
-			int stn = scan.nextInt();
-
-			stat.setInt(1, stn);
-			stat.registerOutParameter(2, OracleTypes.CURSOR);
-
-			stat.executeQuery();
-
-			rs = (ResultSet) stat.getObject(2);
-
-			while (rs.next()) {
-				System.out.printf("이름:%s 과정번호:%s 취업활동:%s n", rs.getString(3), rs.getInt(1), rs.getString(2));
-			}
-
-		} catch (Exception e) {
-			System.out.println("Ex07_CallableStatment.m5()");
 			e.printStackTrace();
 		}
 
@@ -607,6 +578,12 @@ public class AdminBasic {
 
 			rs = stat.executeQuery(sql); // select -> rs
 
+			
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t전체 출결 조회");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			
+			//정렬 수정안했음..
 			while (rs.next()) {
 				System.out.printf("이름:%s 과정:%s 입실날짜:%s 퇴실날짜:%s 출결상황:%s \n"
 
@@ -618,65 +595,6 @@ public class AdminBasic {
 			conn.close();
 
 		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public void procInputTestRatio() {
-
-		Connection conn = null;
-		CallableStatement stat = null;
-		DBUtil util = new DBUtil();
-		ResultSet rs = null;
-		Scanner scan = new Scanner(System.in);
-
-		try {
-
-			conn = util.open("211.63.89.64", "project", "java1234");
-			String sql = "{ call procInputWrittenTestRatio(?,?,?,?,?) }";
-			stat = conn.prepareCall(sql);
-
-			boolean atrc = true;
-			System.out.print("\t\t\t교사번호:");
-			int thr = Integer.parseInt(scan.nextLine());
-			System.out.print("\t\t\t과목번호:");
-			int sub = Integer.parseInt(scan.nextLine());
-			System.out.print("\t\t\t필기배점:");
-			int wtr = Integer.parseInt(scan.nextLine());
-			System.out.print("\t\t\t실기배점:");
-			int ptr = Integer.parseInt(scan.nextLine());
-			System.out.print("\t\t\t출결배점(20점이상):");
-			int atr = Integer.parseInt(scan.nextLine());
-			if (atr < 20) {
-				System.out.println("\t\t\t출결배점은 20점 이상이어야 합니다.");
-				while (atrc) {
-					System.out.print("\t\t\t출결배점(20점이상):");
-					atr = Integer.parseInt(scan.nextLine());
-					if (atr >= 20) {
-						atrc = false;
-					}
-				}
-			}
-			stat.setInt(1, thr);
-			stat.setInt(2, sub);
-			stat.setDouble(3, wtr);
-			stat.setDouble(4, ptr);
-			stat.setDouble(5, atr);
-
-			stat.executeUpdate();
-
-			if (wtr + ptr + atr == 100) {
-				System.out.println("\t\t\t배점입력완료");
-				conn.commit();
-			} else {
-				System.out.println("\t\t\t실기,필기,출결 배점의 합이 100이 어야합니다.");
-				conn.rollback();
-				procInputTestRatio();
-			}
-
-		} catch (Exception e) {
-			System.out.println("Ex07_CallableStatment.m5()");
 			e.printStackTrace();
 		}
 
@@ -694,6 +612,10 @@ public class AdminBasic {
 			conn = util.open("211.63.89.64", "project", "java1234");
 			String sql = "{ call procPrintAttendanceStudent(?,?,?) }";
 			stat = conn.prepareCall(sql);
+			
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t학생별 출결 조회");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			System.out.print("\t\t\t학생번호:");
 			int stu = scan.nextInt();
@@ -719,7 +641,7 @@ public class AdminBasic {
 
 	}
 
-	public void PROCPRINTATTENDANCEDATE() {
+	public void procPrintAttendanceDate() {
 		Connection conn = null;
 		CallableStatement stat = null;
 		DBUtil util = new DBUtil();
@@ -729,6 +651,10 @@ public class AdminBasic {
 		try {
 			conn = util.open("localhost", "project", "java1234");
 
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t기간별 출결 조회");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			
 			System.out.print("\t\t\t날짜입력(YY):");
 			String year = scan.nextLine();
 			System.out.print("\t\t\t날짜입력(MM):");
@@ -760,9 +686,103 @@ public class AdminBasic {
 		}
 
 	}
+	
+	public void procDeleteSubject() {
+		
+		
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.println("\t\t\t\t\t과목 정보 삭제");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.println();
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		Scanner sc = new Scanner(System.in);
+		boolean chk = true;
+		try {
+			conn = util.open("localhost","project","java1234"); 
+			conn.setAutoCommit(false);
+			 
+			String sql = "{call procdeletesubject(?)}";
+			stat = conn.prepareCall(sql);
+			
+			System.out.print("\t\t\t삭제할 과목 번호: ");
+			int cnum = sc.nextInt();
+			
+			System.out.println();
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			
+			stat.setInt(1,cnum);
 
-	public void procdeleteclassroom() {
-		System.out.println("강의실 정보 수정");
+			int result = stat.executeUpdate();
+			
+			if(result == 1) {
+			System.out.println("\t\t\t과목 삭제 완료!");
+			conn.commit();
+			}
+			stat.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("\t\t\t실패!");
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+	}
+	
+	public void procDeleteBook() {
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.println("\t\t\t\t\t   교재 삭제");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.println();
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		Scanner sc = new Scanner(System.in);
+		boolean chk = true;
+		try {
+			conn = util.open("localhost","project","java1234"); 
+			conn.setAutoCommit(false);
+			
+			String sql = "{call procdeleteclassroom(?)}";
+			stat = conn.prepareCall(sql);
+			
+			System.out.print("\t\t\t삭제할 교재 번호:");
+			int cnum = sc.nextInt();
+			
+			stat.setInt(1,cnum);
+
+			int result = stat.executeUpdate();
+			
+			if(result == 1) {
+			System.out.println("\t\t\t교재 삭제 완료!");
+			conn.commit();
+			}
+			stat.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("\t\t\t실패!");
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+
+	public void procDeleteClassroom() {
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.println("\t\t\t\t\t강의실 정보 수정");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		System.out.println();
 		Connection conn = null;
 		CallableStatement stat = null;
@@ -777,7 +797,7 @@ public class AdminBasic {
 			String sql = "{call procdeleteclassroom(?)}";
 			stat = conn.prepareCall(sql);
 
-			System.out.print("\t\t\t 변경할 강의실 번호:");
+			System.out.print("\t\t\t변경할 강의실 번호: ");
 			int cnum = sc.nextInt();
 
 			stat.setInt(1, cnum);
@@ -801,10 +821,52 @@ public class AdminBasic {
 		}
 
 	}
+	
+	public void procDeleteAllcourse() {
+		
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		Scanner sc = new Scanner(System.in);
+		boolean chk = true;
+		try {
+			conn = util.open("localhost","project","java1234"); 
+			conn.setAutoCommit(false);
+			
+			String sql = "{call procdeleteclassroom(?)}";
+			stat = conn.prepareCall(sql);
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t강의실 삭제");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
+			
+			System.out.print("\t\t\t삭제할 강의실 번호: ");
+			int cnum = sc.nextInt();
+			
+			stat.setInt(1,cnum);
+
+			int result = stat.executeUpdate();
+			
+			if(result == 1) {
+			System.out.println("\t\t\t강의실 삭제 완료!");
+			conn.commit();
+			}
+			stat.close();
+			conn.close();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("실패!");
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
 
 	public void procUpdateAllcourse() {
-		System.out.println("\t\t\t과정 정보 수정");
-		System.out.println();
 		Connection conn = null;
 		CallableStatement stat = null;
 		ResultSet rs = null;
@@ -818,6 +880,10 @@ public class AdminBasic {
 			String sql = "{call procUpdateAllcourse(?,?,?,?,?)}";
 			stat = conn.prepareCall(sql);
 
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t과정 정보 수정");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
 			System.out.print("\t\t\t과정명:");
 			String cname = sc.nextLine();
 			System.out.print("\t\t\t과정목적:");
@@ -839,7 +905,7 @@ public class AdminBasic {
 			int result = stat.executeUpdate();
 
 			if (result == 1) {
-				System.out.println("\t\t\t교재 수정 완료");
+				System.out.println("\t\t\t과정 수정 완료");
 				conn.commit();
 			}
 			stat.close();
@@ -857,8 +923,8 @@ public class AdminBasic {
 	}
 
 	public void procUpdateBook() {
-		System.out.println("\t\t\t교재 정보 수정");
-		System.out.println();
+		
+
 		Connection conn = null;
 		CallableStatement stat = null;
 		ResultSet rs = null;
@@ -871,6 +937,11 @@ public class AdminBasic {
 
 			String sql = "{call procUpdateBook(?,?,?,?,?)}";
 			stat = conn.prepareCall(sql);
+			
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t교재 정보 수정");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
 
 			System.out.print("\t\t\t과목번호:");
 			int snum = sc.nextInt();
@@ -912,8 +983,7 @@ public class AdminBasic {
 	}
 
 	public void procUpdateSubject() {
-		System.out.println("\t\t\t과목 정보 수정");
-		System.out.println();
+
 		Connection conn = null;
 		CallableStatement stat = null;
 		ResultSet rs = null;
@@ -926,6 +996,11 @@ public class AdminBasic {
 
 			String sql = "{call procUpdateSubject(?,?,?)}";
 			stat = conn.prepareCall(sql);
+			
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t과목 정보 수정");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
 
 			System.out.print("\t\t\t과목명:");
 			String sname = sc.nextLine();
@@ -969,8 +1044,6 @@ public class AdminBasic {
 	}
 
 	public void procUpdateClassRoom() {
-		System.out.println("\t\t\t강의실 정보 수정");
-		System.out.println();
 		Connection conn = null;
 		CallableStatement stat = null;
 		ResultSet rs = null;
@@ -983,6 +1056,11 @@ public class AdminBasic {
 
 			String sql = "{call procUpdateClassroom(?,?,?)}";
 			stat = conn.prepareCall(sql);
+			
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t강의실 정보 수정");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
 
 			System.out.print("\t\t\t강의실명:");
 			String cname = sc.nextLine();
@@ -1016,7 +1094,10 @@ public class AdminBasic {
 	}
 
 	public void procAddAllcourse() {
-		System.out.println("\t\t\t과정 추가");
+
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.println("\t\t\t\t\t   과정 추가");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		System.out.println();
 		Connection conn = null;
 		CallableStatement stat = null;
@@ -1066,8 +1147,7 @@ public class AdminBasic {
 	}
 
 	public void procAddBook() {
-		System.out.println("\t\t\t교재 추가");
-		System.out.println();
+
 		Connection conn = null;
 		CallableStatement stat = null;
 		DBUtil util = new DBUtil();
@@ -1083,6 +1163,10 @@ public class AdminBasic {
 			Statement stat2 = null;
 			stat2 = conn.createStatement();
 
+
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t   교재 추가");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 
 			System.out.print("\t\t\t과목번호:");
@@ -1121,8 +1205,7 @@ public class AdminBasic {
 	}
 
 	public void procAddSubject() {
-		System.out.println("\t\t\t과목 추가");
-		System.out.println();
+
 		Connection conn = null;
 		CallableStatement stat = null;
 		ResultSet rs = null;
@@ -1136,6 +1219,10 @@ public class AdminBasic {
 			String sql = "{call procAddSubject(?,?)}";
 			stat = conn.prepareCall(sql);
 
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t   과목 추가");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
 			System.out.print("\t\t\t과목명:");
 			String sname = sc.nextLine();
 			System.out.print("\t\t\t과목구분(공통/특수):");
@@ -1175,8 +1262,7 @@ public class AdminBasic {
 	}
 
 	public void procAddclassroom() {
-		System.out.println("\t\t\t강의실 추가");
-		System.out.println();
+
 		Connection conn = null;
 		CallableStatement stat = null;
 		ResultSet rs = null;
@@ -1188,6 +1274,11 @@ public class AdminBasic {
 
 			String sql = "{call procAddClassroom(?,?)}";
 			stat = conn.prepareCall(sql);
+			
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t강의실 추가");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
 
 			System.out.print("\t\t\t강의실명:");
 			String rname = sc.nextLine();
@@ -1200,7 +1291,7 @@ public class AdminBasic {
 			int result = stat.executeUpdate();
 
 			if (result == 1) {
-				System.out.println("강의실 추가 완료");
+				System.out.println("\t\t\t강의실 추가 완료");
 				conn.commit();
 			}
 			stat.close();

@@ -24,20 +24,20 @@ public class AdminEquipment {
 		
 		while (true) {
 			
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t기자재 관리");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-	
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+
 			System.out.println("\t\t\t1. 구입날짜별 조회");
 			System.out.println("\t\t\t2. 강의실별 조회");
 			System.out.println("\t\t\t3. 기자재 내역 추가");
 			System.out.println("\t\t\t4. 기자재 수량 수정");
 			System.out.println("\t\t\t0. 뒤로가기");
 	
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷ 입력:");
 			String cho = scan.nextLine();
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 		
 			
@@ -100,9 +100,9 @@ public class AdminEquipment {
 			
 			
 			//헤더 출력
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t구입날짜별 조회");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			
 			//사용자에게 정보 입력받음
@@ -110,7 +110,7 @@ public class AdminEquipment {
 			roomNum = scan.nextLine();
 
 			System.out.println();
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			
 			//프로시저 호출 준비
 			stat.setString(1, roomNum);
@@ -123,7 +123,7 @@ public class AdminEquipment {
 			//헤더 출력
 			System.out.println();
 			System.out.println("\t\t\t[강의실] [기자재]\t\t[수량]\t[구입날짜]");
-			System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 			
 			//결과 출력
 			while(rs.next()) {
@@ -136,7 +136,7 @@ public class AdminEquipment {
 			
 			//출력 완료
 			System.out.println();
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			System.out.println("\t\t\t조회가 완료되었습니다.");
 			System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
@@ -181,9 +181,9 @@ public class AdminEquipment {
 			
 			
 			//헤더 출력
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t강의실별 조회");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			
 			//사용자에게 정보 입력받음
@@ -202,7 +202,7 @@ public class AdminEquipment {
 			System.out.print("\t\t\t일 : ");
 			edate = scan.nextLine();	
 			System.out.println();
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			
 			//프로시저 호출 준비
 			stat.setString(1, syear+smonth+sdate);
@@ -216,7 +216,7 @@ public class AdminEquipment {
 			//헤더 출력
 			System.out.println();
 			System.out.println("\t\t\t[강의실] [기자재]\t\t[수량]\t[구입날짜]");
-			System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 			
 			//결과 출력
 			while(rs.next()) {
@@ -229,7 +229,7 @@ public class AdminEquipment {
 			
 			//출력 완료
 			System.out.println();
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			System.out.println("\t\t\t조회가 완료되었습니다.");
 			System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
@@ -271,21 +271,21 @@ public class AdminEquipment {
 			rs = estat.executeQuery(sql);
 			
 			//헤더 출력
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t기자재 내역 추가");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			
 			//기자재 목록 출력 
 			System.out.println("\t\t\t[번호]\t[기자재]");
-			System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 			
 			while(rs.next()) {
 				System.out.printf("\t\t\t%s\t%s\n", rs.getString("num"), rs.getString("item"));
 			}//while
 			
 			System.out.println();
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			
 			//연결 끊기 
 			estat.close();
@@ -346,7 +346,7 @@ public class AdminEquipment {
 				date = scan.nextLine();
 				stat.setString(4, year+month+date);
 				System.out.println();
-				System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+				System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 				
 				
 				if (qty.equals("0")) {	//0을 입력하면 종료
@@ -363,10 +363,10 @@ public class AdminEquipment {
 				
 				if (stat.getInt(5) > 0) { //추가 성공시
 					System.out.println("\t\t\t추가에 성공했습니다.");
-					System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+					System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 				} else {	//추가 실패시
 					System.out.println("\t\t\t추가에 실패했습니다.");
-					System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+					System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 				}
 				
 			}//while
@@ -411,21 +411,21 @@ public class AdminEquipment {
 				rs = estat.executeQuery(sql);
 				
 				//헤더 출력
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t\t\t기자재 수량 수정");
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println();
 				
 				//기자재 목록 출력 
 				System.out.println("\t\t\t[번호]\t[기자재]");
-				System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+				System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 				
 				while(rs.next()) {
 					System.out.printf("\t\t\t%s\t%s\n", rs.getString("num"), rs.getString("item"));
 				}//while
 				
 				System.out.println();
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				
 				//연결 끊기 
 				estat.close();
@@ -468,7 +468,7 @@ public class AdminEquipment {
 					System.out.print("\t\t\t수량: ");
 					qty = scan.nextLine();
 					stat.setString(3, qty);
-					System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+					System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 		
 					
 					if (qty.equals("0")) {	//0을 입력하면 종료
@@ -483,10 +483,10 @@ public class AdminEquipment {
 					
 					if (stat.getInt(4)> 0) { //추가 성공시
 						System.out.println("\t\t\t수정에 성공했습니다.");
-						System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+						System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 					} else {	//추가 실패시
 						System.out.println("\t\t\t수정에 실패했습니다.");
-						System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+						System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 					}
 					
 				}//while

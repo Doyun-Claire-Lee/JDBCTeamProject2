@@ -50,6 +50,7 @@ public class AdminUser {
 			String inputId = scan.nextLine();
 			System.out.print("\t\t\t▷ PW: ");
 			String inputPw = scan.nextLine();
+			System.out.println();
 
 			// iterator
 			Iterator<String> keys = loginInfo.keySet().iterator();
@@ -66,11 +67,6 @@ public class AdminUser {
 
 					// password matching
 					if (pw.equals(inputPw)) {
-
-						// new main instance
-						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓");
-						System.out.printf("\t\t\t아이디 : %s\n", id);
-						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓");
 
 						AdminMain adminMain = new AdminMain();
 						
@@ -89,7 +85,7 @@ public class AdminUser {
 					}
 				}
 			}
-			System.out.println("아이디와 비밀번호를 다시 입력해주세요.");
+			System.out.println("\t\t\t아이디와 비밀번호를 다시 입력해주세요.");
 
 			
 

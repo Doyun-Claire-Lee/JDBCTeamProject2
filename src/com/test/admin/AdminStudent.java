@@ -23,18 +23,21 @@ public class AdminStudent {
 	}
 	
 	public void menu() {
+		
 		while (true) {
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓  M E N U 〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t                    교육생 관리");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t교육생 관리");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t1. 취업완료 수료생 관리");
 			System.out.println("\t\t\t2. 상담 관리");
 			System.out.println("\t\t\t3. 성적 우수자 관리");
 			System.out.println("\t\t\t4. 보강 수업 관리");
 			System.out.println("\t\t\t0. 뒤로가기");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷입력:");
 			String sel = scan.nextLine();
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			
 			// 취업완료 수료생 관리
 			if(sel.equals("1")) {
@@ -160,6 +163,7 @@ public class AdminStudent {
 			System.out.print("\t\t\t▷ 과목 번호 입력 : "); //과목 번호입력
 			snum = scan.nextLine();
 			System.out.println();
+			
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			stat.setString(1, snum); 

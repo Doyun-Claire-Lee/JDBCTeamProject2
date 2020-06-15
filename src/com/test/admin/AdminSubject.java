@@ -30,7 +30,9 @@ public class AdminSubject {
 			// Database Connection
 			conn = util.open("211.63.89.64", "project", "java1234");
 			
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓 개설 과정별 과목 관리 〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t개설 과정별 과목 관리");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t1. 조회");
 			System.out.println("\t\t\t2. 과목별 기간 등록");
 			System.out.println("\t\t\t3. 수정");
@@ -38,7 +40,7 @@ public class AdminSubject {
 			System.out.println("\t\t\t5. 교재 배부");
 			System.out.println("\t\t\t0. 뒤로가기");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.print("\t\t\t▷ 입력: \n");
+			System.out.print("\t\t\t▷ 입력: ");
 			
 			String sel = scan.nextLine();
 			
@@ -82,9 +84,9 @@ public class AdminSubject {
 			
 			while (true) {
 				
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t\t\t교재 배부 관리");
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		
 				System.out.println("\t\t\t1. 과정별 배부 내역 조회");
 				System.out.println("\t\t\t2. 미배부 학생 내역 조회");
@@ -92,10 +94,10 @@ public class AdminSubject {
 				System.out.println("\t\t\t4. 학생별 배부 내역 수정");
 				System.out.println("\t\t\t0. 뒤로가기");
 		
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.print("\t\t\t▷ 입력:");
 				String cho = scan.nextLine();
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println();
 			
 				
@@ -155,9 +157,9 @@ public class AdminSubject {
 				String cnum = "";
 				
 				//헤더 출력
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t\t\t과정별 배부 내역 조회");
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println();
 			
 				//사용자에게 정보 입력받음
@@ -165,7 +167,7 @@ public class AdminSubject {
 				cnum = scan.nextLine();
 		
 				System.out.println();
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println();
 				
 				//선택한 과정번호의 과정이름 불러옴 
@@ -193,7 +195,7 @@ public class AdminSubject {
 				
 				System.out.println();
 				System.out.println("\t\t\t[이름]\t\t[교재명]\t\t[상태]");
-				System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+				System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 				
 				while(rs.next()) {
 					System.out.printf("\t\t\t%s\t\t%-15s\t%s\n", rs.getString("StudentName")
@@ -201,7 +203,7 @@ public class AdminSubject {
 																, rs.getString("status"));
 				}
 				System.out.println();
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				
 				
 				
@@ -241,9 +243,9 @@ public class AdminSubject {
 				conn = util.open("localhost","project","java1234");
 				
 				//헤더 출력
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t\t\t미배부 학생 목록 조회");
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println();
 				
 				//선택한 과정번호의 과정이름 불러옴 
@@ -264,7 +266,7 @@ public class AdminSubject {
 														, rs.getString("courseName"));				
 				}
 				System.out.println();
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");			
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");			
 				
 				stat.close();
 				conn.close();
@@ -298,14 +300,14 @@ public class AdminSubject {
 			
 			try {
 				
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t\t\t과목별 배부 내역 수정");
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.print("\t\t\t시행과정 번호 : ");
 				courseNum = scan.nextLine();
 				System.out.print("\t\t\t과목 번호 : ");
 				subjectNum = scan.nextLine();			
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println();
 
 				//프로시저 호출 준비
@@ -364,16 +366,16 @@ public class AdminSubject {
 				
 				try {
 					
-					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 					System.out.println("\t\t\t\t\t학생별 배부 내역 수정");
-					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 					System.out.println();
 					System.out.print("\t\t\t학생 번호 : ");
 					studentNum = scan.nextLine();
 					System.out.print("\t\t\t과목 번호 : ");
 					subjectNum = scan.nextLine();			
 					System.out.println();
-					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 					//프로시저 호출 준비
 					conn = util.open("localhost","project","java1234");
@@ -416,6 +418,7 @@ public class AdminSubject {
 		}
 
 	private void deletePeriodBySubject(Connection conn, Scanner scan) {
+		
 		// print opencourse info
 		vwOpencourse(conn);
 		

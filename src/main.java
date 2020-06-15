@@ -11,7 +11,7 @@ public class main {
 		
 		while (true) {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t\t\t교육센터 관리 시스템");
+			System.out.println("\t\t\t\t           교육센터 관리 시스템");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			System.out.println("\t\t\t1. 관리자 로그인");

@@ -23,9 +23,9 @@ public class AdminTeacher {
 		
 		while (true) {
 			
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t교사 계정 관리");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 	
 			System.out.println("\t\t\t1. 교사 신규 등록");
 			System.out.println("\t\t\t2. 교사 정보 수정");
@@ -36,10 +36,10 @@ public class AdminTeacher {
 			System.out.println("\t\t\t7. 교사평가 결과 조회");
 			System.out.println("\t\t\t0. 뒤로가기");
 	
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷ 입력:");
 			String cho = scan.nextLine();
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 		
 			
@@ -110,9 +110,9 @@ public class AdminTeacher {
 			stat = conn.prepareCall(sql);
 			
 			//헤더 출력
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t교사 신규 등록");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			
 			//사용자에게 정보 입력받음
@@ -123,8 +123,8 @@ public class AdminTeacher {
 			System.out.print("\t\t\t주민등록번호 : ");
 			ssn = scan.nextLine();			
 			System.out.println();
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		
 			//입력받은 정보 프로시저 매개변수에 넣어줌
 			stat.setString(1, name);	
 			stat.setString(2, tel);			
@@ -176,19 +176,19 @@ public class AdminTeacher {
 		
 		try {
 			
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t교사 정보 수정");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t1. 이름 수정");
 			System.out.println("\t\t\t2. 전화번호 수정");
 			System.out.println("\t\t\t3. 주민등록번호 수정");
 			
 			while (true) { //1~3 이외의 숫자일 경우 재입력받기위해 while문 사용
 				
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.print("\t\t\t▷ 입력 : ");
 				select = scan.nextLine();
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");	
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");	
 				System.out.println();
 				
 				if (select.equals("1")) {//이름수정 선택시
@@ -225,7 +225,7 @@ public class AdminTeacher {
 			}//while
 			
 			System.out.println();
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");	
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");	
 			
 			conn = util.open("211.63.89.64","project","java1234");
 			
@@ -283,12 +283,12 @@ public class AdminTeacher {
 		
 		try {
 			
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t교사 계정 삭제");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t교사 번호 : ");
 			teacherNum = scan.nextLine();
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 
 			//프로시저 호출 준비
@@ -345,9 +345,9 @@ public class AdminTeacher {
 		
 		try {
 			
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t강의 가능 과목 추가");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			
 			conn = util.open("211.63.89.64","project","java1234");
@@ -366,7 +366,7 @@ public class AdminTeacher {
 			//과목 출력용 stat닫기
 			subjectStat.close();
 
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			
 			//강의가능과목 추가 프로시저 호출
@@ -400,7 +400,7 @@ public class AdminTeacher {
 				snum = scan.nextLine();
 				stat.setString(2, snum);
 				System.out.println();
-				System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+				System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 
 
 				if (snum.equals("0")) {	//사용자가 과목 번호에 0을 입력하면 종료
@@ -417,10 +417,10 @@ public class AdminTeacher {
 				
 				if (stat.getInt(3) > 0) { //추가 성공시
 					System.out.println("\t\t\t추가에 성공했습니다.");
-					System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+					System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 				} else {	//추가 실패시
 					System.out.println("\t\t\t추가에 실패했습니다.");
-					System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+					System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 				}
 				
 			}//while
@@ -464,18 +464,18 @@ public class AdminTeacher {
 			trs = tStat.executeQuery(sql);
 			
 			//헤더 출력
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t교사 정보 조회");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			
 			//교사 한명씩 출력 
 			while(trs.next()) {
 				
 				System.out.println();
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t[이름]\t[비밀번호]\t[연락처]");
-				System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+				System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 				System.out.printf("\t\t\t%s\t%s\t\t%s\t\n", trs.getString("name"), trs.getString("pw"), trs.getString("tel"));
 				
 				//강의가능과목 목록 출력 준비
@@ -490,15 +490,15 @@ public class AdminTeacher {
 				sStat.executeQuery();
 				srs = (ResultSet)sStat.getObject(2);
 				
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t[강의 가능 과목]");
-				System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+				System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 				
 				//강의가능과목 목록 출력
 				while(srs.next()) {	
 					System.out.println("\t\t\t " + srs.getString("availableSubject"));
 				}//while
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			
 			}//while
 			
@@ -539,9 +539,9 @@ public class AdminTeacher {
 		try {
 			
 			//헤더 출력
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t교사별 강의 내역 조회");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			
 			conn = util.open("211.63.89.64","project","java1234");
@@ -582,20 +582,20 @@ public class AdminTeacher {
 
 			
 			//교사번호, 이름 먼저 출력해줌
-			System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 			System.out.println("\t\t\t[번호]\t[이름]");
-			System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 
 			while (ars.next()) {
 				
 				System.out.printf("\t\t\t%3s\t%s\n", ars.getString("num"), ars.getString("name"));
 			}			
-			System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 
 			//교사번호 입력받아 담당강의 상세내역 출력하기
 			System.out.print("\t\t\t상세 내역을 조회할 교사 번호를 입력하세요: ");
 			String tnum = scan.nextLine();
-			System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 			System.out.println();
 			
 			//교사별 상세 강의내역 프로시저 호출 준비
@@ -662,13 +662,13 @@ public class AdminTeacher {
 			rs = (ResultSet)stat.getObject(1); 
 			
 			//헤더 출력
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t교사평가 점수 조회");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			//교사이름, 과정번호, 종합(항목:1,2,3,4,5,6)평균점수
 			System.out.println("\t\t\t[번호]\t[이름]\t[과정번호]\t[종합평균점수]");
-			System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 			
 			int num = 1;
 			
@@ -688,7 +688,7 @@ public class AdminTeacher {
 //				System.out.print("\t\t");
 //				System.out.printf("%10s", rs.getString("score"));
 			}
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			
 			rs.close();
 			stat.close();

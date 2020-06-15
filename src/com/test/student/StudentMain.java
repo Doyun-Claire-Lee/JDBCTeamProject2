@@ -14,22 +14,25 @@ public class StudentMain {
 		String sel = "";
 		
 		while(true) {
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 M E N U 〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓  M E N U 〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t1. 성적 조회");
-			System.out.println("\t\t\t2. 출결 관리 및 출결 조회");
+			System.out.println("\t\t\t2. 출결 관리");
 			System.out.println("\t\t\t3. 상담신청");
 			System.out.println("\t\t\t4. 교사평가");
 			System.out.println("\t\t\t5. 취업활동목록");
 			System.out.println("\t\t\t0. 뒤로가기");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.print("▷ 입력: ");
-			
 			// 사용자에게 번호 입력받음
+			System.out.print("\t\t\t▷입력: ");
 			sel = scan.nextLine();
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
+
 			
 			// 성적 조회
 			if(sel.equals("1")) {
-				StudentCheckScore CheckScore = new StudentCheckScore();
+				StudentCheckScore checkScore = new StudentCheckScore();
+				checkScore.studentScoreMain(studentUser);
 				// 도윤
 			}
 			// 출결 관리 및 출결 조회

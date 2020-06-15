@@ -58,10 +58,9 @@ public class TeacherUser {
 			}
 
 			// input id, pw
-			System.out.print("▷ ID: \n");
+			System.out.print("\t\t\t▷ ID: \n");
 			String inputId = scan.nextLine();
-			System.out.println(inputId);
-			System.out.print("▷ PW: \n");
+			System.out.print("\t\t\t▷ PW: \n");
 			String inputPw = scan.nextLine();
 
 			// iterator
@@ -78,9 +77,9 @@ public class TeacherUser {
 
 					// pw matching
 					if (pw.equals(inputPw)) {
-						System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
-						System.out.printf("아이디 : %s\n", id);
-						System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓");
+						System.out.printf("\t\t\t아이디 : %s\n", id);
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓");
 
 						TeacherMain teacherMain = new TeacherMain();
 						

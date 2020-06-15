@@ -13,18 +13,18 @@ public class AdminMain {
 		String sel = "";
 
 		while (true) {
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓 M E N U 〓〓〓〓〓〓〓〓〓");
-			System.out.println("1.기초 정보 관리");
-			System.out.println("2.교사 계정 관리");
-			System.out.println("3.개설 과정 관리");
-			System.out.println("4.개설 과목 관리");
-			System.out.println("5.교육생 관리");
-			System.out.println("6.시험 관리");
-			System.out.println("7.출결 관리");
-			System.out.println("8.기자재 관리");
-			System.out.println("0. 뒤로가기");
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.print("▷ 입력:");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 M E N U 〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t1.기초 정보 관리");
+			System.out.println("\t\t\t2.교사 계정 관리");
+			System.out.println("\t\t\t3.개설 과정 관리");
+			System.out.println("\t\t\t4.개설 과목 관리");
+			System.out.println("\t\t\t5.교육생 관리");
+			System.out.println("\t\t\t6.시험 관리");
+			System.out.println("\t\t\t7.출결 관리");
+			System.out.println("\t\t\t8.기자재 관리");
+			System.out.println("\t\t\t0. 뒤로가기");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("\t\t\t▷ 입력:");
 			
 			// 사용자에게 번호 입력받음
 			sel = scan.nextLine();
@@ -42,6 +42,7 @@ public class AdminMain {
 			// 개설 과정 관리
 			else if (sel.equals("3")) {
 				AdminOpencourse opencourse = new AdminOpencourse();
+				// 시연
 			}
 			// 개설 과목 관리
 			else if (sel.equals("4")) {
@@ -56,6 +57,7 @@ public class AdminMain {
 			// 시험 관리
 			else if (sel.equals("6")) {
 				AdminExam exam = new AdminExam();
+				exam.menu();
 			}
 			// 출결 관리
 			else if (sel.equals("7")) {

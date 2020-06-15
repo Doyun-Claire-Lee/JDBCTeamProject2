@@ -13,26 +13,29 @@ public class TeacherMain {
 		String sel = "";
 		
 		while (true) {
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓 M E N U 〓〓〓〓〓〓〓〓〓");
-			System.out.println("1. 강의 스케줄 조회");
-			System.out.println("2. 배점 입출력");
-			System.out.println("3. 성적 입출력");
-			System.out.println("4. 출결 관리 및 출결 조회");
-			System.out.println("5. 교사 평가 조회");
-			System.out.println("6. 성적 우수자 / 보강수업 대상자 조회");
-			System.out.println("0. 뒤로가기");
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.print("▷ 입력: \n");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 M E N U 〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t1. 강의 스케줄 조회");
+			System.out.println("\t\t\t2. 배점 입출력");
+			System.out.println("\t\t\t3. 성적 입출력");
+			System.out.println("\t\t\t4. 출결 관리 및 출결 조회");
+			System.out.println("\t\t\t5. 교사 평가 조회");
+			System.out.println("\t\t\t6. 상담 내역 관리");
+			System.out.println("\t\t\t0. 뒤로가기");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("\t\t\t▷ 입력: \n");
 			// 사용자에게 번호 입력받음
 			sel = scan.nextLine();
 
 			// 강의 스케줄 조회
 			if (sel.equals("1")) {
 				TeacherCheckSchedule checkSchedule = new TeacherCheckSchedule();
+				checkSchedule.procCheckTeaching(teacherUser);
+				
 			}
 			// 배점 입출력
 			else if (sel.equals("2")) {
 				TeacherInsertRatio ratio = new TeacherInsertRatio();
+				// 찬우
 			}
 			// 성적 입출력
 			else if (sel.equals("3")) {
@@ -42,15 +45,18 @@ public class TeacherMain {
 			// 출결 관리 및 출결 조회
 			else if (sel.equals("4")) {
 				TeacherAttendance attendance = new TeacherAttendance();
+				attendance.menu(teacherUser);
 			}
 			// 교사 평가 조회
 			else if (sel.equals("5")) {
 				TeacherCheckRating rating = new TeacherCheckRating();
+				rating.procPrintTeacherMyRating(teacherUser);
 			} 
-			// 성적 우수자 / 보강수업 대상자 조회
+			// 상담 신청 관리
 			else if (sel.equals("6")) {
-				TeacherCheckOutstander outstand = new TeacherCheckOutstander();
-			} 
+				TeacherManageConsult manageConsult = new TeacherManageConsult();
+				manageConsult.menu();
+			}
 			// 뒤로 가기
 			else if (sel.equals("0")) {
 				break;

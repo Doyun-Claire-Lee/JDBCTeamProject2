@@ -29,8 +29,7 @@ public class AdminOpencourse {
 	 */
 	public void menu() {
 		
-		Boolean loop = true;
-		while (loop) {
+		while (true) {
 			System.out.println("〓〓〓〓〓〓〓〓〓  M E N U 〓〓〓〓〓〓〓");
 			System.out.println("                  개설 과정 관리");
 			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
@@ -42,37 +41,14 @@ public class AdminOpencourse {
 			System.out.println("6. 추가, 조희, 수정, 삭제 기능");
 			System.out.println("0. 뒤로가기");
 			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.print("▷번호:");
-			int num = scan.nextInt();
-			scan.skip("\r\n");
+			System.out.print("▷입력:");
+			
 			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-
-			switch (num) {
-			case 1:
-				procopenCourse();
-				break;
-			case 2:
-				procBasicClassroom();
-				break;
-			case 3:
-				vwopenCourseInfo();
-				break;
-			case 4:
-				vwopenCourseSubject();
-				break;
-			case 5:
-				vwopenCourseSelectEndDate();
-				break;
-			case 6:
-				menu1();
-				break;
-			case 0:
-				loop = false;
-				break;
-			default:
-				System.out.println("번호를 다시 입력해주세요.");
-			}
+			
+			break;
+			
 		}
+	
 	} // menu()
 
 	/**

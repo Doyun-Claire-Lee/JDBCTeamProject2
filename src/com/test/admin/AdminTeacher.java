@@ -103,7 +103,7 @@ public class AdminTeacher {
 		
 		try {
 			
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			
 			//교사 추가 프로시저 호출 준비
 			String sql = "{ call procAddTeacher(?,?,?,?) }";
@@ -227,7 +227,7 @@ public class AdminTeacher {
 			System.out.println();
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");	
 			
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			
 			//프로시저 실행 준비
 			String sql = "{ call procUpdateTeacherInfo(?,?,?,?) }";
@@ -292,7 +292,7 @@ public class AdminTeacher {
 			System.out.println();
 
 			//프로시저 호출 준비
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			String sql = "{ call procDeleteTeacher(?,?) }";
 			stat = conn.prepareCall(sql);
 			
@@ -350,7 +350,7 @@ public class AdminTeacher {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			
 			//과목목록 불러오기
 			String subjectSQL = "select num, name from tblSubject where deletestatus = 0";
@@ -456,7 +456,7 @@ public class AdminTeacher {
 		
 		try {
 			
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.","project","java1234");
 			tStat = conn.createStatement();
 			
 			//삭제상태가 아닌 교사 목록만 가져옴.
@@ -544,7 +544,7 @@ public class AdminTeacher {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			
 			//전체 교사 강의내역 불러오기 
 			aStat = conn.createStatement();
@@ -639,7 +639,7 @@ public class AdminTeacher {
 	}
 	
 	public void procPrintAllteacherRating() {
-	//오희준
+	
 		
 		Connection conn = null;
 		CallableStatement stat = null;
@@ -652,7 +652,7 @@ public class AdminTeacher {
 					
 			String sql = "{ call procPrintAllteacherRating(?) }";
 
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			stat = conn.prepareCall(sql);
 			
 			stat.registerOutParameter(1, OracleTypes.CURSOR);

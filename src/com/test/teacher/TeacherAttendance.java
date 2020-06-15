@@ -28,7 +28,8 @@ public class TeacherAttendance {
 	 *  출결 관리 및 출결 조회 전체 메뉴입니다.
 	 * @param teacherNum 선생님 번호
 	 */
-	public void menu(int teacherNum) {
+	
+	public void menu(TeacherUser teacherUser) {
 		boolean loop = true;
 		while(loop) {
 		System.out.println("〓〓〓〓〓〓〓〓   M E N U 〓〓〓〓〓〓〓〓");
@@ -47,16 +48,16 @@ public class TeacherAttendance {
 		
 		switch(num) {
 		case 1: 
-			procteacherAttendance(teacherNum);
+			procteacherAttendance(teacherUser.getNum());
 		break;
 		case 2:
-			procteacherAttendance1(teacherNum);
+			procteacherAttendance1(teacherUser.getNum());
 		break;
 		case 3:
-			procteacherAttendanceSelect(teacherNum);
+			procteacherAttendanceSelect(teacherUser.getNum());
 		break;
 		case 4:
-			procteacherAttendanceStatus(teacherNum);
+			procteacherAttendanceStatus(teacherUser.getNum());
 		break;
 		case 0:
 			loop = false;

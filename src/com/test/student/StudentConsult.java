@@ -17,6 +17,7 @@ public class StudentConsult {
 
 	public void requestConsulting(StudentUser studentUser) {
 		
+		// declare variable
 		Connection conn = null;
 		CallableStatement stat = null;
 		ResultSet rs = null;
@@ -24,14 +25,20 @@ public class StudentConsult {
 	
 		try {
 			
+			// Database connection
 			conn = util.open("211.63.89.64", "project", "java1234");
-			String sql = "{ call : procAddConsultRequest(?)}";
+			
+			// insert consult request
+			String sql = "{ call procAddConsultRequest(?)}";
 			stat = conn.prepareCall(sql);
 			
+			// set param
 			stat.setInt(1,studentUser.getNum());
-			stat.executeUpdate(sql);
+			stat.executeUpdate();
 			System.out.println("\t\t\t상담 신청 완료");
-		
+			
+			stat.close();
+			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -83,7 +83,7 @@ public class TeacherAttendance {
 
 		try {
 			//conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			stat = conn.createStatement();
 			sql = String.format("select * from vwteacherAttendance where teacherNum = %d",teacherNum);
 			rs = stat.executeQuery(sql);
@@ -183,7 +183,7 @@ public class TeacherAttendance {
 		System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		try {
 			//conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			switch(num) {
 			case "1": 
 				sql = "{call procteacherAttendance1(?,?,?)}";
@@ -284,7 +284,7 @@ public class TeacherAttendance {
 		//*** 선생님 특정과정,특정인원 출결현황 조회 ***
 		try {
 			//conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			sql =String.format("select * from vwcourseHistory where teacherNum = %d",pteacherNum);
 			stat1 = conn.createStatement();
 			rs=stat1.executeQuery(sql);
@@ -346,7 +346,7 @@ public class TeacherAttendance {
 		//*** 선생님이 출결 조회 ***
 		try {
 			//conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			sql = "{call procteacherAttendanceStatus(?,?,?,?)}";
 			stat = conn.prepareCall(sql);
 			stat.registerOutParameter(1,OracleTypes.CURSOR); 

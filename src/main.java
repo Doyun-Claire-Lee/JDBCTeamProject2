@@ -10,20 +10,20 @@ public class main {
 		Scanner scan = new Scanner(System.in);
 		
 		while (true) {
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t교육센터 관리 시스템");
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t교육센터 관리 시스템");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
-			System.out.println("1. 관리자 로그인");
-			System.out.println("2. 교사 로그인");
-			System.out.println("3. 교육생 로그인");
-			System.out.println("4. 종료");
+			System.out.println("\t\t\t1. 관리자 로그인");
+			System.out.println("\t\t\t2. 교사 로그인");
+			System.out.println("\t\t\t3. 교육생 로그인");
+			System.out.println("\t\t\t4. 종료");
 
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.print("▷ 입력: \n");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("\t\t\t▷ 입력: ");
 
 			String sel = scan.nextLine();
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			// 관리자 로그인
 			if (sel.equals("1")) {
@@ -42,14 +42,14 @@ public class main {
 			} 
 			// 종료
 			else if (sel.equals("4")) {
-				System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-				System.out.println("프로그램을 종료합니다."); // needMore
-				System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t프로그램을 종료합니다."); // needMore
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				break;
 			} 
 			// 예외
 			else {
-				System.out.println("번호를 다시 입력해주세요.");
+				System.out.println("\t\t\t번호를 다시 입력해주세요.");
 			}
 		}
 

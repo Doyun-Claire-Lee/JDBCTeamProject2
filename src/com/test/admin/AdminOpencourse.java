@@ -128,7 +128,7 @@ public class AdminOpencourse {
 		System.out.println();
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			stat1 = conn.createStatement();
 			sql = "select * from vwclassRoom";
 			rs = stat1.executeQuery(sql);
@@ -212,7 +212,7 @@ public class AdminOpencourse {
 		// *** 강의실 정보는 기초 정보 강의실명에서 선택적으로 추가 ***
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			stat = conn.createStatement();
 			String sql = "select * from vwopenCourseClassRoom";
 			rs = stat.executeQuery(sql);
@@ -261,7 +261,7 @@ public class AdminOpencourse {
 				"[openCourseNum]\t[openingCourseName]\t[openingCoursePeriod]\t[classroomName]\t[registerOpeningCourse]\t[traineeRegistrationPersonnel]");
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			stat = conn.createStatement(); // 쿼리를 날릴 수 있는 개체
 			String sql = "select * from vwopenCourseInfo";
 
@@ -325,7 +325,7 @@ public class AdminOpencourse {
 		
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			stat = conn.createStatement(); // 쿼리를 날릴 수 있는 개체
 			sql = "select * from vwopenCourseName";
 			rs = stat.executeQuery(sql);
@@ -380,7 +380,7 @@ public class AdminOpencourse {
 		// *** 특정 개설 과정이 수료한 경우 등록된 교육생 전체에 대해서 수료날짜를 지정 ***
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			sql = "{call  procstudentEndDate(?,?)}";
 			stat = conn.prepareCall(sql);
 			stat1 = conn.createStatement();
@@ -451,7 +451,7 @@ public class AdminOpencourse {
 
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			
 			sql = "select * from vwclassRoom";
 			stat1 = conn.createStatement();
@@ -559,7 +559,7 @@ public class AdminOpencourse {
 		// 개설 과정 정보에 대한 수정 기능
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 
 			sql = "{ call procopenCourseSelect(?,?) }";
 			stat = conn.prepareCall(sql);
@@ -729,8 +729,8 @@ public class AdminOpencourse {
 		// *** 개설 과정 정보에 대한 삭제 기능 ***
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
-			// conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
+			// conn = util.open("211.63.89.64","project","java1234");
 			String sql = "{ call procopenCourseDelete(?) }";
 			stat = conn.prepareCall(sql);
 			System.out.print("▷삭제할 시행 과정 번호:");
@@ -761,7 +761,7 @@ public class AdminOpencourse {
 		// *** 개설 과정 정보에 대한 출력 기능 ***
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			stat = conn.createStatement(); // 쿼리를 날릴 수 있는 개체
 			String sql = "select * from vwopenCourse";
 			rs = stat.executeQuery(sql);

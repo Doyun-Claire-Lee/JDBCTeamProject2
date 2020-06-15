@@ -35,7 +35,7 @@ public class TeacherUser {
 		HashMap<String, ArrayList<String>> teacherInfo = new HashMap<String, ArrayList<String>>();
 
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			stat = conn.createStatement();
 
 			String sql = String.format("select * from tblTeacher");
@@ -83,15 +83,14 @@ public class TeacherUser {
 						System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
 
 						TeacherMain teacherMain = new TeacherMain();
-						TeacherUser tUser = teacherUser;
 						
 						// set info
-						tUser.setSsn(teacherInfo.get(id).get(0));
-						tUser.setNum(Integer.parseInt(teacherInfo.get(id).get(1)));
-						tUser.setName(teacherInfo.get(id).get(2));
-						tUser.setTel(id);
+						teacherUser.setSsn(teacherInfo.get(id).get(0));
+						teacherUser.setNum(Integer.parseInt(teacherInfo.get(id).get(1)));
+						teacherUser.setName(teacherInfo.get(id).get(2));
+						teacherUser.setTel(id);
 
-						teacherMain.TeacherMainmenu(tUser);
+						teacherMain.TeacherMainmenu(teacherUser);
 					}
 
 				}

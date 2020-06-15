@@ -8,7 +8,6 @@ public class TeacherMain {
 
 	public void TeacherMainmenu(TeacherUser teacherUser) {
 		
-		TeacherUser user = teacherUser;
 		
 		Scanner scan = new Scanner(System.in);
 		String sel = "";
@@ -37,8 +36,8 @@ public class TeacherMain {
 			}
 			// 성적 입출력
 			else if (sel.equals("3")) {
-				TeacherInsertRatio score = new TeacherInsertRatio();
-				score.main(user);
+				TeacherInsertScore score = new TeacherInsertScore();
+				score.menu(teacherUser,scan);
 			}
 			// 출결 관리 및 출결 조회
 			else if (sel.equals("4")) {

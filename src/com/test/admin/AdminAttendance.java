@@ -14,13 +14,13 @@ public class AdminAttendance {
 
 		while (true) {
 			Scanner sc = new Scanner(System.in);
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓출결 관리〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("1. 학생별 출결 조회");
-			System.out.println("2. 날짜별 출결 조회");
-			System.out.println("3. 출결 내역 조회");
-			System.out.println("0. 뒤로가기");
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.print("▷입력:");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓출결 관리〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t1. 학생별 출결 조회");
+			System.out.println("\t\t\t2. 날짜별 출결 조회");
+			System.out.println("\t\t\t3. 출결 내역 조회");
+			System.out.println("\t\t\t0. 뒤로가기");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("\t\t\t▷입력:");
 			String num = sc.nextLine();
 
 			if (num.equals("1")) {
@@ -30,10 +30,10 @@ public class AdminAttendance {
 			} else if (num.equals("3")) {
 				vwAllattendance();
 			} else if (num.equals("0")) {
-				System.out.println("뒤로가는 중...");
+				System.out.println("\t\t\t뒤로가는 중...");
 				break;
 			} else {
-				System.out.println("잘못된 번호 입력");
+				System.out.println("\t\t\t잘못된 번호 입력");
 			}
 		}
 	}
@@ -45,7 +45,7 @@ public class AdminAttendance {
 		DBUtil util = new DBUtil();
 
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			stat = conn.createStatement();
 
 			String sql = String.format("select * from vwAllattendance");
@@ -53,7 +53,7 @@ public class AdminAttendance {
 			rs = stat.executeQuery(sql); // select -> rs
 
 			while (rs.next()) {
-				System.out.printf("이름:%s 과정:%s 입실날짜:%s 퇴실날짜:%s 출결상황:%s \n"
+				System.out.printf("\t\t\t이름:%s 과정:%s 입실날짜:%s 퇴실날짜:%s 출결상황:%s \n"
 
 						, rs.getString("stuName"), rs.getString("courseName"), rs.getString("enterT"),
 						rs.getString("outT"), rs.getString("status"));
@@ -76,13 +76,13 @@ public class AdminAttendance {
 		Scanner scan = new Scanner(System.in);
 
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 
-			System.out.print("날짜입력(YY):");
+			System.out.print("\t\t\t날짜입력(YY):");
 			String year = scan.nextLine();
-			System.out.print("날짜입력(MM):");
+			System.out.print("\t\t\t날짜입력(MM):");
 			String month = scan.nextLine();
-			System.out.print("날짜입력(DD):");
+			System.out.print("\t\t\t날짜입력(DD):");
 			String date = scan.nextLine();
 			String sql = "{call PROCPRINTATTENDANCEDATE(?,?,?,?)}";
 
@@ -98,7 +98,7 @@ public class AdminAttendance {
 			rs = (ResultSet) stat.getObject(4);
 
 			while (rs.next()) {
-				System.out.printf("%s-%s-%s-%s-%s\n", rs.getString(1), rs.getString(2), rs.getDate(3), rs.getDate(4),
+				System.out.printf("\t\t\t%s-%s-%s-%s-%s\n", rs.getString(1), rs.getString(2), rs.getDate(3), rs.getDate(4),
 						rs.getString(5));
 
 			}

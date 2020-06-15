@@ -1,7 +1,7 @@
 package com.test.student;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -9,11 +9,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import com.test.admin.AdminMain;
-import com.test.admin.AdminUser;
 import com.test.admin.DBUtil;
-import com.test.teacher.TeacherMain;
-import com.test.teacher.TeacherUser;
+
+import oracle.jdbc.OracleTypes;
 
 public class StudentUser {
 
@@ -39,7 +37,7 @@ public class StudentUser {
 
 		try {
 
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			stat = conn.createStatement();
 
 			String sql = String.format("select * from tblStudent");
@@ -65,7 +63,6 @@ public class StudentUser {
 			// input id, pw
 			System.out.print("▷ ID: \n");
 			String inputId = scan.nextLine();
-			System.out.println(inputId);
 			System.out.print("▷ PW: \n");
 			String inputPw = scan.nextLine();
 
@@ -83,21 +80,29 @@ public class StudentUser {
 
 					// pw matching
 					if (pw.equals(inputPw)) {
-						System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
-						System.out.printf("아이디 : %s\n", id);
-						System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
 
+						
 						StudentMain studentMain = new StudentMain();
-						StudentUser sUser = studentUser;
 
 						// set info
-						sUser.setSsn(studentInfo.get(id).get(0));
-						sUser.setNum(Integer.parseInt(studentInfo.get(id).get(1)));
-						sUser.setName(studentInfo.get(id).get(2));
-						sUser.setRegisterDate(studentInfo.get(id).get(3));
-						sUser.setTel(id);
-
-						studentMain.StudentMainmenu(sUser);
+						studentUser.setSsn(studentInfo.get(id).get(0));
+						studentUser.setNum(Integer.parseInt(studentInfo.get(id).get(1)));
+						studentUser.setName(studentInfo.get(id).get(2));
+						studentUser.setRegisterDate(studentInfo.get(id).get(3));
+						studentUser.setTel(id);
+						
+						System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+						System.out.println();
+						
+						//학생정보 출력
+						procStudentInfoByStudent(studentUser);
+						
+						System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+						System.out.println();
+						
+						// start main menu
+						studentMain.StudentMainmenu(studentUser);
+						
 					}
 
 				}
@@ -112,6 +117,58 @@ public class StudentUser {
 			e.printStackTrace();
 		}
 
+	}
+public void procStudentInfoByStudent(StudentUser sUser) {
+		
+		Connection conn = null;
+		CallableStatement stat = null;
+		ResultSet rs = null;
+		DBUtil util = new DBUtil();
+		
+		try {
+			
+			//프로시저 호출 준비
+			conn = util.open("211.63.89.64","project","java1234");
+			String sql = "{ call procStudentInfoByStudent(?,?) }";
+			stat = conn.prepareCall(sql);
+			
+			//매개변수 설정
+
+			stat.setInt(1, sUser.getNum());						//학생 번호
+			stat.registerOutParameter(2, OracleTypes.CURSOR);	//결과셋
+
+			//프로시저 실행
+			stat.executeQuery();
+			
+			//결과값 가져오기
+			rs = (ResultSet)stat.getObject(2);
+			
+			//출력하기
+			while(rs.next()) {
+				System.out.printf("\t\t\t이름: %s | 연락처: %s \n\t\t\t수강과정: %s \n\t\t\t과정기간: %s | 강의실: %s\n"
+																							, rs.getString("studentName")
+																							, rs.getString("studentTel")
+																							, rs.getString("courseName")
+																							, rs.getString("period")
+																							, rs.getString("classRoom"));
+				System.out.println();
+			}
+			//010-1212-3893
+			//1732673
+			//접속종료
+			stat.close();
+			conn.close();
+			
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+		
 	}
 
 	// getter & setter

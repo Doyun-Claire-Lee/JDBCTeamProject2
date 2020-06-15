@@ -30,7 +30,7 @@ public class AdminUser {
 
 		try {
 
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			stat = conn.createStatement();
 
 			String sql = String.format("select * from tbladmin");
@@ -46,9 +46,9 @@ public class AdminUser {
 
 			// input id,pw
 			// 사용자에게 id,pw 입력받기
-			System.out.print("▷ ID: \n");
+			System.out.print("\t\t\t▷ ID: ");
 			String inputId = scan.nextLine();
-			System.out.print("▷ PW: \n");
+			System.out.print("\t\t\t▷ PW: ");
 			String inputPw = scan.nextLine();
 
 			// iterator
@@ -68,20 +68,19 @@ public class AdminUser {
 					if (pw.equals(inputPw)) {
 
 						// new main instance
-						System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
-						System.out.printf("아이디 : %s\n", id);
-						System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓");
+						System.out.printf("\t\t\t아이디 : %s\n", id);
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓");
 
 						AdminMain adminMain = new AdminMain();
-						AdminUser aUser = adminUser;
 						
 						// set info
-						aUser.setId(id);
-						aUser.setPw(pw);
+						adminUser.setId(id);
+						adminUser.setPw(pw);
 
 						// mainmenu method
 						// 메인메뉴 메소드 실행
-						adminMain.mainmenu(aUser);
+						adminMain.mainmenu(adminUser);
 						
 						// Database connection close
 						stat.close();

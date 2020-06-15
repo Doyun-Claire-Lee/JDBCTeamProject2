@@ -14,7 +14,7 @@ public class AdminSubject {
 	DBUtil util = new DBUtil();
 	CallableStatement stat = null;
 	
-
+	
 	public void menu() {
 		
 		while(true) {
@@ -22,7 +22,7 @@ public class AdminSubject {
 			Connection conn = null;
 			Scanner scan = new Scanner(System.in);
 			// Database Connection
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			
 			System.out.println("〓〓〓〓〓〓〓〓〓 개설 과정별 과목 관리 〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("1. 조회");
@@ -57,7 +57,7 @@ public class AdminSubject {
 				deletePeriodBySubject(conn,scan);
 			}
 			else if (sel.equals("5")) {
-				// 교재 배부
+				distributionMenu();
 			}
 			// exit
 			else if(sel.equals("0")) {
@@ -69,6 +69,345 @@ public class AdminSubject {
 		
 		}
 	}
+	public void distributionMenu() {
+		//이도윤	
+			
+			Scanner scan = new Scanner(System.in);
+			
+			while (true) {
+				
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t\t\t교재 배부 관리");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		
+				System.out.println("\t\t\t1. 과정별 배부 내역 조회");
+				System.out.println("\t\t\t2. 미배부 학생 내역 조회");
+				System.out.println("\t\t\t3. 과목별 배부 내역 수정");
+				System.out.println("\t\t\t4. 학생별 배부 내역 수정");
+				System.out.println("\t\t\t0. 뒤로가기");
+		
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.print("\t\t\t▷ 입력:");
+				String cho = scan.nextLine();
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println();
+			
+				
+				if (cho.equals("1")) {
+					
+					//과정별 배부 내역 조회
+					procDistributionByCourse();
+
+				} else if (cho.equals("2")) {
+					//미배부 학생 내역 조회
+					vwNotDistributed();
+
+				} else if (cho.equals("3")) {
+					//과목별 배부 내역 수정
+					procUpdateDistrByOpenCourse();
+
+				} else if (cho.equals("4")) {
+					//학생별 배부 내역 수정
+					procUpdateDistrByStudent();
+					
+				} else if (cho.equals("0")) {
+					//뒤로가기
+					System.out.println("\t\t\t뒤로가기를 선택하셨습니다.");
+					System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
+					scan.nextLine();
+					break;
+					
+				} else {
+					//잘못 입력했을 경우
+					System.out.println();
+					System.out.println("\t\t\t잘못 입력하셨습니다. ");
+					System.out.println("\t\t\t1에서 4 사이의 숫자를 입력해주세요.");
+					System.out.println();
+				}//if
+			}//while	
+		}
+		
+		public void procDistributionByCourse() {
+			
+			Connection conn = null;
+			
+			//강의명 출력용
+			Statement cstat = null;
+			ResultSet crs = null;
+			
+			//교재배부내역 프로시저 출력용
+			CallableStatement stat = null;
+			ResultSet rs = null;
+			
+			DBUtil util = new DBUtil();
+			Scanner scan = new Scanner(System.in);
+
+			
+			try {
+				
+				conn = util.open("211.63.89.64","project","java1234");
+				String cnum = "";
+				
+				//헤더 출력
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t\t\t과정별 배부 내역 조회");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println();
+			
+				//사용자에게 정보 입력받음
+				System.out.print("\t\t\t과정번호 : ");
+				cnum = scan.nextLine();
+		
+				System.out.println();
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println();
+				
+				//선택한 과정번호의 과정이름 불러옴 
+				
+				String sql = "select ac.name as courseName from tblOpencourse oc inner join tblAllcourse ac on oc.allcourseNum = ac.num where oc.num = " + cnum;
+				cstat = conn.createStatement();
+				crs = cstat.executeQuery(sql);
+							
+				//과정이름 출력해줌
+				while(crs.next()) {
+					System.out.printf("\t\t\t[%s]\n", crs.getString("courseName"));				
+				}
+				
+				//과정별 교재배부목록 프로시저 호출 준비
+				sql = "{ call procDistributionByCourse(?,?) }";
+				stat = conn.prepareCall(sql);
+				
+				stat.setString(1, cnum);
+				stat.registerOutParameter(2, OracleTypes.CURSOR);
+				
+				//프로시저 호출
+				stat.executeQuery();
+				
+				rs = (ResultSet)stat.getObject(2);
+				
+				System.out.println();
+				System.out.println("\t\t\t[이름]\t\t[교재명]\t\t[상태]");
+				System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+				
+				while(rs.next()) {
+					System.out.printf("\t\t\t%s\t\t%-15s\t%s\n", rs.getString("StudentName")
+																, rs.getString("BookName")
+																, rs.getString("status"));
+				}
+				System.out.println();
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				
+				
+				
+				//DB와 연결 종료
+				cstat.close();
+				stat.close();
+				conn.close();
+						
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			
+			System.out.println();
+			System.out.println("\t\t\t조회가 완료되었습니다.");
+			System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
+			scan.nextLine();
+			
+		}
+		
+		
+		public void vwNotDistributed() {
+		//이도윤
+			
+			//전체 과정의 교재 배부받지 못한 학생 목록 출력
+			
+			Connection conn = null;
+			Statement stat = null;
+			ResultSet rs = null;
+			DBUtil util = new DBUtil();
+			Scanner scan = new Scanner(System.in);
+
+			
+			try {
+				
+				conn = util.open("localhost","project","java1234");
+				
+				//헤더 출력
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t\t\t미배부 학생 목록 조회");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println();
+				
+				//선택한 과정번호의 과정이름 불러옴 
+				
+				String sql = "select * from vwNotDistributed";
+				stat = conn.createStatement();
+				rs = stat.executeQuery(sql);
+
+				//헤더 출력
+				System.out.println("\t\t[이름]\t[교재명]\t\t[과정명]");
+				System.out.println("\t\t―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――");
+				
+				
+				//목록 출력하기
+				while(rs.next()) {
+					System.out.printf("\t\t%s\t%-15s\t%s\n", rs.getString("StudentName")
+														, rs.getString("bookName")
+														, rs.getString("courseName"));				
+				}
+				System.out.println();
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");			
+				
+				stat.close();
+				conn.close();
+						
+				
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			
+			System.out.println();
+			System.out.println("\t\t\t조회가 완료되었습니다.");
+			System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
+			scan.nextLine();
+			
+			
+		}
+		
+		public void procUpdateDistrByOpenCourse() {
+		//이도윤
+			
+			//특정 시행과정의 특정 과목 전체 배부내역 수정
+			
+			Connection conn = null;
+			CallableStatement stat = null;
+			DBUtil util = new DBUtil();
+			Scanner scan = new Scanner(System.in);
+			
+			String courseNum = "";
+			String subjectNum = "";
+			
+			try {
+				
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t\t\t과목별 배부 내역 수정");
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.print("\t\t\t시행과정 번호 : ");
+				courseNum = scan.nextLine();
+				System.out.print("\t\t\t과목 번호 : ");
+				subjectNum = scan.nextLine();			
+				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println();
+
+				//프로시저 호출 준비
+				conn = util.open("localhost","project","java1234");
+				String sql = "{ call procUpdateDistrByOpenCourse(?,?,?) }";
+				stat = conn.prepareCall(sql);
+				
+				//프로시저 매개변수 설정
+				stat.setString(1, courseNum);
+				stat.setString(2, subjectNum);
+				stat.registerOutParameter(3, OracleTypes.NUMBER);
+
+				//프로시저 실행
+				stat.executeUpdate();
+				
+				
+				if (stat.getInt(3) > 0) {
+					
+					//과목별 배부 내역 수정에 성공한 경우
+					System.out.println("\t\t\t과목별 배부 내역 수정이 완료되었습니다.");
+					System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
+					scan.nextLine();
+					
+				} else {
+					
+					//과목별 배부 내역 수정에 실패한 경우
+					System.out.println("\t\t\t과목별 배부 내역 수정에 실패했습니다.");
+					System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
+					scan.nextLine();
+				}
+				
+				//DB 연결 끊기
+				stat.close();
+				conn.close();			
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+				
+			
+		}
+		
+		
+		public void procUpdateDistrByStudent() {
+		//이도윤
+		
+				//특정 학생의 특정 과목 배부내역 수정
+				
+				Connection conn = null;
+				CallableStatement stat = null;
+				DBUtil util = new DBUtil();
+				Scanner scan = new Scanner(System.in);
+				
+				String studentNum = "";
+				String subjectNum = "";
+				
+				try {
+					
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t\t\t학생별 배부 내역 수정");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println();
+					System.out.print("\t\t\t학생 번호 : ");
+					studentNum = scan.nextLine();
+					System.out.print("\t\t\t과목 번호 : ");
+					subjectNum = scan.nextLine();			
+					System.out.println();
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+
+					//프로시저 호출 준비
+					conn = util.open("localhost","project","java1234");
+					String sql = "{ call procUpdateDistrByStudent(?,?,?) }";
+					stat = conn.prepareCall(sql);
+					
+					//프로시저 매개변수 설정
+					stat.setString(1, studentNum);
+					stat.setString(2, subjectNum);
+					stat.registerOutParameter(3, OracleTypes.NUMBER);
+
+					//프로시저 실행
+					stat.executeUpdate();
+					
+					
+					if (stat.getInt(3) > 0) {
+						
+						//교사 계정 삭제에 성공한 경우
+						System.out.println();
+						System.out.println("\t\t\t학생별 배부 내역 수정이 완료되었습니다.");
+						System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
+						scan.nextLine();
+						
+					} else {
+						
+						//교사 계정 삭제에 실패한 경우
+						System.out.println();
+						System.out.println("\t\t\t학생별 배부 내역 수정에 실패했습니다.");
+						System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
+						scan.nextLine();
+					}
+					
+					//DB 연결 끊기
+					stat.close();
+					conn.close();			
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}	
+		}
 
 	private void deletePeriodBySubject(Connection conn, Scanner scan) {
 		// print opencourse info
@@ -348,7 +687,7 @@ public class AdminSubject {
 		while(true) {
 			
 			// Database Connection
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			
 			System.out.println("〓〓〓〓〓〓〓〓〓 전 체 과 정 관 리〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("1. 조회");

@@ -147,7 +147,7 @@ public class AdminStudent {
 		// *** 관리자는 수료생의 고용보험 여부를 조회 후 그 결과를 입력 ***
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			stat1 = conn.createStatement();
 			sql = "select * from vwhiredGraduatesSelect";
 			rs = stat1.executeQuery(sql);
@@ -202,8 +202,8 @@ public class AdminStudent {
 		vwhiredGradesManSelect();
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
-			// conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
+			// conn = util.open("211.63.89.64","project","java1234");
 			sql = "{call prochiredGraduatesUpdateSelect(?,?)}";
 			stat = conn.prepareCall(sql);
 			System.out.print("▷수정할 번호(hiredGraduatesNum):");
@@ -314,7 +314,7 @@ public class AdminStudent {
 		try {
 
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			sql = "{call prochiredgradesSalarySelect(?,?,?)}";
 
 			stat = conn.prepareCall(sql);
@@ -360,7 +360,7 @@ public class AdminStudent {
 		try {
 
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			sql = "{call prochiredGradesSelectName(?,?)}";
 			stat = conn.prepareCall(sql);
 			stat.registerOutParameter(2, OracleTypes.CURSOR);
@@ -404,7 +404,7 @@ public class AdminStudent {
 		// *** 관리자가 취업 완료 수료생 관리 삭제 ***
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			sql = "{call prochiredGradesManDelete(?)}";
 			System.out.print("▷삭제할 번호(hiredGraduatesNum): ");
 			String num = scan.nextLine();
@@ -439,7 +439,7 @@ public class AdminStudent {
 		// *** 관리자가 취업 완료 수료생 관리 추가 ***
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			sql = "{call prochiredGradesManInsert(?,?,?,?)}";
 			stat = conn.prepareCall(sql);
 
@@ -495,7 +495,7 @@ public class AdminStudent {
 		// *** 관리자가 취업 완료 수료생 관리 출력 ***
 		try {
 			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			sql = "select * from vwhiredGradesManSelect";
 
 			stat = conn.createStatement();

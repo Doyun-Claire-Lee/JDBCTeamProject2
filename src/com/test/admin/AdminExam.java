@@ -61,16 +61,16 @@ public class AdminExam {
 				
 			} else if (mnum.equals("0")) {
 				//뒤로가기
-				System.out.println("뒤로가기를 선택하셨습니다.");
-				System.out.println("엔터를 입력하시면 이전 페이지로 돌아갑니다.");
+				System.out.println("\t\t\t뒤로가기를 선택하셨습니다.");
+				System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
 				scan.nextLine();
 				break;
 				
 			} else {
 				// 메인메뉴 유효성 검사
 				System.out.println();
-				System.out.println("잘못 입력하셨습니다. ");
-				System.out.println("1에서 4 사이의 숫자를 입력해주세요.");
+				System.out.println("\t\t\t잘못 입력하셨습니다. ");
+				System.out.println("\t\t\t1에서 4 사이의 숫자를 입력해주세요.");
 				System.out.println();
 			}
 		}//while

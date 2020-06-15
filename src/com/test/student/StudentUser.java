@@ -61,9 +61,9 @@ public class StudentUser {
 			}
 
 			// input id, pw
-			System.out.print("▷ ID: \n");
+			System.out.print("\t\t\t▷ ID: ");
 			String inputId = scan.nextLine();
-			System.out.print("▷ PW: \n");
+			System.out.print("\t\t\t▷ PW: ");
 			String inputPw = scan.nextLine();
 
 			// iterator
@@ -91,13 +91,13 @@ public class StudentUser {
 						studentUser.setRegisterDate(studentInfo.get(id).get(3));
 						studentUser.setTel(id);
 						
-						System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+						System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 						System.out.println();
 						
 						//학생정보 출력
 						procStudentInfoByStudent(studentUser);
 						
-						System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――");
+						System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
 						System.out.println();
 						
 						// start main menu
@@ -108,7 +108,7 @@ public class StudentUser {
 				}
 
 			}
-			System.out.println("아이디와 비밀번호를 다시 입력해주세요");
+			System.out.println("\t\t\t아이디와 비밀번호를 다시 입력해주세요");
 
 			stat.close();
 			conn.close();

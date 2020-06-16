@@ -16,8 +16,8 @@ public class StudentMain {
 			System.out.println("\t\t\t2. 출결 관리");
 			System.out.println("\t\t\t3. 상담신청");
 			System.out.println("\t\t\t4. 교사평가");
-			System.out.println("\t\t\t5. 취업활동목록");
-			System.out.println("\t\t\t0. 뒤로가기");
+			System.out.println("\t\t\t5. 취업활동");
+			System.out.println("\t\t\t0. 로그아웃");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			// 사용자에게 번호 입력받음
 			System.out.print("\t\t\t▷입력: ");
@@ -49,7 +49,7 @@ public class StudentMain {
 			// 취업 활동목록
 			else if(sel.equals("5")) {
 				StudentJob job = new StudentJob();
-				job.procPrintAttendanceStudent();
+				job.procStudentjobActivity(studentUser);
 			}
 			// 뒤로 가기
 			else if(sel.equals("0")) {

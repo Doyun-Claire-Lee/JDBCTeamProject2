@@ -104,7 +104,7 @@ public class StudentCheckScore {
 			//결과 출력
 			while(rs.next()) {
 				
-				System.out.printf("\t\t\t%-15s\t\t%5s\n", rs.getString("subjectName")
+				System.out.printf("\t\t\t%-14s\t\t%5s점\n", rs.getString("subjectName")
 													, rs.getString("score"));		
 			}
 			
@@ -133,7 +133,7 @@ public class StudentCheckScore {
 			
 			while(rs.next()) {
 				
-				System.out.printf("\t\t\t%-15s\t\t%3s\t%3s     %s\n", rs.getString("subjectName")
+				System.out.printf("\t\t\t%-14s\t\t%3s점\t%3s점     %3s점\n", rs.getString("subjectName")
 																, rs.getString("writtenTestScore")
 																, rs.getString("performanceTestScore")
 																, rs.getString("attendancescore"));
@@ -197,11 +197,11 @@ public class StudentCheckScore {
 				//결과 출력
 				while(rs.next()) {
 					
-					System.out.printf("\t\t%-15s\t\t%s\t%s\t%s\t%s\n", rs.getString("subjectName")
+					System.out.printf("\t\t%-14s\t\t%s\t%s\t%s\t%s\n", rs.getString("subjectName")
 														, rs.getString("examDate")
-														, rs.getString("writtenTestRatio")
-														, rs.getString("performanceTestRatio")
-														, rs.getString("attendanceRatio"));		
+														, (int)(rs.getDouble("writtenTestRatio") * 100) + "%"
+														, (int)(rs.getDouble("performanceTestRatio") * 100) + "%"
+														, (int)(rs.getDouble("attendanceRatio") * 100) + "%");		
 				}
 				
 				//DB연결 끊기
@@ -263,7 +263,7 @@ public class StudentCheckScore {
 			
 			while(rs.next()) {
 				
-				System.out.printf("\t\t%3s\t%-15s\t%s\t %s\n", rs.getString("SubjectNum")
+				System.out.printf("\t\t%3s\t%-14s\t%s\t %s\n", rs.getString("SubjectNum")
 																, rs.getString("SubjectName")
 																, rs.getString("period")
 																, rs.getString("bookName"));
@@ -278,11 +278,7 @@ public class StudentCheckScore {
 				System.out.println();
 				
 				if (snum.equals("0") ) {	//사용자가 0 입력하면 종료
-					
-					System.out.println();
-					System.out.println("시험 문제 조회를 종료합니다.");
-					System.out.println("엔터를 입력하시면 이전 페이지로 돌아갑니다.");
-					scan.nextLine();
+				
 					break;
 				
 				} else {
@@ -313,8 +309,8 @@ public class StudentCheckScore {
 			
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
-			System.out.println("시험 문제 조회가 완료되었습니다.");
-			System.out.println("엔터를 입력하시면 이전 페이지로 돌아갑니다.");
+			System.out.println("\t\t\t시험 문제 조회가 완료되었습니다.");
+			System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
 			scan.nextLine();
 			
 			//DB연결 끊기

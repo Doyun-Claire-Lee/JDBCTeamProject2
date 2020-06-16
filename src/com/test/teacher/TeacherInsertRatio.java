@@ -178,13 +178,13 @@ public class TeacherInsertRatio {
 
 		try {
 			conn = util.open("211.63.89.64","project","java1234");
-			String sql = "{ call procsubjectlist2(?) }";
+			String sql = "{ call procsubjectlist2(?,?) }";
 			
 			conn.setAutoCommit(false);
 			stat = conn.prepareCall(sql);
-
+			
 		    stat.registerOutParameter(1, OracleTypes.CURSOR);
-		    
+		    stat.setInt(2, i);
 		    stat.executeQuery();
 		    rs =(ResultSet)stat.getObject(1);
 		    System.out.println("\t\t\t[과목번호]\t\t[과목기간]\t\t[과목명]\t\t[교재명]\t\t\t[과정명]");
@@ -216,16 +216,16 @@ public class TeacherInsertRatio {
 
 		try {
 			conn = util.open("211.63.89.64","project","java1234");
-			String sql = "{ call procsubjectlist1(?) }";
+			String sql = "{ call procsubjectlist1(?,?) }";
 			
 			conn.setAutoCommit(false);
 			stat = conn.prepareCall(sql);
 
 		    stat.registerOutParameter(1, OracleTypes.CURSOR);
-		    
+		    stat.setInt(2, i);
 		    stat.executeQuery();
 		    rs =(ResultSet)stat.getObject(1);
-		    System.out.println("\t\t\t[강의실명]\t[과정기간]\t\t[과정명]");
+		    System.out.println("\t\t\t[강의실명]\t\t[과정기간]\t\t\t[과정명]");
 		    System.out.println();
 		    while(rs.next()) {
 		    	System.out.printf("\t\t\t%s\t\t%s\t%s \n",
@@ -244,7 +244,9 @@ public class TeacherInsertRatio {
 	}
 	
 	public void procInputTestRatio(int i) {
-		
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.println("\t\t\t시험 배점 입력");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		Connection conn = null;
 		CallableStatement stat = null;
 		DBUtil util = new DBUtil();
@@ -310,6 +312,9 @@ public class TeacherInsertRatio {
 	}
 	
 	public void ProcPrintRatio(int i) {
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.println("\t\t\t과목별 시험 배점 확인");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		Connection conn = null;
 		CallableStatement stat = null;
 		DBUtil util = new DBUtil();
@@ -338,10 +343,11 @@ public class TeacherInsertRatio {
 		
 		    rs =(ResultSet)stat.getObject(1);
 		    
-		    System.out.println("\t\t\t[필기배점]\t[실기배점]\t[출결배점]\t[교사명]\t[과목명]");
+		    System.out.println("\t\t\t[과목명]\t[필기배점]\t[실기배점]\t[출결배점]\t[교사명]\t[과정번호]");
 		    while(rs.next()) {
-		    	System.out.printf("\t\t\t%s\t%s\t%s\t%s\t%s \n",
-		    							0+rs.getString(1)
+		    	System.out.printf("\t\t\t%s\t%4s\t%4s\t%4s\t%s\t%s \n",
+		    							rs.getString(6)
+		    							,0+rs.getString(1)
 		    							,0+rs.getString(2)
 		    							,0+rs.getString(3)
 		    							,rs.getString(4)

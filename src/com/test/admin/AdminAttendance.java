@@ -38,6 +38,9 @@ public class AdminAttendance {
 		}
 	}
 	public void procPrintAttendanceStudent() {
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.println("\t\t\t학생별 출결 내역 확인");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		Connection conn = null;
 		CallableStatement stat = null;
 		DBUtil util = new DBUtil();
@@ -62,14 +65,19 @@ public class AdminAttendance {
 			stat.executeQuery();
 			
 			rs = (ResultSet)stat.getObject(3);
-				System.out.println("\t\t\t[이름]\t[과정]\t\t[입실시각]\t[퇴실시각]\t[출결 내역]");
+				System.out.println("\t\t\t[이름]\t[정상 횟수]\t[지각 횟수]\t[조퇴 횟수]\t[결석 횟수]\t[외출 횟수]\t[병가 횟수]\t[기타 횟수]");
 			while(rs.next()) {
-				System.out.printf("\t\t\t%s\t%s\t\t%s\t%s\t%s\n",
-													rs.getString(1), //이름
-													rs.getString(2), //과정
-													rs.getDate(3),   //입실시각
-													rs.getDate(4),	 //퇴실시각
-													rs.getString(5));//출결내역
+				System.out.printf("\t\t\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+													rs.getString("name"), //이름
+													rs.getString("total"),   //입실시각
+													rs.getString("normal"),	 //퇴실시각
+													rs.getString("early"),
+													rs.getString("lateness"),
+													rs.getString("absence"),
+													rs.getString("out"),
+													rs.getString("sick"),
+													rs.getString("etc")
+													);
 			}
 			
 		} catch (Exception e) {
@@ -78,6 +86,7 @@ public class AdminAttendance {
 		}
 		
 	}
+
 
 	public void vwAllattendance() {
 		Connection conn = null;
@@ -110,15 +119,21 @@ public class AdminAttendance {
 	}
 
 	public void PROCPRINTATTENDANCEDATE() {
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.println("\t\t\t날짜별 출결 내역 확인");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		Connection conn = null;
 		CallableStatement stat = null;
 		DBUtil util = new DBUtil();
 		ResultSet rs = null;
 		Scanner scan = new Scanner(System.in);
-
+		
+		
+		
 		try {
-			conn = util.open("211.63.89.64", "project", "java1234");
-
+			conn = util.open("211.63.89.64","project","java1234");
+			
+				
 			System.out.print("\t\t\t날짜입력(YY):");
 			String year = scan.nextLine();
 			System.out.print("\t\t\t날짜입력(MM):");
@@ -126,29 +141,33 @@ public class AdminAttendance {
 			System.out.print("\t\t\t날짜입력(DD):");
 			String date = scan.nextLine();
 			String sql = "{call PROCPRINTATTENDANCEDATE(?,?,?,?)}";
-
+			
 			stat = conn.prepareCall(sql);
-
+			
 			stat.setString(1, year);
 			stat.setString(2, month);
 			stat.setString(3, date);
 			stat.registerOutParameter(4, OracleTypes.CURSOR);
-
+			
 			stat.executeQuery();
-
-			rs = (ResultSet) stat.getObject(4);
-
-			while (rs.next()) {
-				System.out.printf("\t\t\t%s-%s-%s-%s-%s\n", rs.getString(1), rs.getString(2), rs.getDate(3), rs.getDate(4),
-						rs.getString(5));
-
+			
+			rs = (ResultSet)stat.getObject(4);
+				System.out.println("\t\t\t[학생명]\t[입실시각]\t[퇴실시각]\t[출결상황]");
+			while(rs.next()) {
+				System.out.printf("\t\t\t%s\t%s\t%s\t%s\n", 
+						rs.getString(1), //학생명
+						rs.getString(2),	 //입실시각
+						rs.getString(3),   //퇴실시각
+						rs.getString(4));//출결상황
+				
 			}
-
+			
 		} catch (Exception e) {
 			System.out.println("Ex07_CallableStatment.m5()");
 			e.printStackTrace();
 		}
-
+		
 	}
+
 
 }

@@ -68,7 +68,7 @@ public class Studentrating {
 
 		Scanner scan = new Scanner(System.in);
 
-		System.out.println(result);
+		
 
 		// result로 수료상태 여부 확인 하는 if문
 		if (result.equals("수료")) {

@@ -42,13 +42,13 @@ public class TeacherCheckSchedule {
 				rs = (ResultSet) stat.getObject(2);
 
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-				System.out.println("\t\t\t\t강의 스케줄 조회");
+				System.out.println("\t\t\t\t\t강의 스케줄 조회");
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-				System.out.println("\t\t\t[과정번호]\t\t[시작일 ~ 종료일]\t\t [강의실] [정원] [상태] \t[과정명]");
+				System.out.println("[과정번호]\t[기간]\t\t\t[강의실] [정원] [상태] \t[과정명]");
 
 				while (rs.next()) {
 
-					System.out.printf("\t\t\t%4s\t\t%s ~ %s\t %3s \t%4s    %s\t %-10s", rs.getString("coursenum"), rs.getString("startdate").substring(0, 10), rs.getString("enddate").substring(0, 10), 
+					System.out.printf("%4s\t\t%s ~ %s\t %3s   \t%2s      %s\t%-10s", rs.getString("coursenum"), rs.getString("startdate").substring(0, 10), rs.getString("enddate").substring(0, 10), 
 			                  rs.getString("classroomnum"), rs.getString("stdNum"), rs.getString("status"), rs.getString("coursename")
 					);
 
@@ -89,7 +89,7 @@ public class TeacherCheckSchedule {
 					rs2 = (ResultSet) stat2.getObject(2);
 					
 					System.out.println();
-					System.out.println("\t\t\t[과목번호]\t\t[시작일 ~ 종료일]\t\t[과정명]\t\t  [교재명]");
+					System.out.println("\t\t\t[과목번호]\t[기간]\t\t\t [과정명]\t\t [교재명]");
 					
 					while (rs2.next()) {
 						System.out.printf("\t\t\t%4s\t\t%s ~ %s\t %-10s \t  %s\n", rs2.getString("subjectnum"), rs2.getString("sjStardDate").substring(0, 10), rs2.getString("sjenddate").substring(0, 10),
@@ -99,7 +99,8 @@ public class TeacherCheckSchedule {
 					System.out.println();
 
 					// 과목번호 입력시 해당 학생들 출력
-					procCheckStdInfo();
+					// cho 은 과정번호!!!!!
+					procCheckStdInfo(cho); 
 
 				} // else
 
@@ -119,7 +120,7 @@ public class TeacherCheckSchedule {
 //==============================================================================================================	
 
 	// 과목번호 입력시 해당 학생들 출력
-	private static void procCheckStdInfo() {
+	private static void procCheckStdInfo(String cho2) {
 
 		Scanner scan = new Scanner(System.in);
 
@@ -139,11 +140,11 @@ public class TeacherCheckSchedule {
 				stat = conn.prepareCall(sql);
 
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-				System.out.println("\t\t\t과목 번호");
+				System.out.println("\t\t\t학생 명단을 출력하려면 Enter키를 눌러주세요.");
 				System.out.println("\t\t\t0. 뒤로가기");
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.print("\t\t\t▷ 입력:");
-
+				
 				// 사용자 한테 입력 받는 값
 				String cho = scan.nextLine();
 
@@ -154,8 +155,9 @@ public class TeacherCheckSchedule {
 					scan.nextLine();
 					break;
 				} else {
-
-					stat.setString(1, cho);
+					
+					//cho2 는 과정번호 이다.!!!!
+					stat.setString(1, cho2);
 					stat.registerOutParameter(2, OracleTypes.CURSOR);
 
 					stat.executeQuery();
@@ -163,13 +165,15 @@ public class TeacherCheckSchedule {
 					rs = (ResultSet) stat.getObject(2);
 
 					System.out.println();
-					System.out.println("\t\t\t[학생명]\t [전화번호]\t[최초 등록일]\t[수료구분]");
+					System.out.println("\t\t\t[구분]\t[학생명]\t [전화번호]\t[최초 등록일]\t[수료구분]");
 
+					int num = 1;
+					
 					while (rs.next()) {
 
-						System.out.printf("\t\t\t%5s\t %s\t%s\t%5s\n", rs.getString("stdName"), rs.getString("stdtel"),
+						System.out.printf("\t\t\t%3d\t%5s\t %s\t%s\t%5s\n",num ,rs.getString("stdName"), rs.getString("stdtel"),
 								rs.getString("stdRegitdate").substring(0, 10), rs.getString("status"));
-
+						num++;
 					}
 
 				} // else

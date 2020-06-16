@@ -5,9 +5,10 @@ import java.util.Scanner;
 public class AdminMain {
 
 	public void mainmenu(AdminUser adminUser) {
-
+		
+		
 		AdminUser user = adminUser;
-
+		
 
 		Scanner scan = new Scanner(System.in);
 		String sel = "";
@@ -22,7 +23,7 @@ public class AdminMain {
 			System.out.println("\t\t\t6. 시험 관리");
 			System.out.println("\t\t\t7. 출결 관리");
 			System.out.println("\t\t\t8. 기자재 관리");
-			System.out.println("\t\t\t0. 뒤로가기");
+			System.out.println("\t\t\t0. 로그아웃");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷ 입력: ");
 			sel = scan.nextLine();
@@ -77,7 +78,7 @@ public class AdminMain {
 			}
 			// 예외
 			else {
-				System.out.println("번호를 다시 입력해주세요");
+				System.out.println("\t\t\t번호를 다시 입력해주세요");
 			}
 		}
 

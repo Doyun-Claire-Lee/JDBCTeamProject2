@@ -19,6 +19,7 @@ public class TeacherUser {
 	String name;
 	String tel;
 	String ssn;
+	boolean loginFlag = false;
 
 	public void login(TeacherUser teacherUser) {
 
@@ -58,9 +59,9 @@ public class TeacherUser {
 			}
 
 			// input id, pw
-			System.out.print("\t\t\t▷ ID: \n");
+			System.out.print("\t\t\t▷ ID: ");
 			String inputId = scan.nextLine();
-			System.out.print("\t\t\t▷ PW: \n");
+			System.out.print("\t\t\t▷ PW: ");
 			String inputPw = scan.nextLine();
 
 			// iterator
@@ -77,11 +78,11 @@ public class TeacherUser {
 
 					// pw matching
 					if (pw.equals(inputPw)) {
-						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓");
-						System.out.printf("\t\t\t아이디 : %s\n", id);
-						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓");
 
 						TeacherMain teacherMain = new TeacherMain();
+						
+						// login on
+						teacherUser.loginFlag = true;
 						
 						// set info
 						teacherUser.setSsn(teacherInfo.get(id).get(0));
@@ -95,7 +96,16 @@ public class TeacherUser {
 				}
 
 			}
-			System.out.println("\t\t\t아이디와 비밀번호를 다시 입력해주세요");
+			// when enter wrong info
+			if(!teacherUser.loginFlag) {
+				System.out.println("\t\t\t아이디와 비밀번호를 다시 입력해주세요.");
+			} 
+			// logout
+			else {
+				System.out.println("\t\t\t로그아웃을 진행합니다.");
+				scan.nextLine();
+				teacherUser.loginFlag = false;
+			}
 
 			stat.close();
 			conn.close();

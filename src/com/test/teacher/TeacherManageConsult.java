@@ -19,6 +19,7 @@ public class TeacherManageConsult {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 상담 관리 〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t1. 상담신청 내역 조회");
 			System.out.println("\t\t\t2. 상담일지 입력");
+			System.out.println("\t\t\t0. 뒤로가기");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t▷입력:");
 			String sel = scan.nextLine();

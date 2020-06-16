@@ -20,7 +20,7 @@ public class TeacherMain {
 			System.out.println("\t\t\t4. 출결 관리 및 출결 조회");
 			System.out.println("\t\t\t5. 교사 평가 조회");
 			System.out.println("\t\t\t6. 상담 내역 관리");
-			System.out.println("\t\t\t0. 뒤로가기");
+			System.out.println("\t\t\t0. 로그아웃");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷ 입력: \n");
 			// 사용자에게 번호 입력받음

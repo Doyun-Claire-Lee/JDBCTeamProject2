@@ -10,12 +10,6 @@ import oracle.jdbc.OracleTypes;
 public class AdminTeacher {
 	
 	
-	public static void main(String[] args) {
-		
-		AdminTeacher teacher = new AdminTeacher();
-		teacher.manageTeacherMenu();
-	}
-	
 	public void manageTeacherMenu() {
 	//이도윤	
 		
@@ -616,7 +610,7 @@ public class AdminTeacher {
 			System.out.println("―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――");
 			
 			while (srs.next()) {
-				System.out.printf("%s\t\t%-20s\t%-30s\n"
+				System.out.printf("%s\t\t%-14s\t%-30s\n"
 													, srs.getString("subjectPeriod")
 													, srs.getString("subjectName")
 													, srs.getString("book"));

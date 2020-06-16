@@ -25,7 +25,7 @@ public class AdminEquipment {
 		while (true) {
 			
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t\t\t기자재 관리");
+			System.out.println("\t\t\t\t         기자재 관리");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			System.out.println("\t\t\t1. 구입날짜별 조회");
@@ -101,7 +101,7 @@ public class AdminEquipment {
 			
 			//헤더 출력
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t\t\t구입날짜별 조회");
+			System.out.println("\t\t\t\t        강의실별 조회");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			
@@ -122,13 +122,13 @@ public class AdminEquipment {
 			
 			//헤더 출력
 			System.out.println();
-			System.out.println("\t\t\t[강의실] [기자재]\t\t[수량]\t[구입날짜]");
-			System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("\t\t[강의실] [기자재]\t\t[수량]\t[구입날짜]");
+			System.out.println("\t\t――――――――――――――――――――――――――――――――――――――――――――");
 			
 			//결과 출력
 			while(rs.next()) {
 				
-				System.out.printf("\t\t\t%s\t%-15s\t%3s\t%s\n", rs.getString("classroomName")
+				System.out.printf("\t\t%s\t%-15s\t%3s\t%s\n", rs.getString("classroomName")
 															, rs.getString("item")
 															, rs.getString("qty")
 															, rs.getString("purchaseDate"));		
@@ -182,7 +182,7 @@ public class AdminEquipment {
 			
 			//헤더 출력
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t\t\t강의실별 조회");
+			System.out.println("\t\t\t\t        날짜별 조회");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			
@@ -215,13 +215,13 @@ public class AdminEquipment {
 			
 			//헤더 출력
 			System.out.println();
-			System.out.println("\t\t\t[강의실] [기자재]\t\t[수량]\t[구입날짜]");
-			System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("\t\t[강의실] [기자재]\t\t[수량]\t[구입날짜]");
+			System.out.println("\t\t――――――――――――――――――――――――――――――――――――――――――――");
 			
 			//결과 출력
 			while(rs.next()) {
 				
-				System.out.printf("\t\t\t%s\t%-10s\t%3s\t%s\n", rs.getString("classroomName")
+				System.out.printf("\t\t%s\t%-15s\t%3s\t%s\n", rs.getString("classroomName")
 															, rs.getString("item")
 															, rs.getString("qty")
 															, rs.getString("purchaseDate"));		

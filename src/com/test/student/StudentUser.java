@@ -19,8 +19,9 @@ public class StudentUser {
 	String name;
 	String tel;
 	String ssn;
-	String registerDate; // 의논 필요
-
+	String registerDate; 
+	boolean loginFlag = false;
+	
 	public void login(StudentUser studentUser) {
 
 		// Database connection
@@ -84,6 +85,9 @@ public class StudentUser {
 						
 						StudentMain studentMain = new StudentMain();
 
+						// login on
+						studentUser.loginFlag = true;
+						
 						// set info
 						studentUser.setSsn(studentInfo.get(id).get(0));
 						studentUser.setNum(Integer.parseInt(studentInfo.get(id).get(1)));
@@ -108,7 +112,17 @@ public class StudentUser {
 				}
 
 			}
-			System.out.println("\t\t\t아이디와 비밀번호를 다시 입력해주세요");
+			
+			// when enter wrong info
+			if(!studentUser.loginFlag) {
+				System.out.println("\t\t\t아이디와 비밀번호를 다시 입력해주세요.");
+			} 
+			// logout
+			else {
+				System.out.println("\t\t\t로그아웃을 진행합니다.");
+				scan.nextLine();
+				studentUser.loginFlag = false;
+			}
 
 			stat.close();
 			conn.close();

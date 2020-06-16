@@ -12,13 +12,13 @@ public class main {
 		
 		while (true) {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t\t           교육센터 관리 시스템");
+			System.out.println("\t\t\t\t            교육센터 관리 시스템");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			System.out.println("\t\t\t1. 관리자 로그인");
 			System.out.println("\t\t\t2. 교사 로그인");
 			System.out.println("\t\t\t3. 교육생 로그인");
-			System.out.println("\t\t\t4. 종료");
+			System.out.println("\t\t\t0. 종료");
 
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷ 입력: ");
@@ -42,7 +42,7 @@ public class main {
 				studentUser.login(studentUser);
 			} 
 			// 종료
-			else if (sel.equals("4")) {
+			else if (sel.equals("0")) {
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t프로그램을 종료합니다."); // needMore
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");

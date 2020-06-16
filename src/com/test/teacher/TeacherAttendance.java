@@ -290,15 +290,15 @@ public class TeacherAttendance {
 			stat1 = conn.createStatement();
 			rs=stat1.executeQuery(sql);
 			
-			System.out.println("[student name]\t[openCourseNum]\t[student num]");
+			System.out.println("\t\t\t[student name]\t[openCourseNum]\t[student num]");
 			while(rs.next()) {
-				System.out.printf("%s\t",rs.getString("student name"));
-				System.out.printf("%s\t",rs.getString("openCourseNum"));
-				System.out.printf("%s\t",rs.getString("student num"));
+				System.out.printf("\t\t\t%s\t",rs.getString("student name"));
+				System.out.printf("\t\t\t%s\t",rs.getString("openCourseNum"));
+				System.out.printf("\t\t\t%s\t",rs.getString("student num"));
 				System.out.println();
 			}
 			
-			System.out.print("▷개설 강좌 번호(특정 과정):");
+			System.out.print("\t\t\t▷개설 강좌 번호(특정 과정):");
 			String num = scan.nextLine();
 			System.out.print("▷학생 번호:");
 			String name = scan.nextLine();

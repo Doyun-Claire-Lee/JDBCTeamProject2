@@ -20,8 +20,8 @@ public class TeacherInsertScore {
 			System.out.println("\t\t\t1. 목록 조회");
 			System.out.println("\t\t\t2. 성적 입력");
 			System.out.println("\t\t\t0. 뒤로가기");
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.print("▷ 입력: \n");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("\t\t\t▷ 입력: \n");
 			String sel = scan.nextLine();
 			
 			// print

@@ -15,12 +15,6 @@ public class AdminSubject {
 	CallableStatement stat = null;
 
 	
-	public static void main(String[] args) {
-		AdminSubject a1 = new AdminSubject();
-		Connection conn =  new DBUtil().open("211.63.89.64", "project", "java1234");
-		a1.enrollPeriodBySubject(conn, new Scanner(System.in));
-	}
-	
 	public void manageSubjectmenu() {
 		
 		while(true) {
@@ -537,6 +531,7 @@ public class AdminSubject {
 					}
 					
 					// print rs2
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 					System.out.println("[구성 과목 리스트]");
 					System.out.println("[과목명]\t[시작년월일]\t[종료년월일]\t[교재명]\t");
 					while(rs2.next()) {
@@ -626,26 +621,27 @@ public class AdminSubject {
 			rs2 = (ResultSet) stat.getObject(3);
 			
 			// print rs
-			System.out.println("[과정명]\t\t\t\t\t\t[기간]\t\t\t[강의실명]\t[교사명]");
+			System.out.println("[기간]\t\t\t[교사명]\t[강의실명]\t[과정명]");
 			while(rs.next()) {
-				System.out.printf("%s\t\t%s\t%s\t%s\n",
-						rs.getString("ocName"),
+				System.out.printf("%s\t%s\t%s\t\t%s",
 						rs.getString("startdate").substring(0,10) + " ~ " +
 						rs.getString("enddate").substring(0,10),
-						rs.getString("classroomnum"),						
-						rs.getString("teachername")				
+						rs.getString("teachername"),		
+						rs.getString("classroomnum")+"강의실",						
+						rs.getString("ocName")
 						);
 			}
 			
 			// print rs2
-			System.out.println("[구성 과목 리스트]");
-			System.out.println("[과목명]\t\t\t[기간]\t[교재명]\t");
+			System.out.println();
+			System.out.println("\n[구성 과목 리스트]");
+			System.out.println("[과목번호]\t[기간]\t\t\t[과목명]\t\t\t[교재명]");
 			while(rs2.next()) {
-				System.out.printf("%s\t%s\t%s\t%s\n",
+				System.out.printf("%5s\t%s\t\t%-14s\t\t%-15s\n",
 						rs2.getString("subjectnum"),
-						rs2.getString("subjectname"),
 						rs2.getString("startdate").substring(0,10) + " ~ " +
 						rs2.getString("enddate").substring(0,10),
+						rs2.getString("subjectname"),
 						rs2.getString("bookname")				
 						);
 			}
@@ -670,19 +666,19 @@ public class AdminSubject {
 			// get subject list
 			// 과목 리스트 가져오는 sql문
 			Statement stat = conn.createStatement();
-			String sql = "select * from vwopencourseinfo2";
+			String sql = "select * from vwopencourseinfo2 order by opencoursenum";
 			ResultSet rs = stat.executeQuery(sql);
 
-			System.out.println("[과정번호]\t\t[과정명]\t\t\t\t[기간]\t\t[강의실]\n");
+			System.out.println("[과정번호]\t[기간]\t\t[강의실]\t\t[과정명]\n");
 
 			// print subject list
 			// 과목 목록 출력
 			while (rs.next()) {
-				System.out.printf("%s\t%s\t\t\t\t%s\t\t%s\n", 
+				System.out.printf("%s\t%s\t%s\t%s\n", 
 						rs.getString("opencoursenum"), 
-						rs.getString("opencoursename"),
 						rs.getString("period"),
-						rs.getString("classroomname"));
+						rs.getString("classroomname"),
+						rs.getString("opencoursename"));
 
 			}
 			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
@@ -776,21 +772,21 @@ public class AdminSubject {
 			procSubjectListOfOpenCourse(conn,courseNum);
 			System.out.println("\t\t\t0. 뒤로가기");
 			
-			System.out.println("\t\t\t[강의 가능 교사 목록]");
-			System.out.println("\t\t\t[교사번호]\t[교사명]");
-			getTeacherOfOpencourse(conn, courseNum, period);
+//			System.out.println("\t\t\t[강의 가능 교사 목록]");
+//			System.out.println("\t\t\t[교사번호]\t[교사명]");
+//			getTeacherOfOpencourse(conn, courseNum, period);
 			
 			// input subjectnum, startdate, enddate as number of subject 
 			for(int i=0; i<numOfSubject; i++) {
-				System.out.println("\t\t\t과목번호: ");
+				System.out.print("\t\t\t과목번호: ");
 				String subjectNum = scan.nextLine();
 				if(subjectNum.equals("0")) {break;}
 
-				System.out.println("\t\t\t시작년월일: ");
+				System.out.print("\t\t\t시작년월일: ");
 				String startDate = scan.nextLine();
 				if(startDate.equals("0")) {break;}
 
-				System.out.println("\t\t\t종료년월일: ");
+				System.out.print("\t\t\t종료년월일: ");
 				String endDate = scan.nextLine();
 				if(endDate.equals("0")) {break;}
 				
@@ -809,7 +805,6 @@ public class AdminSubject {
 					stat.close();
 					// fin message
 					System.out.println("\t\t\t등록이 완료되었습니다.");
-					
 					
 					
 				} catch (Exception e) {

@@ -53,35 +53,41 @@ public class TeacherCheckRating {
 			rs.next();
 			opencoursnum = rs.getString("openCourseNum");
 			
-			// 과정명 얻어오기
+			// 과정명 가져오기
 			try {
 				stat2 = conn.createStatement();
 				sql = String.format("select name from tblallcourse ac inner join tblopencourse oc on ac.num = oc.allcoursenum where oc.num = %s", opencoursnum);		
 				
 				rs2 = stat2.executeQuery(sql);
-				if(rs2.next()) {
-					ocName = rs2.getString("name");
+				
+				while(rs2.next()) {
+					
+					System.out.println("\t\t\t[시행과정명]");				
+					
+					//과정명 출력
+					ocName = rs2.getString("name");					
+					System.out.println("\t\t\t" + ocName);
+								
+					
+					System.out.println("\n\t\t\t[평가항목]\t\t\t\t\t\t[점수]");
+					while(rs.next()) {
+												
+						// 교사 평가 항목별 점수 출력
+						description = rs.getString("description");
+						score = rs.getString("score");
+						System.out.printf("\t\t\t" + i + ". " + description);
+						System.out.printf("\t\t\t\t" + score + '점' + "\n");
+						i++;
+					}
+										
 					
 				}
+				
 				rs2.close();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			System.out.println("\t\t\t[시행과정명]");
-			System.out.println("\t\t\t" + ocName);
 			
-			System.out.println("\n\t\t\t[평가항목]\t\t\t\t[점수]");
-			// 교사 평가 정보 출력
-			while(rs.next()) {
-				
-				// 과정번호
-				
-				description = rs.getString("description");
-				score = rs.getString("score");
-				System.out.printf("\t\t\t" + i + ". " + description);
-				System.out.printf("\t\t\t" + score + '점' + "\n");
-				i++;
-			}
 			
 			rs.close();
 			stat.close();

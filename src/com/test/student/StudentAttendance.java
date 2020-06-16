@@ -19,7 +19,7 @@ public class StudentAttendance {
 		String sel = "";
 
 		while (true) {
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓  M E N U 〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t1. 입실 기록");
 			System.out.println("\t\t\t2. 퇴실 기록");
 			System.out.println("\t\t\t3. 근태 신청");
@@ -85,12 +85,12 @@ public class StudentAttendance {
 			stat = conn.prepareCall(sql);
 
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t                        교육생 입실 기록 ");
+			System.out.println("\t\t\t                               교육생 입실 기록 ");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 
 			// 현재 시각 표시
-			SimpleDateFormat format = new SimpleDateFormat("\t\t\t     yyyy년 MM월dd일 HH시mm분ss초");
+			SimpleDateFormat format = new SimpleDateFormat("\t\t\t          yyyy년 MM월dd일 HH시mm분ss초");
 			Calendar time = Calendar.getInstance();
 			String format_time = format.format(time.getTime());
 			System.out.println(format_time);
@@ -133,12 +133,12 @@ public class StudentAttendance {
 			stat = conn.prepareCall(sql);
 
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t                        교육생 퇴실 기록 ");
+			System.out.println("\t\t\t                               교육생 퇴실 기록 ");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 
 			// 현재 시각 표시
-			SimpleDateFormat format = new SimpleDateFormat("\t\t\t     yyyy년 MM월dd일 HH시mm분ss초");
+			SimpleDateFormat format = new SimpleDateFormat("\t\t\t          yyyy년 MM월dd일 HH시mm분ss초");
 			Calendar time = Calendar.getInstance();
 			String format_time = format.format(time.getTime());
 			System.out.println(format_time);
@@ -236,7 +236,7 @@ public class StudentAttendance {
 			stat = conn.prepareCall(sql);
 
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t\t            근태 신청 ");
+			System.out.println("\t\t\t\t                    근태 신청 ");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 
@@ -267,11 +267,11 @@ public class StudentAttendance {
 			rs = (ResultSet) stat.getObject(5);
 
 			System.out.println();
-			System.out.println("\t   [이름]\t         [입실시각]                [퇴실시각]       [현황]  [번호]");
-			System.out.println("\t   ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("\t   [이름]\t    [입실시각]              [퇴실시각]       [현황]  [번호]");
+			System.out.println("\t   ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――");
 
 			while (rs.next()) {
-				System.out.printf("                         %s         %s    %s   %s       %s\n", rs.getString("name"),
+				System.out.printf("                       %s         %s    %s   %s       %s\n", rs.getString("name"),
 						rs.getString("entertime"), rs.getString("outtime"), rs.getString("status"),
 						rs.getString("anum"));
 			}
@@ -305,7 +305,7 @@ public class StudentAttendance {
 			stat = conn.prepareCall(sql);
 
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t\t        근태 기록 조회 ");
+			System.out.println("\t\t\t\t                근태 기록 조회 ");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 
@@ -352,10 +352,10 @@ public class StudentAttendance {
 
 			System.out.println();
 			System.out.println("\t     [이름]\t   [입실시각]\t           [퇴실시각]       [현황]");
-			System.out.println("\t     ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("\t     ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――");
 
 			while (rs.next()) {
-				System.out.printf("                             %s         %s    %s    %s\n", rs.getString("name"),
+				System.out.printf("                          %s         %s    %s   %s\n", rs.getString("name"),
 						rs.getString("entertime"), rs.getString("outtime"), rs.getString("status"));
 			}
 

@@ -93,7 +93,7 @@ public class AdminExam {
 	    				rs.getString("name"));
 	    		
 	    	}
-	    	System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 	    	// 입력받기
 	    	System.out.print("\t\t\t과목 번호: ");
 	    	String subjectNum = scan.nextLine();
@@ -250,11 +250,11 @@ public class AdminExam {
 			
 			
 			System.out.println();
-			System.out.println("\t       [개설과목명]    [교육생 이름]  [주민번호]    [필기점수]  [실기점수]");
+			System.out.println("\t       [개설과목명]    [교육생 이름]  [주민번호]  [필기점수] [실기점수]");
 			System.out.println("\t       ――――――――――――――――――――――――――――――――――――――――――――――――――――");
 			
 			while (rs.next()) {
-				System.out.printf("\t\t%-15s%13s%17s%9s%9s\n"
+				System.out.printf("\t\t%-15s%10s%16s%8s%8s\n"
 						, rs.getString("subjectname")
 						, rs.getString("studentname")
 						, rs.getString("studentssn")
@@ -298,16 +298,16 @@ public class AdminExam {
 			
 			stat = conn.prepareCall(sql);
 
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t\t     개설 과목별 성적 조회 ");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t           개설 과목별 성적 조회 ");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			
 
 			System.out.print("\t\t\t▷ 과목 번호 입력 : "); //과목번호입력
 			snum = scan.nextLine();			
 			System.out.println();
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			stat.setString(1, snum);
 			
@@ -318,11 +318,11 @@ public class AdminExam {
 			
 			
 			System.out.println();
-			System.out.println("[과정번호]    [과목명]     [과정시작일]       [과정종료일]       [강의실명]   [교사명]   [교재명]         [개설과정명] ");
+			System.out.println("[과정번호]    [과목명]     [과정시작일]       [과정종료일]       [강의실명]   [교사명]   [교재명]       [개설과정명] ");
 			System.out.println("―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――");
 			
 			while (rs.next()) {
-				System.out.printf("%-8s  %-16s%-15s%-15s%7s\t%5s\t%-15s\t%-30s\n"
+				System.out.printf("%-8s    %-16s%-15s%-15s%7s\t       %5s     %-12s     %-30s\n"
 						, rs.getString("opencoursenum")		
 						, rs.getString("subjectname")
 						, rs.getString("startdate")
@@ -382,8 +382,8 @@ public class AdminExam {
 			
 			System.out.println();
 			System.out.println();
-			System.out.println("\t        [개설과목명]               [출결점수]   [필기점수]   [실기점수]");
-			System.out.println("\t        ――――――――――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("\t        [개설과목명]            [출결점수]   [필기점수]   [실기점수]");
+			System.out.println("\t        ―――――――――――――――――――――――――――――――――――――――――――――――――――");
 			
 			while (rs.next()) {
 				System.out.printf("\t\t%-15s\t         %-11s%-11s%-11s\n"
@@ -447,7 +447,7 @@ public class AdminExam {
 			
 			System.out.println();
 			System.out.println();
-			System.out.println("\t        [개설과목명]           [시작일]        [종료일]      [교사명]");
+			System.out.println("\t        [개설과목명]           [시작일]        [종료일]    [교사명]");
 			System.out.println("\t        ――――――――――――――――――――――――――――――――――――――――――――――――――――");
 			
 			while (rs.next()) {
@@ -491,16 +491,16 @@ public class AdminExam {
 			
 			stat = conn.prepareCall(sql);
 
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t\t   교육생 개인별 성적 조회 ");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t           교육생 개인별 성적 조회 ");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 			
 			
 			System.out.print("\t\t\t▷ 교육생 번호 입력 : "); //교육생 번호입력
 			snum = scan.nextLine();
 			System.out.println();
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			stat.setString(1, snum);
 			
@@ -515,7 +515,7 @@ public class AdminExam {
 			System.out.println("―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――");
 			
 			while (rs.next()) {
-				System.out.printf("%-8s%16s%13s%13s%7s        %-50s\n"
+				System.out.printf("%-8s%16s%13s%13s  %7s        %-50s\n"
 						, rs.getString("studentname")
 						, rs.getString("ssn")
 						, rs.getString("startdate")

@@ -79,7 +79,7 @@ public class AdminStudent {
 			stat = conn.prepareCall(sql);
 
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t                보강수업 교육생 리스트 조회 ");
+			System.out.println("\t\t\t                        보강수업 교육생 리스트 조회 ");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 
@@ -96,11 +96,11 @@ public class AdminStudent {
 			rs = (ResultSet) stat.getObject(2);
 
 			System.out.println();
-			System.out.println("[교육생 이름] [주민번호]     [과목]      [필기]  [실기]   [출결]         [보강수업기간]");
+			System.out.println("[교육생 이름] [주민번호]     [과목]      [필기]  [실기]   [출결]      [보강수업기간]");
 			System.out.println("――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――");
 
 			while (rs.next()) {
-				System.out.printf("%-8s%15s    %-14s\t  %3s\t%3s\t%-6s       %-20s\n", rs.getString("studentname"),
+				System.out.printf("%-8s%15s    %-14s     %3s\t  %3s\t   %-6s    %-20s\n", rs.getString("studentname"),
 						rs.getString("ssn"), rs.getString("subjectname"), rs.getString("writtenTestScore"),
 						rs.getString("performanceTestScore"), rs.getString("attendanceScore"), rs.getString("period"));
 			}
@@ -133,7 +133,7 @@ public class AdminStudent {
 			stat = conn.prepareCall(sql);
 
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t                 성적 우수자 교육생 리스트 ");
+			System.out.println("\t\t\t                         성적 우수자 교육생 리스트 ");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println();
 
@@ -153,11 +153,11 @@ public class AdminStudent {
 			rs = (ResultSet) stat.getObject(2);
 
 			System.out.println();
-			System.out.println("      [교육생 이름]  [주민번호]    [과목]       [필기]   [실기]   [출결]  [지급여부] [성적번호]");
-			System.out.println("      ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――");
+			System.out.println("      [교육생 이름]  [주민번호]    [과목]       [필기]   [실기]   [출결]  [지급여부] [번호]");
+			System.out.println("      ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――");
 
 			while (rs.next()) {
-				System.out.printf("             %-10s%15s    %-14s          %3s\t%3s\t%3s\t%-10s\t%-5s\n",
+				System.out.printf("             %-10s%15s    %-14s    %4s\t %4s\t %4s\t   %-5s\t  %-5s\n",
 						rs.getString("name"), rs.getString("ssn"), rs.getString("subjectname"),
 						rs.getString("writtenTestScore"), rs.getString("performanceTestScore"),
 						rs.getString("attendanceScore"), rs.getString("status"), rs.getString("scorebysubjectnum"));

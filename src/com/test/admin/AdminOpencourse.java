@@ -2,226 +2,108 @@ package com.test.admin;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Scanner;
+
 import oracle.jdbc.OracleTypes;
 
 /**
  * 
- * @author siyeon
- *관리자가 개설 과정 관리하는 클래스입니다.
+ * @author siyeon 관리자가 개설 과정 관리하는 클래스입니다.
  */
 
 public class AdminOpencourse {
 
-	Scanner	scan = new Scanner(System.in);
+	Scanner scan = new Scanner(System.in);
 
-	/*
-	public static void main(String[] args) {
-		AdminOpencourse m = new AdminOpencourse();
-		m.menu();
-	}
-	*/
 
 	/**
-	 *  개설 과정 관리 전체 메뉴입니다.
+	 * 개설 과정 관리 전체 메뉴입니다.
 	 */
 	public void menu() {
-		
-		while (true) {
-			System.out.println("〓〓〓〓〓〓〓〓〓  M E N U 〓〓〓〓〓〓〓");
-			System.out.println("                  개설 과정 관리");
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("1. 과정명, 과정기간, 강의실 정보 추가");
-			System.out.println("2. 기초 정보 강의실명에서 수정");
-			System.out.println("3. 개설 과정 정보 출력");
-			System.out.println("4. 특정 개설 과정 선택 출력");
-			System.out.println("5. 수료날짜 지정");
-			System.out.println("6. 추가, 조희, 수정, 삭제 기능");
-			System.out.println("0. 뒤로가기");
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.print("▷입력:");
+
+		Boolean loop = true;
+		while (loop) {
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓  M E N U 〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t                          개설 과정 관리");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t1. 신규 개설 과정 등록");
+			System.out.println("\t\t\t2. 조회");
+			System.out.println("\t\t\t3. 수료 날짜 지정");
+			System.out.println("\t\t\t4. 수정");
+			System.out.println("\t\t\t5. 삭제");
+			System.out.println("\t\t\t0. 뒤로가기");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("\t\t\t▷번호:");
+			String num = scan.nextLine();
 			
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			
-			break;
-			
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+
+			// 메뉴 선택 번호를 입력받음
+			switch (num) {
+			case "1":
+				procopenCourseInsert();
+				break;
+			case "2":
+				menu1();
+				break;
+			case "3":
+				vwopenCourseSelectEndDate();
+				break;
+			case "4":
+				procopenCourseUpdate();
+				break;
+			case "5":
+				procopenCourseDelete();
+				break;
+			case "0":
+				loop = false;
+				break;
+			default:
+				System.out.println("\t\t\t번호를 다시 입력해주세요.");
+			}
 		}
-	
 	} // menu()
 
 	/**
-	 *  개설과정를 관리하는 소메뉴입니다.
+	 * 신규 조회 메뉴입니다.
 	 */
+
 	public void menu1() {
 
 		while (true) {
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("1. 추가");
-			System.out.println("2. 조회");
-			System.out.println("3. 수정");
-			System.out.println("4. 삭제");
-			System.out.println("0. 뒤로가기");
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.print("▷입력:");
-			int sel = scan.nextInt();
-			scan.skip("\r\n");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t1. 개설 과정 정보 & 개설 과목 등록 여부, 교육생 등록 인원");
+			System.out.println("\t\t\t2. 특정 개설 과정 선택 출력(개설 과목 정보 & 교육생 정보)");
+			System.out.println("\t\t\t3. 개설 과정 조희");
+			System.out.println("\t\t\t0. 뒤로가기");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("\t\t\t▷입력:");
+			String sel = scan.nextLine();
+			
 			switch (sel) {
-			case 1:
-				procopenCourseInsert();
+			case "1":
+				vwopenCourseInfo();
 				break;
-			case 2:
+			case "2":
+				vwopenCourseSubject();
+				break;
+			case "3":
 				vwopenCourse();
 				break;
-			case 3:
-				procopenCourseUpdate();
+			case "0":
 				break;
-			case 4:
-				procopenCourseDelete();
-				break;
-			case 0:
-				break;
+			default:
+				System.out.println("\t\t\t번호를 다시 입력해주세요.");
 			}
 			break;
 		}
-	} // menu1()
-
-	/**
-	 *  기초 강의실, 과정명 정보와 개설 과정를 보고서 과정명, 과정기간, 강의실 정보를 추가를 합니다.
-	 */
-	
-	//확인
-	private void procopenCourse() {
-		Connection conn = null;
-		Statement stat1 = null;
-		CallableStatement stat = null;
-		ResultSet rs = null;
-		DBUtil util = new DBUtil();
-		String sql = null;
-		
-		vwopenCourse();
-		System.out.println();
-		try {
-			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("211.63.89.64", "project", "java1234");
-			stat1 = conn.createStatement();
-			sql = "select * from vwclassRoom";
-			rs = stat1.executeQuery(sql);
-			System.out.println("*** 기초 강의실 정보 ***");
-			System.out.println("[classRoomNum]\t[classRoomName]\t[capcity]");
-			while(rs.next()) {
-				System.out.printf("%s\t",rs.getString("classRoomNum"));
-				System.out.printf("%s\t",rs.getString("classRoomName"));
-				System.out.printf("%s\t",rs.getString("capacity"));
-				System.out.println();
-			}
-			System.out.println();
-			sql = "select * from vwallCourse1";
-			rs = stat1.executeQuery(sql);
-			System.out.println("*** 기초 과정 정보 ***");
-			System.out.println("[allCourseNum]\t[coureName]\t[capacity]\t[coursePeriod]");
-			while(rs.next()) {
-				System.out.printf("%s\t",rs.getString("allCourseNum"));
-				System.out.printf("%s\t",rs.getString("courseName"));		
-				System.out.printf("%s\t",rs.getString("capacity"));
-				System.out.printf("%s\t",rs.getString("coursePeriod"));
-				System.out.println();
-			}
-			System.out.println();
-			stat1.close();
-			sql = "{ call procopenCourse(?,?,?,?) }";
-			stat = conn.prepareCall(sql);
-			// num,startDate,endDate,classRoomNum,allCourseNum,status
-			System.out.println("[개설 과정 정보 시작날짜]");
-
-			System.out.print("▷시작날짜 년(yyyy):");
-			String startyear = scan.nextLine();
-			System.out.print("▷시작날짜 월(mm):");
-			String startmonth = scan.nextLine();
-			System.out.print("▷시작날짜 일(dd):");
-			String startday = scan.nextLine();
-
-			System.out.println("[개설 과정 정보 종료날짜]");
-			System.out.print("▷종료날짜 년(yyyy):");
-			String endyear = scan.nextLine();
-			System.out.print("▷종료날짜 월(mm):");
-			String endmonth = scan.nextLine();
-			System.out.print("▷종료날짜 일(dd):");
-			String endday = scan.nextLine();
-
-			System.out.print("▷강의실 번호:");
-			String classRoomNum = scan.nextLine();
-
-			System.out.print("▷과정 번호:");
-			String allCourseNum = scan.nextLine();
-			stat.setString(1, startyear + startmonth + startday);
-			stat.setString(2, endyear + endmonth + endday);
-			stat.setString(3, classRoomNum);
-			stat.setString(4, allCourseNum);
-
-			stat.executeUpdate();
-
-			stat.close();
-			conn.close();
-
-			System.out.println("완료");
-		} catch (Exception e) {
-			System.out.println("AdminOpencourse.procopenCourse()");
-			e.printStackTrace();
-		}
-
-	} // procOpenCourse()
-
-	/**
-	 *  강의실 정보를 기초 정보 강의실명에서 선택적으로 수정합니다.
-	 */
-	
-	private void procBasicClassroom() {
-
-		Connection conn = null;
-		Statement stat = null;
-		ResultSet rs = null;
-		DBUtil util = new DBUtil();
-		CallableStatement stat1 = null;
-	
-		// *** 강의실 정보는 기초 정보 강의실명에서 선택적으로 추가 ***
-		try {
-			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("211.63.89.64", "project", "java1234");
-			stat = conn.createStatement();
-			String sql = "select * from vwopenCourseClassRoom";
-			rs = stat.executeQuery(sql);
-			System.out.println("[개설 강좌 번호]\t[시작 날짜]\t[종료 날짜]\t[강의실 번호]");
-			while (rs.next()) {
-				System.out.printf("%s\t", rs.getString("opening course number"));
-				System.out.printf("%s\t", rs.getString("startDate"));
-				System.out.printf("%s\t", rs.getString("endDate"));
-				System.out.printf("%s\t", rs.getString("classRoomNum"));
-				System.out.println();
-			}
-			sql = "{ call procBasicClassroom(?,?) }";
-
-			stat1 = conn.prepareCall(sql);
-			System.out.print("▷수정할 개설 강좌번호:");
-			String num = scan.nextLine();
-			stat1.setString(1, num);
-			System.out.print("▷강의실 번호:");
-			String classroom = scan.nextLine();
-			stat1.setString(2, classroom);
-			stat1.executeUpdate();
-
-			conn.close();
-			stat.close();
-			stat1.close();
-			rs.close();
-			System.out.println("완료");
-		} catch (Exception e) {
-			System.out.println("AdminOpencourse.procBasicClassroom()");
-			e.printStackTrace();
-		}
-
-	} // procBasicClassroom()
+	} // menu3()
 
 	/**
 	 * 개설 과정 정보 출력시 개설 과정명, 개설 과정기간, 강의실명, 개설 과목 등록 여부, 교육생 등록 인원을 출력합니다.
@@ -232,63 +114,65 @@ public class AdminOpencourse {
 		Statement stat = null;
 		ResultSet rs = null;
 		DBUtil util = new DBUtil();
-	
+
 		System.out.println(
-				"[openCourseNum]\t[openingCourseName]\t[openingCoursePeriod]\t[classroomName]\t[registerOpeningCourse]\t[traineeRegistrationPersonnel]");
+				"\t\t\t[openCourseNum]\t[openingCoursePeriod]\t[classroomName]\t[registerOpeningCourse]\t[traineeRegistrationPersonnel]\t[openingCourseName]");
 		try {
-			// conn = util.open("211.63.89.64","project","java1234");
 			conn = util.open("211.63.89.64", "project", "java1234");
+			//conn = util.open("localhost", "project", "java1234");
 			stat = conn.createStatement(); // 쿼리를 날릴 수 있는 개체
 			String sql = "select * from vwopenCourseInfo";
 
 			rs = stat.executeQuery(sql);
 			int count = 0;
 			while (rs.next()) {
-				System.out.printf("%s\t", rs.getString("openCourseNum"));
-				System.out.printf("%s\t", rs.getString("opening course name"));
-				System.out.printf("%s\t", rs.getString("opening course period"));
-				System.out.printf("%s\t", rs.getString("classroom name"));
-				System.out.printf("%s\t", rs.getString("register opening course"));
-				System.out.printf("%s\t", rs.getString("trainee registration personnel"));
+				System.out.printf("\t\t\t%s\t\t", rs.getString("openCourseNum"));
+				System.out.printf("%s\t\t", rs.getString("opening course period"));
+				System.out.printf("%s\t\t", rs.getString("classroom name"));
+				System.out.printf("%s\t\t", rs.getString("register opening course"));
+				System.out.printf("%s\t\t\t\t", rs.getString("trainee registration personnel"));
+				System.out.printf("%s", rs.getString("opening course name"));
 				System.out.println();
 
 				count++;
+				
 				if (count % 100 == 0) {
-					System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-					System.out.println("           0. 뒤로가기");
-					System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-					System.out.print("번호:");
-					int k = scan.nextInt();
-					scan.skip("\r\n");
-					if (k == 0) {
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t           -1을 누르면 종료");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.print("\t\t\t번호:");
+					String k = scan.nextLine();
+					if (k.equals("-1")) {
 						break;
 					} else {
 						pause();
 					}
+				
 				}
 			}
 			conn.close();
 			stat.close();
 			rs.close();
-			System.out.println("완료");
+			System.out.println("\t\t\t완료");
 		} catch (Exception e) {
-			System.out.println("AdminOpenCourse.vwopenCourseInfo()");
+			System.out.println("\t\t\tAdminOpenCourse.vwopenCourseInfo()");
+			System.out.println("\t\t\t개설 과정명, 개설과정 기간, 강의실명, 개설 과목 등록 여부, 교육생 등록 인원 출력에 실패했습니다.");
 			e.printStackTrace();
 		}
 
 	} // vwopenCourseInfo()
-	
+
 	/**
 	 * 계속 할려면 엔터를 눌러야 합니다.
 	 */
 
 	public void pause() {
-		System.out.println("100개를 계속 출력하실려면 엔터를 누르세요...");
+		System.out.println("\t\t\t100개를 계속 출력하실려면 엔터를 누르세요...");
 		scan.nextLine();
 	}
 
 	/**
-	 *  기초 정보 과정명을 보고서 과정 번호를 입력하면 개설 과목 정보(과목명, 과목기간 및 등록된 교육생 정보)를 보여줍니다.
+	 * 과정 번호를 입력하면 개설 과목 정보(과목명, 과목기간 및 등록된 교육생 정보)를 보여줍니다.
 	 */
 	public void vwopenCourseSubject() {
 
@@ -298,53 +182,97 @@ public class AdminOpencourse {
 		DBUtil util = new DBUtil();
 		String sql = null;
 		// 특정 개설 과정 선택시 개설 과정에 등록된 개설 과목 정보(과목명, 과목기간 및 등록된 교육생 정보)
-		
+
 		try {
-			// conn = util.open("211.63.89.64","project","java1234");
 			conn = util.open("211.63.89.64", "project", "java1234");
+			//conn = util.open("localhost", "project", "java1234");
 			stat = conn.createStatement(); // 쿼리를 날릴 수 있는 개체
 			sql = "select * from vwopenCourseName";
 			rs = stat.executeQuery(sql);
-			System.out.println("[openCourseNum]\t[courseName]");
-			while(rs.next()) {
-				System.out.printf("%s\t",rs.getString("openCourseNum"));
-				System.out.printf("%s\t",rs.getString("courseName"));
-				System.out.println();
-			}
-			System.out.println();
-			System.out.print("▷과정 번호:");
-			int num = scan.nextInt();
-			scan.skip("\r\n");
-			sql = String.format("select * from vwopenCourseSubject where num = %d", num);
-
-			rs = stat.executeQuery(sql);
-			System.out.println(
-					"[subjectName]\t[subjectDuration]\t[textBookName]\t[teacherName]\t[studentName]\t[ssn]\t[tel]\t[registrationDate]\t[completionStatus]");
+			System.out.println("\t\t\t[openCourseNum]\t[courseName]");
 			while (rs.next()) {
-				System.out.printf("%s\t", rs.getString("subjectname"));
-				System.out.printf("%s\t", rs.getString("Subject duration"));
-				System.out.printf("%s\t", rs.getString("textbook name"));
-				System.out.printf("%s\t", rs.getString("teacher name"));
-				System.out.printf("%s\t", rs.getString("student name"));
-				System.out.printf("%s\t", rs.getString("ssn"));
-				System.out.printf("%s\t", rs.getString("tel"));
-				System.out.printf("%s\t", rs.getString("registration date"));
-				System.out.printf("%s\t", rs.getString("completion status"));
+				System.out.printf("\t\t\t%s\t\t", rs.getString("openCourseNum"));
+				System.out.printf("%s\t", rs.getString("courseName"));
 				System.out.println();
 			}
+			System.out.print("\t\t\t▷과정 번호:");
+			String num = scan.nextLine();
+		
+			sql = String.format("select * from vwopenCourseSubjectSelect where num = %s", num);
+			int count = 0;
+			rs = stat.executeQuery(sql);
+			System.out.println();
+			System.out.println("\t\t\t*** 시행 과정 과목별 정보 ***");
+			System.out.println("\t\t\t[subjectName]\t[subjectDuration]\t[textBookName]\t[teacherName]");
+			while (rs.next()) {
+				System.out.printf("\t\t\t%s\t\t", rs.getString("subjectName"));
+				System.out.printf("%s\t", rs.getString("SubjectDuration"));
+				System.out.printf("%s\t", rs.getString("textbookName"));
+				System.out.printf("%s", rs.getString("teacherName"));
+				System.out.println();
+
+				count++;
+
+				if (count % 100 == 0) {
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t           -1을 누르면 종료");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.print("\t\t\t번호:");
+					String k = scan.nextLine();
+					if (k == "-1") {
+						break;
+					} else {
+						pause();
+					}
+				
+				}
+			}
+			count = 0;
+			sql = String.format("\t\t\tselect * from vwopenCourseStudentSelect where num = %s", num);
+			System.out.println();
+			rs = stat.executeQuery(sql);
+			System.out.println("\t\t\t*** 시행 과정 과목별 학생정보 ***");
+			System.out
+					.println("\t\t\t[studentName]\t[studentSsn]\t[studentTel]\t[registrationDate]\t[completionStatus]");
+			while (rs.next()) {
+				System.out.printf("\t\t\t%s\t\t", rs.getString("studentName"));
+				System.out.printf("%s\t\t", rs.getString("studentSsn"));
+				System.out.printf("%s\t", rs.getString("studentTel"));
+				System.out.printf("%s\t\t", rs.getString("registrationDate"));
+				System.out.printf("%s", rs.getString("completionStatus"));
+				System.out.println();
+
+				count++;
+
+				if (count % 100 == 0) {
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t           -1을 누르면 종료");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.print("\t\t\t번호:");
+					String k = scan.nextLine();
+					if (k == "-1") {
+						break;
+					} else {
+						pause();
+					}
+				
+				}
+			}
+
 			conn.close();
 			rs.close();
 			stat.close();
 
 		} catch (Exception e) {
-			System.out.println("AdminOpenCourse.vwopenCourseSubject()");
+			System.out.println("\t\t\tAdminOpenCourse.vwopenCourseSubject()");
+			System.out.println("\t\t\t개설 과정 선택시 개설 과목 정보 출력에 실패했습니다.");
 			e.printStackTrace();
 		}
 
 	} // vwopenCourseSubject()
 
 	/**
-	 * 과정 수료 상태를 보여주고서 등록된 교육생 전체에 대해서 수료날짜를 지정합니다.
+	 * 과정 수료 상태시 등록된 교육생 전체에 대해서 수료날짜를 지정합니다.
 	 */
 	public void vwopenCourseSelectEndDate() {
 		Connection conn = null;
@@ -355,167 +283,272 @@ public class AdminOpencourse {
 		String sql = null;
 		// *** 특정 개설 과정이 수료한 경우 등록된 교육생 전체에 대해서 수료날짜를 지정 ***
 		try {
-			// conn = util.open("211.63.89.64","project","java1234");
 			conn = util.open("211.63.89.64", "project", "java1234");
-			sql = "{call  procstudentEndDate(?,?)}";
-			stat = conn.prepareCall(sql);
+			//conn = util.open("localhost", "project", "java1234");
+
 			stat1 = conn.createStatement();
 			sql = "select * from vwopenCourseSelectEndDate";
 			rs = stat1.executeQuery(sql);
-			System.out.println("[courseHistoryNum]\t[openCourseNum]\t[status]\t[student name]\t[endDate]");
+			int count = 0;
+			System.out.println("\t\t\t[courseHistoryNum]\t[openCourseNum]\t[status]\t[student name]\t[endDate]");
 			while (rs.next()) {
-				System.out.printf("%s\t", rs.getString("courseHistoryNum"));
-				System.out.printf("%s\t", rs.getString("openCourseNum"));
-				System.out.printf("%s\t", rs.getString("status"));
-				System.out.printf("%s\t", rs.getString("student name"));
-				System.out.printf("%s\t", rs.getString("endDate"));
+				System.out.printf("\t\t\t%s\t\t\t", rs.getString("courseHistoryNum"));
+				System.out.printf("%s\t\t", rs.getString("openCourseNum"));
+				System.out.printf("%s\t\t", rs.getString("status"));
+				System.out.printf("%s\t\t", rs.getString("student name"));
+				System.out.printf("%s", rs.getString("endDate"));
 				System.out.println();
+
+				count++;
+			
+				if (count % 100 == 0) {
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t           -1을 누르면 종료");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.print("\t\t\t번호:");
+					String k = scan.nextLine();
+					if (k == "-1") {
+						break;
+					} else {
+						pause();
+					}
+				
+				}
 
 			}
 
-			System.out.print("▷특정 개설 과정 번호(courseHistoryNum):");
+			System.out.print("\t\t\t▷특정 개설 과정 번호(courseHistoryNum):");
 			String openCourseNum = scan.nextLine();
-			System.out.println("[과정 수료 날짜]");
-			System.out.print("▷과정 수료 년(yyyy):");
+			System.out.println("\t\t\t[과정 수료 날짜]");
+			System.out.print("\t\t\t▷과정 수료 년(yyyy):");
 			String endyear = scan.nextLine();
-			System.out.print("▷과정 수료 월(mm):");
+			System.out.print("\t\t\t▷과정 수료 월(mm):");
 			String endmonth = scan.nextLine();
-			System.out.print("▷과정 수료 일(dd):");
+			System.out.print("\t\t\t▷과정 수료 일(dd):");
 			String endday = scan.nextLine();
+
+			sql = "{call  procstudentEndDate(?,?)}";
+			stat = conn.prepareCall(sql);
 
 			stat.setString(1, endyear + endmonth + endday);
 			stat.setString(2, openCourseNum);
 
 			stat.executeUpdate();
 
-			System.out.println("완료");
+			System.out.println("\t\t\t완료");
 
 			sql = "select * from vwopenCourseSelectEndDate";
 			rs = stat1.executeQuery(sql);
-			System.out.println("[courseHistoryNum]\t[openCourseNum]\t[status]\t[student name]\t[endDate]");
+			count = 0;
+			System.out.println("\t\t\t[courseHistoryNum]\t[openCourseNum]\t[status]\t[student name]\t[endDate]");
 			while (rs.next()) {
-				System.out.printf("%s\t", rs.getString("courseHistoryNum"));
+				System.out.printf("\t\t\t%s\t", rs.getString("courseHistoryNum"));
 				System.out.printf("%s\t", rs.getString("openCourseNum"));
 				System.out.printf("%s\t", rs.getString("status"));
 				System.out.printf("%s\t", rs.getString("student name"));
 				System.out.printf("%s\t", rs.getString("endDate"));
 				System.out.println();
 
+				count++;
+
+				if (count % 100 == 0) {
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t           -1을 누르면 종료");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.print("\t\t\t번호:");
+					String k = scan.nextLine();
+					if (k == "-1") {
+						break;
+					} else {
+						pause();
+					}
+				
+				}
+
 			}
 			stat.close();
 			conn.close();
 		} catch (Exception e) {
-			System.out.println("AdminOpenCourse.vwopenCourseSelectEndDate()");
+			System.out.println("\t\t\tAdminOpenCourse.vwopenCourseSelectEndDate()");
+			System.out.println("\t\t\t특정 개설 과정을 수료시 수료날짜 수정에 실패했습니다.");
 			e.printStackTrace();
 		}
 	} // vwopenCourseSelectEndDate()
 
 	/**
-	 * 개설 과정 정보, 기초 강의실 정보, 기초 과정명 정보, 기초 선생님 정보를 출력 한 후 개설 과정 정보에 대한 추가 기능입니다.
+	 * 개설 과정 정보에 대한 추가 기능입니다.
 	 */
 	public void procopenCourseInsert() {
 
 		Connection conn = null;
 		CallableStatement stat = null;
 		Statement stat1 = null;
+		CallableStatement stat2 = null;
+		CallableStatement stat3 = null;
+
 		DBUtil util = new DBUtil();
 		ResultSet rs = null;
 		// 개설 과정 정보에 대한 추가 기능
-	
+		String pcourseCapacity = null;
+		String pcoursePeriod = null;
 		String sql = null;
+		ResultSet rs1 = null;
+		System.out.println("\t\t\t*** 개설 과정 정보 ****");
 		vwopenCourse();
-
+		System.out.println();
+		int count = -1;
 		try {
-			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("211.63.89.64", "project", "java1234");
-			
-			sql = "select * from vwclassRoom";
-			stat1 = conn.createStatement();
-			rs = stat1.executeQuery(sql);
-			System.out.println("*** 기초 강의실 정보 ***");
-			while(rs.next()) {
-				System.out.printf("%s\t",rs.getString("classRoomNum"));
-				System.out.printf("%s\t",rs.getString("classRoomName"));
-				System.out.println();
-			}
-			System.out.println();
-			
-			System.out.println("*** 기초 과정명 정보 ***");
-			sql = "select * from vwallCourse";
-			stat1 = conn.createStatement();
-			rs = stat1.executeQuery(sql);
-			System.out.println("[allCourseNum]\t[courseName]\t[subjectPeriod]\t[subjectName]\t[capacity]\t[coursePeriod]");
-			while(rs.next()) {
-				System.out.printf("%s\t",rs.getString("allCourseNum"));
-				System.out.printf("%s\t",rs.getString("courseName"));
-				System.out.printf("%s\t",rs.getString("subjectperiod"));
-				System.out.printf("%s\t",rs.getString("subjectName"));
-				System.out.printf("%s\t",rs.getString("capacity"));
-				System.out.printf("%s\t",rs.getString("coursePeriod"));
-				System.out.println();
-			}
-			System.out.println();
-			
-			System.out.println("*** 기초 선생님 정보 ***");
-			sql = "select * from vwteacher";
-			stat1 = conn.createStatement();
-			rs = stat1.executeQuery(sql);
-			System.out.println("[teacherNum]\t[availablesubjectName]");
-			while(rs.next()) {
-				System.out.printf("%s\t",rs.getString("teacherNum"));
-				System.out.printf("%s\t",rs.getString("availablesubjectName"));
-				System.out.println();
-			}
-			System.out.println();
-			
+			conn = util.open("211.63.89.64","project","java1234");
+			//conn = util.open("localhost", "project", "java1234");
+
 			sql = "{ call procopenCourseInsert(?,?,?,?,?) }";
-			stat = conn.prepareCall(sql);
+			stat2 = conn.prepareCall(sql);
 
-			System.out.println("[개설 과정 정보 시작날짜]");
+			System.out.println("\t\t\t[개설 과정 정보 시작날짜]");
 
-			System.out.print("▷시작날짜 년(yyyy):");
+			System.out.print("\t\t\t▷시작날짜 년(yyyy):");
 			String startyear = scan.nextLine();
-			System.out.print("▷시작날짜 월(mm):");
+			System.out.print("\t\t\t▷시작날짜 월(mm):");
 			String startmonth = scan.nextLine();
-			System.out.print("▷시작날짜 일(dd):");
+			System.out.print("\t\t\t▷시작날짜 일(dd):");
 			String startday = scan.nextLine();
 
-			System.out.println("[개설 과정 정보 종료날짜]");
-			System.out.print("▷종료날짜 년(yyyy):");
-			String endyear = scan.nextLine();
-			System.out.print("▷종료날짜 월(mm):");
-			String endmonth = scan.nextLine();
-			System.out.print("▷종료날짜 일(dd):");
-			String endday = scan.nextLine();
+			String startDate = startyear + startmonth + startday;
+			stat2.setString(1, startDate);
+			System.out.println();
+			System.out.println("\t\t\t*** 기초 과정 정보 ***");
+			sql = "select * from vwallCourse1";
+			stat1 = conn.createStatement();
+			rs = stat1.executeQuery(sql);
+			System.out.println("\t\t\t[allCourseNum]\t[capacity]\t[coursePeriod]\t[courseName]");
+			while (rs.next()) {
+				System.out.printf("\t\t\t%s\t\t", rs.getString("allCourseNum"));
+				System.out.printf("%s\t\t", rs.getString("capacity"));
+				System.out.printf("%s\t\t", rs.getString("coursePeriod"));
+				System.out.printf("%s", rs.getString("courseName"));
+				System.out.println();
+			}
+			System.out.println();
+			System.out.print("\t\t\t▷과정 번호(allCourseNum): ");
+			String pallCourseNum = scan.nextLine();
+			System.out.println();
+			System.out.println("\t\t\t*** 과정 번호에 해당하는 과목 정보 ***");
+			sql = String.format("select * from vwSubject where num = %s",pallCourseNum);
+			rs = stat1.executeQuery(sql);
+			System.out.println("\t\t\t[subjectPeriod]\t[subjectName]\t[coursePeriod]");
+			while(rs.next()) {
+				System.out.printf("\t\t\t%-10s\t\t",rs.getString("subjectPeriod"));
+				System.out.printf("%-15s\t",rs.getString("subjectName"));
+				System.out.printf("%s",rs.getString("coursePeriod"));
+				System.out.println();
+			}
 
-			System.out.print("▷개설 과정 반 번호:");
-			String classroom = scan.nextLine();
-			System.out.print("▷선생님 번호:");
-			String teacherNum = scan.nextLine();
-			System.out.print("▷과정 정보: ");
-			String allCourseNum = scan.nextLine();
+			sql = String.format("select * from vwavailableCourse where courseNum = %s", pallCourseNum);
+			rs = stat1.executeQuery(sql);
+			if (rs.next()) {
+				pcourseCapacity = rs.getString("courseCapacity");
+				pcoursePeriod = rs.getString("coursePeriod");
+			}
+			sql = "{call procavailableClassRoom(?,?,?)}";
+			stat = conn.prepareCall(sql);
+			stat.setString(1, startDate);
+			stat.registerOutParameter(2, OracleTypes.CURSOR);
+			stat.setString(3, pcourseCapacity);
 
-			stat.setString(1, startyear + startmonth + startday);
-			stat.setString(2, endyear + endmonth + endday);
-			stat.setString(3, classroom);
-			stat.setString(4, teacherNum);
-			stat.setString(5, allCourseNum);
+			stat.executeQuery();
 
-			stat.executeUpdate();
+			rs = (ResultSet) stat.getObject(2);
 
-			stat.close();
-			conn.close();
+			System.out.println();
+			System.out.println("\t\t\t*** 가능한 교실 ***");
+			System.out.println("\t\t\t[classRoomNum]\t[classRoomName]\t[capacity]");
+			while (rs.next()) {
+				System.out.printf("\t\t\t%s\t\t", rs.getString("classRoomNum"));
+				System.out.printf("%s\t\t", rs.getString("classRoomName"));
+				System.out.printf("%s", rs.getString("capacity"));
+				System.out.println();
+			}
+			System.out.println();
+			System.out.print("\t\t\t교실 번호:");
+			String classRoomNum = scan.nextLine();
 
-			System.out.println("완료");
+			sql = "select * from tblTeacher";
+			rs = stat1.executeQuery(sql);
+			int cnt = 0;
+			ResultSet rs2 = null;
+			while (rs.next()) {
+				sql = "{call procCount(?,?,?,?)}";
+				stat = conn.prepareCall(sql);
+
+				String pteacherNum = rs.getString("num");
+				stat.setString(1, pallCourseNum);
+				stat.setString(2, pteacherNum);
+				stat.setString(3, startDate);
+				stat.registerOutParameter(4, OracleTypes.NUMBER);
+				stat.executeQuery();
+				count = stat.getInt(4);
+
+				if (count == 0) {
+					sql = "{call procavailableTeacher(?,?,?)}";
+					stat3 = conn.prepareCall(sql);
+					stat3.setString(1, startDate);
+					stat3.registerOutParameter(2, OracleTypes.CURSOR);
+					stat3.setString(3, pteacherNum);
+					stat3.executeQuery();
+
+					rs2 = (ResultSet) stat3.getObject(2);
+
+					System.out.println("\t\t\t*** 가능한 선생님 ***");
+					System.out.println("\t\t\t[teacherNum]\t[teacherName]");
+					while (rs2.next()) {
+						System.out.printf("\t\t\t%s\t", rs2.getString("teacherNum"));
+						System.out.printf("%s", rs2.getString("teacherName"));
+						System.out.println();
+						cnt++;
+					}
+					
+				}
+					//System.out.println(count);
+			}	if (cnt == 0) {
+					System.out.println("\t\t\t가능한 선생님이 없습니다.");
+					menu();
+				}
+
+				System.out.print("\t\t\t선생님 번호:");
+				String teacherNum = scan.nextLine();
+				// 선생님이 과정에서 과목을 정하면 선생님이 가능한 과목이 모두 포함되는 얘만 찾으면 되는데 이거는 개설 과목 관리에서
+				// 만약에 선생님이 가능하지 않는 과목이 포함되어 있으면 강의를 개설을 못하는
+
+				Calendar c = Calendar.getInstance();
+
+				c.set(Integer.parseInt(startyear), Integer.parseInt(startmonth), Integer.parseInt(startday));
+				c.add(c.MONTH, Integer.parseInt(pcoursePeriod));
+				String s = String.format("%tF", c).replace("-", "");
+				stat2.setString(2, s);
+				stat2.setString(3, classRoomNum);
+				stat2.setString(4, teacherNum);
+				stat2.setString(5, pallCourseNum);
+
+				stat2.executeUpdate();
+
+				System.out.println("\t\t\t완료");
+				rs.close();
+				conn.close();
+				rs2.close();
+				stat1.close();
+				stat.close();
+				stat3.close();
+				stat2.close();
 		} catch (Exception e) {
-			System.out.println("AdminOpenCourse.procopenCourseInsert()");
+			System.out.println("\t\t\tAdminOpenCourse.procopenCourseInsert()");
+			System.out.println("\t\t\t개설 과정 정보에 대한 추가에 실패했습니다.");
 			e.printStackTrace();
 		}
 
 	} // procopenCourseInsert()
 
 	/**
-	 *  개설 과정 목록을 출력한 후 선택적으로 개설 과정 정보에 대한 수정기능입니다.
+	 * 선택적으로 개설 과정 정보에 대한 수정기능입니다.
 	 */
 	public void procopenCourseUpdate() {
 
@@ -523,7 +556,7 @@ public class AdminOpencourse {
 		CallableStatement stat = null;
 		DBUtil util = new DBUtil();
 		ResultSet rs = null;
-		//Statement stat1 = null;
+		// Statement stat1 = null;
 
 		String sql = null;
 		String ostartDate = null;
@@ -534,12 +567,12 @@ public class AdminOpencourse {
 		vwopenCourse();
 		// 개설 과정 정보에 대한 수정 기능
 		try {
-			// conn = util.open("211.63.89.64","project","java1234");
 			conn = util.open("211.63.89.64", "project", "java1234");
+			//conn = util.open("localhost", "project", "java1234");
 
 			sql = "{ call procopenCourseSelect(?,?) }";
 			stat = conn.prepareCall(sql);
-			System.out.print("▷시행 과정 번호:");
+			System.out.print("\t\t\t▷시행 과정 번호:");
 			String num = scan.nextLine();
 			stat.setString(1, num);
 			stat.registerOutParameter(2, OracleTypes.CURSOR);
@@ -559,24 +592,24 @@ public class AdminOpencourse {
 
 			rs.close();
 
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("1. 과정 시작 날짜 수정");
-			System.out.println("2. 과정 종료 날짜 수정");
-			System.out.println("3. 과정 강의실 번호 수정");
-			System.out.println("4. 선생님 번호 수정");
-			System.out.println("5. 과정 번호 수정");
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.print("▷입력:");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t1. 과정 시작 날짜 수정");
+			System.out.println("\t\t\t2. 과정 종료 날짜 수정");
+			System.out.println("\t\t\t3. 과정 강의실 번호 수정");
+			System.out.println("\t\t\t4. 선생님 번호 수정");
+			System.out.println("\t\t\t5. 과정 번호 수정");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("\t\t\t▷입력:");
 			String sel = scan.nextLine();
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			switch (sel) {
 			case "1":
-				System.out.print("▷과정 시작 년(yyyy):");
+				System.out.print("\t\t\t▷과정 시작 년(yyyy):");
 				String start_year = scan.nextLine();
-				System.out.print("▷과정 시작 월(mm):");
+				System.out.print("\t\t\t▷과정 시작 월(mm):");
 				String start_month = scan.nextLine();
-				System.out.print("▷과정 시작 일(dd):");
+				System.out.print("\t\t\t▷과정 시작 일(dd):");
 				String start_day = scan.nextLine();
 				//// String sql = "update tblAddress set age = age + 1";
 				// String startDate = start_year + start_month + start_day;
@@ -594,14 +627,14 @@ public class AdminOpencourse {
 				stat.executeUpdate();
 
 				stat.close();
-				System.out.println("완료");
+				System.out.println("\t\t\t완료");
 				break;
 			case "2":
-				System.out.print("▷과정 종료 년(yyyy):");
+				System.out.print("\t\t\t▷과정 종료 년(yyyy):");
 				String end_year = scan.nextLine();
-				System.out.print("▷과정 종료 월(mm):");
+				System.out.print("\t\t\t▷과정 종료 월(mm):");
 				String end_month = scan.nextLine();
-				System.out.print("▷과정 종료 일(dd):");
+				System.out.print("\t\t\t▷과정 종료 일(dd):");
 				String end_day = scan.nextLine();
 
 				sql = "{call procopenCourseUpdate(?,?,?,?,?,?)}";
@@ -617,10 +650,10 @@ public class AdminOpencourse {
 				stat.executeUpdate();
 
 				stat.close();
-				System.out.println("완료");
+				System.out.println("\t\t\t완료");
 				break;
 			case "3":
-				System.out.print("▷과정 강의실 번호:");
+				System.out.print("\t\t\t▷과정 강의실 번호:");
 				String classRoomNum = scan.nextLine();
 				sql = "{call procopenCourseUpdate(?,?,?,?,?,?)}";
 				stat = conn.prepareCall(sql);
@@ -637,10 +670,10 @@ public class AdminOpencourse {
 				stat.executeUpdate();
 
 				stat.close();
-				System.out.println("완료");
+				System.out.println("\t\t\t완료");
 				break;
 			case "4":
-				System.out.print("▷선생님 번호:");
+				System.out.print("\t\t\t▷선생님 번호:");
 				String teacherNum = scan.nextLine();
 				sql = "{call procopenCourseUpdate(?,?,?,?,?,?)}";
 				stat = conn.prepareCall(sql);
@@ -657,10 +690,10 @@ public class AdminOpencourse {
 				stat.executeUpdate();
 
 				stat.close();
-				System.out.println("완료");
+				System.out.println("\t\t\t완료");
 				break;
 			case "5":
-				System.out.print("▷과정 번호:");
+				System.out.print("\t\t\t▷과정 번호:");
 				String allCourseNum = scan.nextLine();
 				sql = "{call procopenCourseUpdate(?,?,?,?,?,?)}";
 				stat = conn.prepareCall(sql);
@@ -677,7 +710,7 @@ public class AdminOpencourse {
 				stat.executeUpdate();
 
 				stat.close();
-				System.out.println("완료");
+				System.out.println("\t\t\t완료");
 				break;
 
 			}
@@ -685,13 +718,15 @@ public class AdminOpencourse {
 			conn.close();
 
 		} catch (Exception e) {
-			System.out.println("AdminOpenCourse.procopenCourseUpdate()");
+			System.out.println("\t\t\tAdminOpenCourse.procopenCourseUpdate()");
+			System.out.println("\t\t\t개설 과정 정보 수정에 실패했습니다.");
 			e.printStackTrace();
 		}
 
 	} // procopenCourseUpdate()
+
 	/**
-	 * 개설 과정 목록을 보여준 후 삭제하는 기능입니다.
+	 * 개설 과정을 삭제하는 기능입니다.
 	 */
 	public void procopenCourseDelete() {
 
@@ -699,34 +734,34 @@ public class AdminOpencourse {
 		CallableStatement stat = null;
 		DBUtil util = new DBUtil();
 
-
 		String num = null;
 		vwopenCourse();
 		// *** 개설 과정 정보에 대한 삭제 기능 ***
 		try {
-			// conn = util.open("211.63.89.64","project","java1234");
 			conn = util.open("211.63.89.64", "project", "java1234");
-			// conn = util.open("211.63.89.64","project","java1234");
+			//conn = util.open("localhost", "project", "java1234");
+
 			String sql = "{ call procopenCourseDelete(?) }";
 			stat = conn.prepareCall(sql);
-			System.out.print("▷삭제할 시행 과정 번호:");
+			System.out.print("\t\t\t▷삭제할 시행 과정 번호:");
 			num = scan.nextLine();
 			stat.setString(1, num);
 			stat.executeUpdate();
 
 			stat.close();
 			conn.close();
-			System.out.println("완료");
+			System.out.println("\t\t\t완료");
 
 		} catch (Exception e) {
-			System.out.println("AdminOpenCourse.procopenCourseDelete()");
+			System.out.println("\t\t\tAdminOpenCourse.procopenCourseDelete()");
+			System.out.println("\t\t\t개설 과정 정보 삭제에 실패했습니다.");
 			e.printStackTrace();
 		}
 
 	} // procopenCourseDelete()
 
 	/**
-	 *  개설 과정 정보에 대한 출력기능입니다.
+	 * 개설 과정 정보에 대한 출력기능입니다.
 	 */
 	public void vwopenCourse() {
 
@@ -736,18 +771,18 @@ public class AdminOpencourse {
 		DBUtil util = new DBUtil();
 		// *** 개설 과정 정보에 대한 출력 기능 ***
 		try {
-			// conn = util.open("211.63.89.64","project","java1234");
 			conn = util.open("211.63.89.64", "project", "java1234");
+			//conn = util.open("localhost", "project", "java1234");
 			stat = conn.createStatement(); // 쿼리를 날릴 수 있는 개체
 			String sql = "select * from vwopenCourse";
 			rs = stat.executeQuery(sql);
 			System.out.println(
-					"[openCourseNum]\t[startDate]\t\t[endDate]\t\t[classRoomNum]\t[teacherNum]\t[allCourseNum]");
+					"\t\t\t[openCourseNum]\t[startDate]\t\t[endDate]\t\t[classRoomNum]\t[teacherNum]\t[allCourseNum]");
 			while (rs.next()) {
-				
-				System.out.printf("%s\t\t", rs.getString("num"));
-				System.out.printf("%s\t", rs.getString("startDate"));
-				System.out.printf("%s\t", rs.getString("endDate"));
+
+				System.out.printf("\t\t\t%s\t\t", rs.getString("num"));
+				System.out.printf("%s\t\t", rs.getString("startDate").substring(0, 10));
+				System.out.printf("%s\t\t", rs.getString("endDate").substring(0, 10));
 				System.out.printf("%s\t\t", rs.getString("classRoomNum"));
 				System.out.printf("%s\t\t", rs.getString("teacherNum"));
 				System.out.printf("%s\t", rs.getString("allCourseNum"));
@@ -758,6 +793,7 @@ public class AdminOpencourse {
 			rs.close();
 		} catch (Exception e) {
 			System.out.println("AdminOpenCourse.vwopenCourse()");
+			System.out.println("개설 과정 정보 출력에 실패했습니다.");
 			e.printStackTrace();
 		}
 	} // vwopenCourse()

@@ -17,13 +17,8 @@ public class AdminStudent {
 	Scanner scan = new Scanner(System.in);
 
 	
-	public static void main(String[] args) {
-		AdminStudent s1 = new AdminStudent();
-		s1.manangeConsulting();
-	}
-	
-	public void menu() {
-		
+	public void manageStuMenu() {
+
 		while (true) {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t교육생 관리");
@@ -425,39 +420,98 @@ public class AdminStudent {
 		boolean loop = true;
 		while (loop) {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t1. 고용보험 여부 조회 & 결과 수정");
-			System.out.println("\t\t\t2. 취업완료 수료생 관리(추가,조회,수정,삭제)");
-			System.out.println("\t\t\t3. 연봉별 검색");
-			System.out.println("\t\t\t4. 회사명 검색");
-		
+			System.out.println("\t\t\t1. 고용보험 여부 결과 수정");
+			System.out.println("\t\t\t2. 고용보험 여부 조회");
+			System.out.println("\t\t\t3. 취업완료 수료생 관리(추가,조회,수정,삭제)");
+			System.out.println("\t\t\t4. 연봉별 검색");
+			System.out.println("\t\t\t5. 회사명 검색");
+
 			System.out.println("\t\t\t0. 뒤로가기");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷입력:");
-			int sel = scan.nextInt();
+			String sel = scan.nextLine();
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			scan.skip("\r\n");
+	
 			switch (sel) {
-			case 1:
+			case "1":
 				prochiredGraduatesUpdate();
 				break;
-			case 2:
-				jobActivity();
+			case "2":
+				prochiredGraduatesSelect();
 				break;
-			case 3:
+			case "3":
+				menu2();
+				break;
+			case "4":
 				prochiredgradesSalarySelect();
 				break;
-			case 4:
+			case "5":
 				prochiredGradesSelectName();
 				break;
-			case 0:
+			case "0":
 				loop = false;
 				break;
 			default:
-				System.out.println("번호를 다시 입력해주세요.");
+				System.out.println("\t\t\t번호를 다시 입력해주세요.");
 			}
 		}
 
 	} //menu1()
+	
+private void prochiredGraduatesSelect() {
+		
+		Connection conn = null;
+		ResultSet rs = null;
+		Statement stat1 = null;
+		DBUtil util = new DBUtil();
+
+		String sql = null;
+		
+		int count = 0;
+		try {
+			//conn = util.open("211.63.89.64","project","java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
+			stat1 = conn.createStatement();
+			sql = "select * from vwhiredGraduatesSelect";
+			rs = stat1.executeQuery(sql);
+			
+			System.out.println("\t\t\t[hiredgraduates num]\t[courseHistoryNum]\t[salary]\t\t[status]\t[employment insurance]\t[company]");
+				while (rs.next()) {
+					System.out.printf("\t\t\t%s\t\t\t", rs.getString("num"));
+					System.out.printf("%s\t\t\t", rs.getString("courseHistoryNum"));
+					System.out.printf("%s\t\t", rs.getString("salary"));
+					System.out.printf("%s\t\t", rs.getString("status"));
+					System.out.printf("%s\t\t\t", rs.getString("employment insurance"));
+					System.out.printf("%s", rs.getString("company"));
+					System.out.println();
+				count++;
+				// 100개씩 출력 하다가 계속 출력 할려면 -1 이 아닌 번호를 입력해야 됨
+				if (count % 100 == 0) {
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t       -1을 누르면 종료");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.print("\t\t\t▷번호:");
+					String k = scan.nextLine();
+				
+					if (k.equals("-1")) {
+						break;
+					} else {
+						pause();
+					}
+				}
+			}
+			stat1.close();
+			rs.close();
+			
+			System.out.println("\t\t\t완료");
+		} catch (Exception e) {
+			System.out.println("\t\t\tAdminStudent.prochiredGraduatesSelect()");
+			System.out.println("\t\t\t고용 보험 조회에 실패했습니다.");
+			e.printStackTrace();
+		}
+		
+	}
+
 
 	private void jobActivity() {
 		
@@ -793,36 +847,57 @@ public class AdminStudent {
 		String sql = null;
 		// *** 관리자는 수료생의 고용보험 여부를 조회 후 그 결과를 입력 ***
 		try {
-			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("211.63.89.64", "project", "java1234");
+			//conn = util.open("211.63.89.64","project","java1234");
+			conn = util.open("localhost", "project", "java1234");
 			stat1 = conn.createStatement();
 			sql = "select * from vwhiredGraduatesSelect";
 			rs = stat1.executeQuery(sql);
-			System.out.println(
-					"[hiredgraduates num]\t[courseHistoryNum]\t[company]\t[salary]\t[status]\t[employment insurance]");
+			int count = 0;
+			System.out.println("\t\t\t[hiredgraduates num]\t[courseHistoryNum]\t[salary]\t\t[status]\t[employment insurance]\t[company]");
 			while (rs.next()) {
-				System.out.printf("%s\t", rs.getString("num"));
-				System.out.printf("%s\t", rs.getString("courseHistoryNum"));
-				System.out.printf("%s\t", rs.getString("company"));
-				System.out.printf("%s\t", rs.getString("salary"));
-				System.out.printf("%s\t", rs.getString("status"));
-				System.out.printf("%s\t", rs.getString("employment insurance"));
+				System.out.printf("\t\t\t%s\t\t\t", rs.getString("num"));
+				System.out.printf("%s\t\t\t", rs.getString("courseHistoryNum"));
+				System.out.printf("%s\t\t", rs.getString("salary"));
+				System.out.printf("%s\t\t", rs.getString("status"));
+				System.out.printf("%s\t\t\t", rs.getString("employment insurance"));
+				System.out.printf("%s", rs.getString("company"));
 				System.out.println();
+				
+				count++;
+				if (count % 100 == 0) {
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t       -1을 누르면 종료");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.print("\t\t\t▷번호:");
+					String k = scan.nextLine();
+					
+					if (k.equals("-1")) {
+						break;
+					} else {
+						pause();
+					}
+				}
+				
 			}
 			stat1.close();
 			rs.close();
-			System.out.print("▷수정할 취직 번호(hiredgraduates num):");
+			// 수정할 취직 번호를 입력 받아서 취직 상태를 퇴사 또는 재직중으로 수정을 함
+			System.out.print("\t\t\t▷수정할 취직 번호(hiredgraduates num):");
 			String num = scan.nextLine();
-			sql = "{call prochiredGraduatesUpdate(?)}";
+			System.out.print("\t\t\t▷상태(퇴사 or 재직중):");
+			String status = scan.nextLine();
+			sql = "{call prochiredGraduatesUpdate(?,?)}";
 			stat = conn.prepareCall(sql);
 			stat.setString(1, num);
+			stat.setString(2, status);
 			stat.executeUpdate();
 
 			stat.close();
 			conn.close();
-			System.out.println("완료");
+			System.out.println("\t\t\t완료");
 		} catch (Exception e) {
-			System.out.println("AdminStudent.prochiredGraduatesUpdate()");
+			System.out.println("\t\t\tAdminStudent.prochiredGraduatesUpdate()");
+			System.out.println("\t\t\t고용 보험 조회 후 결과 수정에 실패했습니다.");
 			e.printStackTrace();
 		}
 
@@ -833,24 +908,22 @@ public class AdminStudent {
 	 */
 	public void prochiredGraduatesUpdate1() {
 
+		// declare variable
 		Connection conn = null;
 		ResultSet rs = null;
 		CallableStatement stat = null;
-
 		DBUtil util = new DBUtil();
-
 		String sql = null;
-
 		String pcourseHistoryNum = null;
 		String pcompany = null;
 		String psalary = null;
 		String pstatus = null;
+		
 		// *** 수정 기능 ***
 		vwhiredGradesManSelect();
+		
 		try {
-			// conn = util.open("211.63.89.64","project","java1234");
 			conn = util.open("211.63.89.64", "project", "java1234");
-			// conn = util.open("211.63.89.64","project","java1234");
 			sql = "{call prochiredGraduatesUpdateSelect(?,?)}";
 			stat = conn.prepareCall(sql);
 			System.out.print("▷수정할 번호(hiredGraduatesNum):");
@@ -941,13 +1014,12 @@ public class AdminStudent {
 
 			System.out.println("완료");
 		} catch (Exception e) {
-			System.out.println("AdminStudent.prochiredGraduatesUpdate1()");
 			e.printStackTrace();
 		}
 
 	}
 	/**
-	 *  취업 완료 수료생 출력하는 기능입니다.
+	 * 취업 완료 수료생 출력하는 기능입니다.
 	 */
 
 	public void prochiredgradesSalarySelect() {
@@ -960,14 +1032,14 @@ public class AdminStudent {
 		// *** 관리자 취업 완료 수료생 리스트 조회 시 연봉별 검색 ***
 		try {
 
-			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("211.63.89.64", "project", "java1234");
+			conn = util.open("211.63.89.64","project","java1234");
+			//conn = util.open("localhost", "project", "java1234");
 			sql = "{call prochiredgradesSalarySelect(?,?,?)}";
 
 			stat = conn.prepareCall(sql);
-			System.out.print("▷시작 연봉:");
+			System.out.print("\t\t\t▷시작 연봉:");
 			String start = scan.nextLine();
-			System.out.print("▷끝 연봉:");
+			System.out.print("\t\t\t▷끝 연봉:");
 			String end = scan.nextLine();
 
 			stat.setString(1, start);
@@ -975,12 +1047,14 @@ public class AdminStudent {
 			stat.registerOutParameter(3, OracleTypes.CURSOR);
 			stat.executeQuery();
 			rs = (ResultSet) stat.getObject(3);
-
+			
+			// 시작 연봉에서 끝 연봉에 해당하는 범위 내의 취업 완료 수료생 리스트를 출력함
+			System.out.println("\t\t\t[coursehistoryNum]\t[salary]\t[status]\t[company]");
 			while (rs.next()) {
-				System.out.printf("%s\t", rs.getString("coursehistorynum"));
-				System.out.printf("%s\t", rs.getString("company"));
+				System.out.printf("\t\t\t%s\t", rs.getString("coursehistorynum"));
 				System.out.printf("%s\t", rs.getString("salary"));
 				System.out.printf("%s\t", rs.getString("status"));
+				System.out.printf("%s", rs.getString("company"));
 				System.out.println();
 			}
 			rs.close();
@@ -988,13 +1062,15 @@ public class AdminStudent {
 			conn.close();
 
 		} catch (Exception e) {
-			System.out.println("AdminStudent.prochiredgradesSalarySelect()");
+			System.out.println("\t\t\tAdminStudent.prochiredgradesSalarySelect()");
+			System.out.println("\t\t\t취업완료 수료생 출력에 실패했습니다.");
 			e.printStackTrace();
 		}
 
 	}
+
 	/**
-	 *  취업완료 수료생을 회사 이름으로 검색하는 기능입니다.
+	 * 취업완료 수료생을 회사 이름으로 검색하는 기능입니다.
 	 */
 	public void prochiredGradesSelectName() {
 		Connection conn = null;
@@ -1006,24 +1082,25 @@ public class AdminStudent {
 		// *** 관리자 회사명으로 조회 ***
 		try {
 
-			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("211.63.89.64", "project", "java1234");
+			conn = util.open("211.63.89.64","project","java1234");
+			//conn = util.open("localhost", "project", "java1234");
 			sql = "{call prochiredGradesSelectName(?,?)}";
 			stat = conn.prepareCall(sql);
 			stat.registerOutParameter(2, OracleTypes.CURSOR);
 
-			System.out.print("▷회사 이름:");
+			System.out.print("\t\t\t▷회사 이름:");
 			String company = scan.nextLine();
 			stat.setString(1, company);
 			stat.executeQuery();
 			rs = (ResultSet) stat.getObject(2);
-			System.out.println("[hiredGraduatesNum]\t[courseHistoryNum]\t[company]\t[salary]\t[status]");
+			System.out.println("\t\t\t[hiredGraduatesNum]\t[courseHistoryNum]\t[salary]\t[status]\t[company]");
+			// 회사 이름을 포함한 취업 완료 수료생 리스트를 출력함
 			while (rs.next()) {
-				System.out.printf("%s\t", rs.getString("num"));
-				System.out.printf("%s\t", rs.getString("courseHistoryNum"));
-				System.out.printf("%s\t", rs.getString("company"));
+				System.out.printf("\t\t\t%s\t\t\t", rs.getString("num"));
+				System.out.printf("%s\t\t\t", rs.getString("courseHistoryNum"));
 				System.out.printf("%s\t", rs.getString("salary"));
 				System.out.printf("%s\t", rs.getString("status"));
+				System.out.printf("%s", rs.getString("company"));
 				System.out.println();
 			}
 			conn.close();
@@ -1031,7 +1108,8 @@ public class AdminStudent {
 			stat.close();
 
 		} catch (Exception e) {
-			System.out.println("AdminStudent.prochiredGradesSelectName()");
+			System.out.println("\t\t\tAdminStudent.prochiredGradesSelectName()");
+			System.out.println("\t\t\t취업완료 수료생을 회사 이름으로 검색에 실패했습니다.");
 			e.printStackTrace();
 		}
 
@@ -1075,6 +1153,9 @@ public class AdminStudent {
 	/**
 	 *  취업 완료 수료생을 추가하는 기능입니다.
 	 */
+	/**
+	 * 취업 완료 수료생을 추가하는 기능입니다.
+	 */
 	public void prochiredGradesManInsert() {
 		Connection conn = null;
 		ResultSet rs = null;
@@ -1085,37 +1166,42 @@ public class AdminStudent {
 
 		// *** 관리자가 취업 완료 수료생 관리 추가 ***
 		try {
-			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("211.63.89.64", "project", "java1234");
-			sql = "{call prochiredGradesManInsert(?,?,?,?)}";
-			stat = conn.prepareCall(sql);
-
-			System.out.println("*** 기초 과정명 ***");
+			conn = util.open("211.63.89.64","project","java1234");
+			//conn = util.open("localhost", "project", "java1234");
+			
+			// 기초과정명에 해당하는 allCourseNum과 courseName을 출력함
+			System.out.println("\t\t\t*** 기초 과정명 ***");
 			stat1 = conn.createStatement();
 			sql = "select * from vwallCourse";
 			rs = stat1.executeQuery(sql);
 			while (rs.next()) {
-				System.out.printf("%s\t", rs.getString("allCourseNum"));
+				System.out.printf("\t\t\t%s\t", rs.getString("allCourseNum"));
 				System.out.printf("%s\t", rs.getString("courseName"));
 				System.out.println();
 			}
 			System.out.println();
-
-			System.out.print("▷강좌 번호(pcourseHistoryNum):");
+			stat1.close();
+			rs.close();
+			
+			// 강좌 번호, 회사이름, 연봉, 고용 상태를 입력받아서 추가를 함
+			System.out.print("\t\t\t▷강좌 번호(pcourseHistoryNum):");
 			String num = scan.nextLine();
-			System.out.print("▷회사이름:");
+			System.out.print("\t\t\t▷회사이름:");
 			String company = scan.nextLine();
-			System.out.print("▷연봉:");
+			System.out.print("\t\t\t▷연봉:");
 			String salary = scan.nextLine();
-			System.out.print("▷고용 상태(재직중,퇴사):");
+			System.out.print("\t\t\t▷고용 상태(재직중,퇴사):");
 			String status = scan.nextLine();
 
+			sql = "{call prochiredGradesManInsert(?,?,?,?)}";
+			stat = conn.prepareCall(sql);
+			
 			stat.setString(1, num);
 			stat.setString(2, company);
 			stat.setString(3, salary);
 			stat.setString(4, status);
 
-			System.out.println("완료");
+			System.out.println("\t\t\t완료");
 
 			stat.executeUpdate();
 
@@ -1123,14 +1209,19 @@ public class AdminStudent {
 			conn.close();
 
 		} catch (Exception e) {
-			System.out.println("AdminStudent.prochiredGradesManInsert()");
+			System.out.println("\t\t\tAdminStudent.prochiredGradesManInsert()");
+			System.out.println("\t\t\t취업완료 수료생 추가에 실패했습니다.");
 			e.printStackTrace();
 		}
 
 	}
 
+
 	/**
 	 *  취업 완료 수료생을 출력하는 기능입니다.
+	 */
+	/**
+	 * 취업 완료 수료생을 출력하는 기능입니다.
 	 */
 	public void vwhiredGradesManSelect() {
 		Connection conn = null;
@@ -1141,31 +1232,32 @@ public class AdminStudent {
 
 		// *** 관리자가 취업 완료 수료생 관리 출력 ***
 		try {
-			// conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("211.63.89.64", "project", "java1234");
-			sql = "select * from vwhiredGradesManSelect";
+			conn = util.open("211.63.89.64","project","java1234");
+			//conn = util.open("localhost", "project", "java1234");
+			sql = "select  * from vwhiredGradesManSelect";
 
 			stat = conn.createStatement();
 			rs = stat.executeQuery(sql);
 			int count = 0;
-			System.out.println("[hiredgraduates num]\t[courseHistoryNum]\t[company]\t[salary]\t[status]");
+			// 취업 완료 수료생 리스트를 출력함
+		
+			System.out.println("\t\t\t[hiredgraduates num]\t[courseHistoryNum]\t[salary]\t\t[status]\t[company]");
 			while (rs.next()) {
-				System.out.printf("%s\t", rs.getString("num"));
-				System.out.printf("%s\t", rs.getString("courseHistoryNum"));
-				System.out.printf("%s\t", rs.getString("company"));
-				System.out.printf("%s\t", rs.getString("salary"));
-				System.out.printf("%s\t", rs.getString("status"));
+				System.out.printf("\t\t\t%s\t\t\t", rs.getString("num"));
+				System.out.printf("%s\t\t\t", rs.getString("courseHistoryNum"));
+				System.out.printf("%s\t\t", rs.getString("salary"));
+				System.out.printf("%s\t\t", rs.getString("status"));
+				System.out.printf("%s", rs.getString("company"));
 				System.out.println();
-
 				count++;
 				if (count % 100 == 0) {
-					System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-					System.out.println("       0. 뒤로가기");
-					System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-					System.out.print("▷번호:");
-					int k = scan.nextInt();
-					scan.skip("\r\n");
-					if (k == 0) {
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t       -1을 누르면 종료");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.print("\t\t\t▷번호:");
+					String k = scan.nextLine();
+				
+					if (k.equals("-1")) {
 						break;
 					} else {
 						pause();
@@ -1177,7 +1269,8 @@ public class AdminStudent {
 			stat.close();
 
 		} catch (Exception e) {
-			System.out.println("AdminStudent.vwhiredGradesManSelect()");
+			System.out.println("\t\t\tAdminStudent.vwhiredGradesManSelect()");
+			System.out.println("\t\t\t취업 완료 수료생 출력에 실패했습니다.");
 			e.printStackTrace();
 		}
 

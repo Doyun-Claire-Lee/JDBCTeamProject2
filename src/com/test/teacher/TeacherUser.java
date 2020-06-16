@@ -95,7 +95,7 @@ public class TeacherUser {
 				}
 
 			}
-			System.out.println("아이디와 비밀번호를 다시 입력해주세요");
+			System.out.println("\t\t\t아이디와 비밀번호를 다시 입력해주세요");
 
 			stat.close();
 			conn.close();

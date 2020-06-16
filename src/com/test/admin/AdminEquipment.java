@@ -13,11 +13,11 @@ public class AdminEquipment {
 	
 	public static void main(String[] args) {
 		AdminEquipment e = new AdminEquipment();
-		e.menu();
+		e.manageEquipMenu();
 		
 		
 	}
-	public void menu() {
+	public void manageEquipMenu() {
 	//이도윤
 		
 		Scanner scan = new Scanner(System.in);
@@ -92,7 +92,7 @@ public class AdminEquipment {
 		
 		try {
 			
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			
 			//교사 추가 프로시저 호출 준비
 			String sql = "{ call procEquipmentByClassroom(?,?) }";
@@ -173,7 +173,7 @@ public class AdminEquipment {
 		
 		try {
 			
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			
 			//교사 추가 프로시저 호출 준비
 			String sql = "{ call procEquipmentByDate(?,?,?) }";
@@ -263,7 +263,7 @@ public class AdminEquipment {
 		
 		try {
 			
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			estat = conn.createStatement();
 			
 			//기자재 번호를 알려주기 위해 기자재 목록 출력
@@ -352,8 +352,8 @@ public class AdminEquipment {
 				if (qty.equals("0")) {	//0을 입력하면 종료
 					
 					System.out.println();
-					System.out.println("기자재 내역 추가를 종료합니다.");
-					System.out.println("엔터를 입력하시면 이전 페이지로 돌아갑니다.");
+					System.out.println("\t\t\t기자재 내역 추가를 종료합니다.");
+					System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
 					scan.nextLine();
 					break;
 				}
@@ -403,7 +403,7 @@ public class AdminEquipment {
 			
 			try {
 				
-				conn = util.open("localhost","project","java1234");
+				conn = util.open("211.63.89.64","project","java1234");
 				estat = conn.createStatement();
 				
 				//기자재 번호를 알려주기 위해 기자재 목록 출력

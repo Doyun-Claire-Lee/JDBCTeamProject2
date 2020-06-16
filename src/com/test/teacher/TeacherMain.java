@@ -35,17 +35,17 @@ public class TeacherMain {
 			// 배점 입출력
 			else if (sel.equals("2")) {
 				TeacherInsertRatio ratio = new TeacherInsertRatio();
-				// 찬우
+				ratio.insertRatio(teacherUser);
 			}
 			// 성적 입출력
 			else if (sel.equals("3")) {
 				TeacherInsertScore score = new TeacherInsertScore();
-				score.menu(teacherUser,scan);
+				score.insertScoreMenu(teacherUser,scan);
 			}
 			// 출결 관리 및 출결 조회
 			else if (sel.equals("4")) {
 				TeacherAttendance attendance = new TeacherAttendance();
-				attendance.menu(teacherUser);
+				attendance.manageAttendance(teacherUser);
 			}
 			// 교사 평가 조회
 			else if (sel.equals("5")) {
@@ -55,7 +55,7 @@ public class TeacherMain {
 			// 상담 신청 관리
 			else if (sel.equals("6")) {
 				TeacherManageConsult manageConsult = new TeacherManageConsult();
-				manageConsult.menu();
+				manageConsult.manageConsultRq();
 			}
 			// 뒤로 가기
 			else if (sel.equals("0")) {

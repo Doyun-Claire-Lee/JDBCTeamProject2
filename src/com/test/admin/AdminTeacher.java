@@ -13,10 +13,10 @@ public class AdminTeacher {
 	public static void main(String[] args) {
 		
 		AdminTeacher teacher = new AdminTeacher();
-		teacher.menu();
+		teacher.manageTeacherMenu();
 	}
 	
-	public void menu() {
+	public void manageTeacherMenu() {
 	//이도윤	
 		
 		Scanner scan = new Scanner(System.in);
@@ -456,7 +456,7 @@ public class AdminTeacher {
 		
 		try {
 			
-			conn = util.open("211.","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			tStat = conn.createStatement();
 			
 			//삭제상태가 아닌 교사 목록만 가져옴.

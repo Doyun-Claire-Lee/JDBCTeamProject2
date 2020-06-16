@@ -5,6 +5,7 @@ import com.test.student.StudentUser;
 import com.test.teacher.TeacherUser;
 
 public class main {
+	
 	public static void main(String[] args) {
 
 		Scanner scan = new Scanner(System.in);

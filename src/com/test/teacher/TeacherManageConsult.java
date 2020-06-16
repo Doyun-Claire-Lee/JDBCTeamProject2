@@ -13,7 +13,7 @@ import oracle.jdbc.OracleTypes;
 
 public class TeacherManageConsult {
 
-	public void menu() {
+	public void manageConsultRq() {
 		Scanner scan = new Scanner(System.in);
 		while(true) {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 상담 관리 〓〓〓〓〓〓〓〓〓");

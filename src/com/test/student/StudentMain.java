@@ -4,9 +4,6 @@ import java.util.Scanner;
 
 public class StudentMain {
 	
-	public StudentMain() {
-		// TODO Auto-generated constructor stub
-	}
 	public void StudentMainmenu(StudentUser studentUser) {
 		
 		// 우리가 메뉴에서 사용할 학생 유저
@@ -33,12 +30,11 @@ public class StudentMain {
 			if(sel.equals("1")) {
 				StudentCheckScore checkScore = new StudentCheckScore();
 				checkScore.studentScoreMain(studentUser);
-				// 도윤
 			}
 			// 출결 관리 및 출결 조회
 			else if(sel.equals("2")) {
 				StudentAttendance attendance = new StudentAttendance();
-				// 예림
+				attendance.printAttendanceMenu(studentUser);
 			}
 			// 상담신청
 			else if(sel.equals("3")) {
@@ -48,12 +44,12 @@ public class StudentMain {
 			// 교사 평가
 			else if(sel.equals("4")) {
 				Studentrating rating = new Studentrating();
-				// 희준
+				rating.procAddSocreByRating(studentUser);
 			}
 			// 취업 활동목록
 			else if(sel.equals("5")) {
 				StudentJob job = new StudentJob();
-				// 찬우 
+				job.procPrintAttendanceStudent();
 			}
 			// 뒤로 가기
 			else if(sel.equals("0")) {

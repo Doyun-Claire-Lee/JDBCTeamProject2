@@ -13,13 +13,13 @@ public class TeacherInsertScore {
 	int examPknum;
 	
 	
-	public void menu(TeacherUser user, Scanner scan) {
+	public void insertScoreMenu(TeacherUser user, Scanner scan) {
 		
 		while(true) {
-			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("1. 조회");
-			System.out.println("2. 입력");
-			System.out.println("0. 뒤로가기");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t1. 목록 조회");
+			System.out.println("\t\t\t2. 성적 입력");
+			System.out.println("\t\t\t0. 뒤로가기");
 			System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("▷ 입력: \n");
 			String sel = scan.nextLine();
@@ -118,11 +118,11 @@ public class TeacherInsertScore {
 			rs = (ResultSet) stat.getObject(2);
 
 			if (rs.next()) {
-				System.out.println("[과정명]\t[시작년월일]\t[종료년월일]\t[강의실번호]");
-				System.out.printf("%s\t%s\t%s\t%s\t%s강의실\n",
+				System.out.println("[과정명]\t[기간]\t[강의실번호]");
+				System.out.printf("%s\t%s\t%s\t%s강의실\n",
 						rs.getString("coursenum"),
 						rs.getString("coursename"),
-						rs.getString("startdate").substring(0,10),
+						rs.getString("startdate").substring(0,10) + " ~ " +
 						rs.getString("enddate").substring(0,10),
 						rs.getString("classroomnum")
 						);
@@ -149,7 +149,7 @@ public class TeacherInsertScore {
 			tmp1rs = (ResultSet) tmp1stat.getObject(2);
 
 			// 3. 교사는 자신이 강의를 마친 과목의 목록 보여주기
-			System.out.println("[과목번호]\t[과목명]\t[시작년월일]\t[종료년월일]\t[교재명]\t[성적 등록 여부]\t[배점(필기/실기/출결)]");
+			System.out.println("[과목번호]\t[과목명]\t[기간]\t[교재명]\t[성적 등록 여부]\t[배점(필기/실기/출결)]");
 			while (rs2.next()) {
 				try {
 					
@@ -165,10 +165,10 @@ public class TeacherInsertScore {
 					String enrollstatus = tmp2stat.getInt(2) > 0 ? "등록" : "미등록";
 					
 					// 과목의 목록 보여주기
-					System.out.printf("%s\t%s\t%s\t%s\t%s\t%s\t\t", 
+					System.out.printf("%s\t%s\t%s\t%s\t%s\t\t", 
 							rs2.getString("subjectbyperiodnum"), 
 							rs2.getString("subjectname"),
-							rs2.getString("startdate").substring(0,10), 
+							rs2.getString("startdate").substring(0,10) + " ~ " + 
 							rs2.getString("enddate").substring(0,10), 
 							rs2.getString("bookname"),
 							enrollstatus

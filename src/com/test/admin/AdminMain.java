@@ -34,42 +34,42 @@ public class AdminMain {
 			// 기초 정보 관리
 			if (sel.equals("1")) {
 				AdminBasic basic = new AdminBasic();
-				basic.menu();
+				basic.basicMenu();
 			}
 			// 교사 계정 관리
 			else if (sel.equals("2")) {
 				AdminTeacher teacher = new AdminTeacher();
-				teacher.menu();
+				teacher.manageTeacherMenu();
 			}
 			// 개설 과정 관리
 			else if (sel.equals("3")) {
 				AdminOpencourse opencourse = new AdminOpencourse();
-				// 시연
+				opencourse.menu();
 			}
 			// 개설 과목 관리
 			else if (sel.equals("4")) {
 				AdminSubject subject = new AdminSubject();
-				subject.menu();
+				subject.manageSubjectmenu();
 			}
 			// 교육생 관리
 			else if (sel.equals("5")) {
 				AdminStudent student = new AdminStudent();
-				student.menu();
+				student.manageStuMenu();
 			}
 			// 시험 관리
 			else if (sel.equals("6")) {
 				AdminExam exam = new AdminExam();
-				exam.menu();
+				exam.manageExamMenu();
 			}
 			// 출결 관리
 			else if (sel.equals("7")) {
 				AdminAttendance attendance = new AdminAttendance();
-				attendance.menu();
+				attendance.manageAttendanceMenu();
 			}
 			// 기자재 관리
 			else if (sel.equals("8")) {
 				AdminEquipment equipment = new AdminEquipment();
-				equipment.menu();
+				equipment.manageEquipMenu();
 			}
 			// 뒤로 가기
 			else if (sel.equals("0")) {

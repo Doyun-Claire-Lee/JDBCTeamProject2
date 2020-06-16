@@ -29,19 +29,19 @@ public class TeacherAttendance {
 	 * @param teacherNum 선생님 번호
 	 */
 	
-	public void menu(TeacherUser teacherUser) {
+	public void manageAttendance(TeacherUser teacherUser) {
 		boolean loop = true;
 		while(loop) {
-		System.out.println("〓〓〓〓〓〓〓〓   M E N U 〓〓〓〓〓〓〓〓");
-		System.out.println("          출결 관리 및 출결 조회");
-		System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-		System.out.println("1. 출결 조회");
-		System.out.println("2. 출결 현황(년,월,일) 조회");
-		System.out.println("3. 특정(특정 과정, 특정 인원) 출결 현황 조회");
-		System.out.println("4. 년,월 별로 출결 조회");
-		System.out.println("0. 뒤로가기");
-		System.out.println("〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-		System.out.print("▷입력:");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓   M E N U 〓〓〓〓〓〓〓〓");
+		System.out.println("\t\t\t          출결 관리 및 출결 조회");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.println("\t\t\t1. 출결 조회");
+		System.out.println("\t\t\t2. 출결 현황(년,월,일) 조회");
+		System.out.println("\t\t\t3. 특정(특정 과정, 특정 인원) 출결 현황 조회");
+		System.out.println("\t\t\t4. 년,월 별로 출결 조회");
+		System.out.println("\t\t\t0. 뒤로가기");
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.print("\t\t\t▷입력:");
 		
 		int num = scan.nextInt();
 		scan.skip("\r\n");

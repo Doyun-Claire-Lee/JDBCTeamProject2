@@ -21,7 +21,7 @@ public class AdminSubject {
 		a1.enrollPeriodBySubject(conn, new Scanner(System.in));
 	}
 	
-	public void menu() {
+	public void manageSubjectmenu() {
 		
 		while(true) {
 			
@@ -898,7 +898,7 @@ public class AdminSubject {
 			ResultSet rs = stat.executeQuery(sql);
 			
 			// the first 3 subject is mandatory, so we have to pass three times
-			// 1,2,4 과목은 필수여서 과목번호 3번을 넘깁니다.
+			// 1,2,3 과목은 필수여서 과목번호 3번을 넘깁니다.
 			rs.next();
 			rs.next();
 			rs.next();

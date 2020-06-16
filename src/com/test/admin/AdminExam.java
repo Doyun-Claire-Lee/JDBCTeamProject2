@@ -3,27 +3,21 @@ package com.test.admin;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Scanner;
 
 import oracle.jdbc.OracleTypes;
 
 public class AdminExam {
 	
-	public static void main(String[] args) {
-		
-		AdminExam exam = new AdminExam();
-		exam.menu();
-		
-		
-	}//main
 	
-	public void menu() {
+	public void manageExamMenu() {
 		
 		Scanner scan = new Scanner(System.in);
 		
 		
 		while (true) {
-
+			
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t    시험 관리 및 성적 조회");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
@@ -42,11 +36,11 @@ public class AdminExam {
 		
 			
 			if (mnum.equals("1")) {
-
+				checkScoreRegister();
 				//시험 성적 등록 내역 조회
 				
 			} else if (mnum.equals("2")) {
-
+				checkQuestionRegister();
 				//시험 문제 등록 내역 조회
 				
 			} else if (mnum.equals("3")) {
@@ -76,12 +70,150 @@ public class AdminExam {
 		}//while
 
 	}//mainMenu()
+	
+	
+	private void checkQuestionRegister() {
+		
+		Connection conn = new DBUtil().open("211.63.89.64", "project", "java1234");
+	    Scanner scan = new Scanner(System.in);
+	    Statement stat = null;
+	    ResultSet rs = null;
+	    try {
+	    	
+	    	// 과목 목록 출력
+	    	stat = conn.createStatement();
+	    	String sql = "select * from tblsubject where deletestatus = 0";
+	    	rs = stat.executeQuery(sql);
+	    	
+	    	System.out.println("\t\t\t[과목번호] [구분]\t[과목명]");
+	    	while(rs.next()) {
+	    		System.out.printf("\t\t\t%s\t  %s\t%-15s\n",
+	    				rs.getString("num"),
+	    				rs.getString("essentialtype"),
+	    				rs.getString("name"));
+	    		
+	    	}
+	    	System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+	    	// 입력받기
+	    	System.out.print("\t\t\t과목 번호: ");
+	    	String subjectNum = scan.nextLine();
+	    	
+	    	
+	    	//시험문제 등록 여부
+	    	sql = "{ call procCheckQuestion(?,?)}";
+            CallableStatement stat2 = conn.prepareCall(sql);
+            stat2.setString(1, subjectNum);
+            stat2.registerOutParameter(2, OracleTypes.NUMBER);
+            stat2.executeQuery();
+            
+            String enrollstatus = stat2.getInt(2) > 0 ? "등록" : "미등록";
+            System.out.printf("\t\t\t선택하신 과목은 '%s' 상태입니다.\n",enrollstatus);
+            
+            
+            
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
 
-	
-	
-	
-	
-	
+	private void checkScoreRegister() {
+
+
+	      Connection conn = new DBUtil().open("211.63.89.64", "project", "java1234");
+	      Scanner scan = new Scanner(System.in);
+
+	      // print list of open course
+	      try {
+
+	         // get subject list
+	         // 과목 리스트 가져오는 sql문
+	         Statement stat = conn.createStatement();
+	         String sql = "select * from vwopencourseinfo2";
+	         ResultSet rs = stat.executeQuery(sql);
+
+	         System.out.println("\t\t\t[과정번호]\t\t[과정명]\t\t\t\t[기간]\t\t[강의실]");
+
+	         // print subject list
+	         // 과목 목록 출력
+	         while (rs.next()) {
+	            System.out.printf("\t\t\t%s\t%s\t\t\t\t%s\t\t%s\n", rs.getString("opencoursenum"),
+	                  rs.getString("opencoursename"), rs.getString("period"), rs.getString("classroomname"));
+	         }
+	         System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+
+	         System.out.println("\t\t\t과정번호 :");
+	         String opencoursenum = scan.nextLine();
+
+	         try {
+
+	            // declare variable
+	            sql = "{ call procPrintSjInfoPeriodBySubject(?,?,?)}";
+	            CallableStatement stat2 = conn.prepareCall(sql);
+	            ResultSet rs2 = null;
+	            ResultSet rs3 = null;
+
+	            // set
+	            stat2.setString(1, opencoursenum);
+	            stat2.registerOutParameter(2, OracleTypes.CURSOR);
+	            stat2.registerOutParameter(3, OracleTypes.CURSOR);
+	            stat2.executeUpdate();
+
+	            // get result set
+	            rs2 = (ResultSet) stat2.getObject(2);
+	            rs3 = (ResultSet) stat2.getObject(3);
+
+	            // print rs
+	            System.out.println("\t\t\t[과정명]\t[기간]\t[강의실명]\t[교사명]");
+	            while (rs2.next()) {
+	               System.out.printf("\t\t\t%s\t%s\t%s\t%s\n", 
+	                     rs2.getString("ocName"), 
+	                     rs2.getString("startdate").substring(0,10) + " ~ " +
+	                     rs2.getString("enddate").substring(0,10), 
+	                     rs2.getString("classroomnum") + "강의실", 
+	                     rs2.getString("teachername"));
+	            }
+
+	            // print rs2
+	            System.out.println("\t\t\t[구성 과목 리스트]");
+	            System.out.println("\t\t\t[과목명]\t[기간]\t[교재명]\t");
+	            
+	            while (rs3.next()) {
+	               System.out.printf("\t\t\t%s\t%s\t%s\t%s\n", 
+	                     rs3.getString("subjectnum"),
+	                     rs3.getString("subjectname"),
+	                     rs3.getString("startdate").substring(0,10) + " ~ " +
+	                     rs3.getString("enddate").substring(0,10), 
+	                     rs3.getString("bookname"));
+	            }
+	            System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+
+	            
+	            // input periodBySubject number
+	            System.out.println("\t\t\t과목 번호: ");
+	            String pbsNum = scan.nextLine();
+	            sql = "{ call procCheckEnrollScore(?,?,?)}";
+	            CallableStatement stat3 = conn.prepareCall(sql);
+	            stat3.setString(1, opencoursenum);
+	            stat3.setString(2, pbsNum);
+	            stat3.registerOutParameter(3, OracleTypes.NUMBER);
+	            stat3.executeQuery();
+	            
+	            // get the number of enrolled score
+	            int checkCnt = stat3.getInt(3);
+	            
+	            // print whether score was enrolled
+	            System.out.println("\t\t\t[등록여부] : ");
+	            System.out.printf("\t\t\t 해당 과목에는 %d명의 성적이 등록되어있습니다.\n", checkCnt);
+	         } catch (Exception e) {
+	            // TODO: handle exception
+	         }
+	      } catch (Exception e) {
+	         // TODO: handle exception
+	      }
+
+	}
+
 	//3. 개설 과목별 성적 조회
 	
 	private static void procScoreInfoBySubject() {

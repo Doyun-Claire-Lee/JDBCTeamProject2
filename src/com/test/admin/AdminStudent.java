@@ -262,6 +262,7 @@ public class AdminStudent {
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 상담 관리 〓〓〓〓〓〓〓〓〓");
 		System.out.println("\t\t\t1. 과정별 조회");
 		System.out.println("\t\t\t2. 이름별 조회");
+		System.out.println("\t\t\t0. 뒤로가기");
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		System.out.println("\t\t\t▷입력:");
 		String courseOrName = scan.nextLine();

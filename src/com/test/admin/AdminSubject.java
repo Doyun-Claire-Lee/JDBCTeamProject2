@@ -66,7 +66,7 @@ public class AdminSubject {
 				break;
 			}
 			else {
-				System.out.println("번호를 다시 입력해주세요.");
+				System.out.println("\t\t\t번호를 다시 입력해주세요.");
 			}
 		
 		}
@@ -647,7 +647,7 @@ public class AdminSubject {
 			}
 			
 			// fin message
-			System.out.println("\n계속 하시려면 엔터를 입력해주세요.");
+			System.out.println("\n\t\t\t계속 하시려면 엔터를 입력해주세요.");
 			scan.nextLine();
 			rs.close();
 			rs2.close();
@@ -734,7 +734,7 @@ public class AdminSubject {
 			
 			
 			// fin message
-			System.out.println("\n계속 하시려면 엔터를 입력해주세요");
+			System.out.println("\n\t\t\t계속 하시려면 엔터를 입력해주세요");
 			scan.nextLine();
 			stat.close();
 			conn.close();

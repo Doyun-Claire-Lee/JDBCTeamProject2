@@ -4,9 +4,25 @@ public class dummyInsert {
 	public static void main(String[] args) {
 		
 //	makeQuestiondummy();
-	makeScoreDummy();
+//	makeScoreDummy();
+	makeRatingDummy();
 	}//main
 	
+
+
+
+	private static void makeRatingDummy() {
+		int cnt = 0;
+		Random rnd = new Random();
+		for(int i=256; i<=281; i++) {
+			for(int j=1; j<=6; j++) {
+				System.out.printf("insert into tblscorebyrating values (SCOREBYRATINGSEQ.nextval, %d,%d,%d);\n",i,j,rnd.nextInt(5)+1);
+				cnt++;
+			}
+		}
+		System.out.println(cnt);
+	}
+
 
 
 

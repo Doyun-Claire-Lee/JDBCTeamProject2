@@ -64,7 +64,7 @@ public class AdminMain {
 			}
 			// 출결 관리
 			else if (sel.equals("7")) {
-				AdminAttendance attendance = new AdminAttendance();
+				AdminAttendanceM attendance = new AdminAttendanceM();
 				attendance.manageAttendanceMenu();
 			}
 			// 기자재 관리

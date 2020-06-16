@@ -15,11 +15,14 @@ public class StudentJob {
 	public void procStudentjobActivity(StudentUser user) {
 		while (true) {
 			Scanner scan = new Scanner(System.in);
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓 취업활동 내역 〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("1. 내 취업활동 내역 확인");
-			System.out.println("2. 취업 활동 내역 입력");
-			System.out.println("0. 뒤로가기");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t취업활동");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t1. 내 취업활동 내역 확인");
+			System.out.println("\t\t\t2. 취업 활동 내역 입력");
+			System.out.println("\t\t\t0. 뒤로가기");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("\t\t\t▷입력: ");
 			Scanner sc = new Scanner(System.in);
 			String cho = sc.nextLine();
 			if (cho.equals("1")) { // 취업 활동 내역 확인

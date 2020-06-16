@@ -13,14 +13,16 @@ public class TeacherInsertRatio {
 
 	public void insertRatio(TeacherUser user) {
 		while (true) {
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 시험 관리 메뉴 〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t시험 과목 관리");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t1. 과목 별 배점확인");
 			System.out.println("\t\t\t2. 과목 별 배점입력");
-			System.out.println("\t\t\t3. 과목 목록 출력");
+			System.out.println("\t\t\t3. 과정,과목 목록 조회");
 			System.out.println("\t\t\t4. 시험 날짜 입력");
 			System.out.println("\t\t\t5. 시험 문제 입력");
 			System.out.println("\t\t\t0. 뒤로가기");
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷입력:");
 			Scanner sc = new Scanner(System.in);
 			int cho = sc.nextInt();
@@ -28,16 +30,18 @@ public class TeacherInsertRatio {
 			if (cho == 1) {
 				ProcPrintRatio(user.getNum());
 			} else if (cho == 2) {
-				ProcPrintRatio(user.getNum());
+				procInputTestRatio(user.getNum());
 			} else if (cho == 3) {
 				while (true) {
-					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 목록 출력 〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t\t과정, 과목 조회");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 					System.out.println("\t\t\t1. 과정 정보");
 					System.out.println("\t\t\t2. 과목 정보");
-					System.out.println("\t\t\t3. 과목");
 					System.out.println("\t\t\t0. 뒤로가기");
-					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 					Scanner sc2 = new Scanner(System.in);
+					System.out.print("\t\t\t▷ 입력:");				
 					String sel = sc2.nextLine();
 					if (sel.equals("1")) {
 						procsubjectlist1(user.getNum());
@@ -212,7 +216,6 @@ public class TeacherInsertRatio {
 		CallableStatement stat = null;
 		DBUtil util = new DBUtil();
 		ResultSet rs = null;
-		Scanner scan = new Scanner(System.in);
 
 		try {
 			conn = util.open("211.63.89.64","project","java1234");
@@ -322,7 +325,7 @@ public class TeacherInsertRatio {
 		Scanner scan = new Scanner(System.in);
 
 		try {
-			conn = util.open("211.63.89.64","project","java1234");
+			conn = util.open("localhost","project","java1234");
 			String sql = "{ call procPrintRatio(?,?,?)}";
 			
 			conn.setAutoCommit(false);
@@ -363,5 +366,4 @@ public class TeacherInsertRatio {
 		} 
 
 	}
-
 }

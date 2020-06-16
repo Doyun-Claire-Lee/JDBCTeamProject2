@@ -479,9 +479,11 @@ public class AdminStudent {
 
 	}
 
-	private void jobActivity() {
-
-		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 수료생의 취업 활동 내역 〓〓〓〓〓〓〓〓〓");
+	public void jobActivity() {
+		while(true) {
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+		System.out.println("\t\t\t\t수료생의 취업 활동 내역");	
+		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		System.out.println("\t\t\t1. 모든 수료생의 취업활동");
 		System.out.println("\t\t\t2. 학생별 취업 활동");
 		System.out.println("\t\t\t3. 강의별 수료생의 취업활동");
@@ -491,105 +493,123 @@ public class AdminStudent {
 		System.out.print("\t\t\t▷ 입력:");
 		Scanner sc = new Scanner(System.in);
 		int cho = sc.nextInt();
-
-		if (cho == 1) {
+		
+		if(cho == 1) {
 			Connection conn = null;
 			Statement stat = null;
 			ResultSet rs = null;
 			DBUtil util = new DBUtil();
 
 			try {
-				conn = util.open("211.63.89.64", "project", "java1234");
+				conn = util.open("localhost","project","java1234");
 
 				String sql = String.format("select * from tblJobActivity");
-
+			
+				
 				stat = conn.createStatement();
-
-				stat.executeQuery(sql); // select -> rs
-
+		
+				
+				stat.executeQuery(sql); //select -> rs
+				
 				rs = stat.executeQuery(sql);
+				
 
-				while (rs.next()) {
-					System.out.println("\t\t\t[강의번호]\t[활동]\t[학생명]");
-					System.out.printf("\t\t\t%s\t%s\t%s\n", rs.getInt(1), rs.getString(2), rs.getString(3));
+				while(rs.next()) {
+					System.out.printf("\t\t\t%s\t%s\t%s\n"
+														,rs.getInt(1)
+														,rs.getString(2)
+														,rs.getString(3)
+														);	
 				}
-
+				
 				stat.close();
 				conn.close();
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (cho == 2) {
+		}
+		else if(cho == 2) {
 			Connection conn = null;
 			CallableStatement stat = null;
 			ResultSet rs = null;
 			DBUtil util = new DBUtil();
 
 			try {
-				conn = util.open("211.63.89.64", "project", "java1234");
+				conn = util.open("localhost","project","java1234");
 
 				String sql = "{ call procStudentJobActivity(?,?) }";
-
+				
 				System.out.print("\t\t\t학생 번호 입력:");
 				int snum = sc.nextInt();
 				sc.skip("\r\n");
-
+				
 				stat = conn.prepareCall(sql);
 				stat.setInt(1, snum);
 				stat.registerOutParameter(2, OracleTypes.CURSOR);
-
-				stat.executeQuery(); // select -> rs
-
-				rs = (ResultSet) stat.getObject(2);
-
-				while (rs.next()) {
-					System.out.println("\t\t\t[강의번호]\t[활동]\t[학생명]");
-					System.out.printf("\t\t\t%s\t%s\t%s\n", rs.getInt("coursenum"), rs.getString("activity"),
-							rs.getString("studentname"));
+				
+				stat.executeQuery(); //select -> rs
+				
+				rs =(ResultSet)stat.getObject(2);
+				
+				System.out.println("\t\t\t[강의번호]\t\t[활동]\t\t[학생명]");
+				while(rs.next()) {
+					System.out.printf("\t\t\t%5s\t%20s\t%5s\n"
+														,rs.getInt("coursenum")
+														,rs.getString("activity")
+														,rs.getString("studentname")
+														);	
 				}
-
+				
 				stat.close();
 				conn.close();
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (cho == 3) {
+		}
+		else if(cho == 3) {
 			Connection conn = null;
 			CallableStatement stat = null;
 			ResultSet rs = null;
 			DBUtil util = new DBUtil();
 
 			try {
-				conn = util.open("211.63.89.64", "project", "java1234");
+				conn = util.open("localhost","project","java1234");
 
 				String sql = "{ call procCourseJobActivity(?,?) }";
-
+				
 				System.out.print("\t\t\t강의 번호 입력:");
 				int cnum = sc.nextInt();
 				sc.skip("\r\n");
-
+				
 				stat = conn.prepareCall(sql);
 				stat.registerOutParameter(1, OracleTypes.CURSOR);
 				stat.setInt(2, cnum);
-
-				stat.executeQuery(); // select -> rs
-				rs = (ResultSet) stat.getObject(1);
-				while (rs.next()) {
-					System.out.println("\t\t\t[강의번호]\t[활동]\t\t[학생명]");
-					System.out.printf("\t\t\t%s\t%s\t%s\n", rs.getString(1), rs.getString(2), rs.getString(3));
+				
+				stat.executeQuery(); //select -> rs
+				rs =(ResultSet)stat.getObject(1);
+				System.out.println("\t\t\t[강의번호]\t\t[활동]\t\t[학생명]");
+				while(rs.next()) {
+					System.out.printf("\t\t\t%5s\t%18s\t%5s\n"
+														,rs.getString(1)
+														,rs.getString(2)
+														,rs.getString(3)
+														);	
 				}
-
+				
 				stat.close();
 				conn.close();
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if (cho == 4) {
-
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 취업 지원 〓〓〓〓〓〓〓〓〓");
+		}
+		else if(cho == 4) {
+			while(true) {
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t취업 지원");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t1. 취업 지원 활동 추가");
 			System.out.println("\t\t\t2. 학생별 취업 지원 조회");
 			System.out.println("\t\t\t3. 취업 지원 내역 추가");
@@ -597,63 +617,73 @@ public class AdminStudent {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t ▷ 입력:");
 			cho = sc.nextInt();
-
-			if (cho == 1) {
+			
+			if(cho == 1) {
 				procAddSupportList();
-			} else if (cho == 2) {
+			}
+			else if (cho == 2) {
 				procprintsupportlist();
-			} else if (cho == 3) {
+			}
+			else if (cho ==3) {
 				procinsertSupport();
-			} else if (cho == 0) {
-
+			}
+			else if (cho ==0) {
+				
+			}
 			}
 		}
 	}
+	}
+	
 
 	private void procinsertSupport() {
-
 		Connection conn = null;
 		CallableStatement stat = null;
 		DBUtil util = new DBUtil();
 		Scanner scan = new Scanner(System.in);
+		
 
 		try {
-			conn = util.open("211.63.89.64", "project", "java1234");
-			String sql = "{ call procinsertSupport(?,?) }";
-
+			conn = util.open("localhost","project","java1234");
+			String sql = "{ call procinsertSupport(?,?,?) }";
+			
 			conn.setAutoCommit(false);
 			stat = conn.prepareCall(sql);
 			boolean chk = true;
-
+			
+		
 			System.out.print("\t\t\t 학생 번호 입력:");
 			String snum = scan.nextLine();
 			System.out.print("\t\t\t취원 지원 번호 입력:");
 			String scon = scan.nextLine();
-
-			stat.setInt(1, Integer.parseInt(snum));
-			stat.setInt(2, Integer.parseInt(scon));
-
-			int result = stat.executeUpdate();
-
-			if (result == 1) {
+			
+		
+			stat.setInt(1,Integer.parseInt(snum));
+			stat.setInt(2,Integer.parseInt(scon));
+			stat.registerOutParameter(3, OracleTypes.NUMBER);
+			
+			
+			int result = stat.getInt(3);
+			stat.executeUpdate();
+			
+			if(result == 1) {
 				System.out.println("지원 내용 입력 완료!");
 				conn.commit();
-			} else {
+			}
+			else {
 				System.out.println("지원 내용 입력 실패!");
 				conn.rollback();
 			}
 			stat.close();
 			conn.close();
-
+			
 		} catch (Exception e) {
 			System.out.println("에러~~");
 			System.out.println(e);
 		}
-
 	}
 
 	private void procprintsupportlist() {
-
 		Connection conn = null;
 		CallableStatement stat = null;
 		DBUtil util = new DBUtil();
@@ -661,32 +691,33 @@ public class AdminStudent {
 		Scanner scan = new Scanner(System.in);
 
 		try {
-			conn = util.open("211.63.89.64", "project", "java1234");
-			String sql = "{ call procprintsupportlist(?,?)}";
-
+			conn = util.open("localhost","project","java1234");
+			String sql = "{ call procprintsupportlist(?)}";
+			
 			conn.setAutoCommit(false);
 			stat = conn.prepareCall(sql);
 
-			System.out.print("\t\t\t학생 번호 입력:");
-			int snum = scan.nextInt();
-			scan.skip("\r\n");
-			stat.registerOutParameter(1, OracleTypes.CURSOR);
-			stat.setInt(2, snum);
-
-			stat.executeQuery();
-			rs = (ResultSet) stat.getObject(1);
-			System.out.println("\t\t\t[학생명]\t[학생 번호]\t[취업 지원 내용]");
-			while (rs.next()) {
-				System.out.printf("\t\t\t%s\t\t\t%s\t%s \n", rs.getString(1), rs.getString(2), rs.getString(3));
-			}
-
+		
+		    stat.registerOutParameter(1, OracleTypes.CURSOR);
+		  
+		    
+		    stat.executeQuery();
+		    rs =(ResultSet)stat.getObject(1);
+		    System.out.println("\t\t\t[학생명]\t[학생 번호]\t[취업 지원 내용]");
+		    while(rs.next()) {
+		    	System.out.printf("\t\t\t%s\t%s\t\t\t%s\n",
+		    							rs.getString(1)
+		    							,rs.getString(2)
+		    							,rs.getString(3));
+		    }
+		    
+			
 			stat.close();
 			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
-		}
-
+		} 
 	}
 
 	private void procAddSupportList() {
@@ -695,36 +726,44 @@ public class AdminStudent {
 		CallableStatement stat = null;
 		DBUtil util = new DBUtil();
 		Scanner scan = new Scanner(System.in);
+		
 
 		try {
-			conn = util.open("211.63.89.64", "project", "java1234");
-			String sql = "{ call procAddSupportList(?) }";
-
+			conn = util.open("211.63.89.64","project","java1234");
+			String sql = "{ call procAddSupportList(?,?) }";
+			
 			conn.setAutoCommit(false);
 			stat = conn.prepareCall(sql);
 			boolean chk = true;
-
+			
+		
 			System.out.print("\t\t\t ▷취업 지원 내용 입력:");
 			String scon = scan.nextLine();
-
-			stat.setString(1, scon);
-
-			int result = stat.executeUpdate();
-
-			if (result == 1) {
+			
+		
+			stat.setString(1,scon);
+			stat.registerOutParameter(2, OracleTypes.NUMBER);
+			
+			
+			int result = stat.getInt(2); 
+			stat.executeUpdate();
+			
+			if(result == 1) {
 				System.out.println("\t\t\t지원 내용 입력 완료!");
 				conn.commit();
-			} else {
+			}
+			else {
 				System.out.println("\t\t\t지원 내용 입력 실패!");
 				conn.rollback();
 			}
 			stat.close();
 			conn.close();
-
+			
 		} catch (Exception e) {
 			System.out.println("에러~~");
 			System.out.println(e);
 		}
+		
 	}
 
 	/**

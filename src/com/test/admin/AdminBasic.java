@@ -31,86 +31,96 @@ public class AdminBasic {
 			System.out.println();
 
 			if (num.equals("1")) {
+				while(true) {
 				// 1.추가 2.수정 3.삭제
-
+				
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t\t\t   과정 관리");
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-				System.out.println("\t\t\t1. 과정 추가");
-				System.out.println("\t\t\t2. 과정 수정");
-				System.out.println("\t\t\t3. 과정 삭제");
+				System.out.println("\t\t\t1. 과정 조회");
+				System.out.println("\t\t\t2. 과정 추가");
+				System.out.println("\t\t\t3. 과정 수정");
+				System.out.println("\t\t\t4. 과정 삭제");
 				System.out.println("\t\t\t0. 뒤로가기");
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.print("\t\t\t▷입력: ");
 				String room = sc.nextLine();
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println();
-
-				if (room.equals("1")) {
+				if(room.equals("1")) {
+					System.out.println();
+					vwtable("select * from tblallcourse");
+				}
+				else if (room.equals("2")) {
 					procAddAllcourse();
-				} else if (room.equals("2")) {
-					procUpdateAllcourse();
 				} else if (room.equals("3")) {
+					procUpdateAllcourse();
+				} else if (room.equals("4")) {
 					procDeleteAllcourse();
 				} else if (room.equals("0")) {
 					break;
 				} else {
 					System.out.println("\t\t\t잘못된 번호 입니다.");
 				}
-			} else if (num.equals("2")) {
+			}//while
+		}//if
+			else if(num.equals("2")) {
 				while (true) {
-					Connection conn = new DBUtil().open("211.63.89.64", "project", "java1234");
-					// 1.추가 2.수정 3.삭제
-					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-					System.out.println("\t\t\t\t\t   과목 관리");
-					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-
-					System.out.println("\t\t\t1. 과목 조회");
-					System.out.println("\t\t\t2. 과목 추가");
-					System.out.println("\t\t\t3. 과목 수정");
-					System.out.println("\t\t\t4. 과목 삭제");
-					System.out.println("\t\t\t0. 뒤로가기");
-					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-					System.out.print("\t\t\t▷입력: ");
-					String room = sc.nextLine();
-					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-					System.out.println();
-
-					if (room.equals("1")) {
-						viewSubjectList(conn);
-					} else if (room.equals("2")) {
-						procAddSubject();
-					} else if (room.equals("3")) {
-						procUpdateSubject();
-					} else if (room.equals("4")) {
-						procDeleteSubject();
-					} else if (room.equals("0")) {
-						break;
-					} else {
-						System.out.println("\t\t\t잘못된 번호 입니다.");
-					}
-				}
+			Connection conn =  new DBUtil().open("211.63.89.64", "project", "java1234");
+			// 1.추가 2.수정 3.삭제
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t\t\t   과목 관리");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t1. 과목 조회");
+			System.out.println("\t\t\t2. 과목 추가");
+			System.out.println("\t\t\t3. 과목 수정");
+			System.out.println("\t\t\t4. 과목 삭제");
+			System.out.println("\t\t\t0. 뒤로가기");
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.print("\t\t\t▷입력: ");
+			String room = sc.nextLine();
+			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println();
+			
+			if(room.equals("1")) {
+				vwtable("select * from tblsubject");
+			}
+			else if (room.equals("2")) {
+				procAddSubject();
+			} else if (room.equals("3")) {
+				procUpdateSubject();
+			} else if (room.equals("4")) {
+				procDeleteSubject();
+			} else if (room.equals("0")) {
+				break;
+			} else {
+				System.out.println("\t\t\t잘못된 번호 입니다.");
+			}
+		}
 			} else if (num.equals("3")) {
 				while (true) {
 					// 강의실 1.추가(insert) 2.수정(update) 3.삭제
 					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 					System.out.println("\t\t\t\t\t강의실 관리");
 					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-					System.out.println("\t\t\t1. 강의실 추가");
-					System.out.println("\t\t\t2. 강의실 수정");
-					System.out.println("\t\t\t3. 강의실 삭제");
+					System.out.println("\t\t\t1. 강의실 조회");
+					System.out.println("\t\t\t2. 강의실 추가");
+					System.out.println("\t\t\t3. 강의실 수정");
+					System.out.println("\t\t\t4. 강의실 삭제");
 					System.out.println("\t\t\t0. 뒤로가기");
 					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 					System.out.println("\t\t\t▷입력: ");
 					String room = sc.nextLine();
 					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 					System.out.println();
-
-					if (room.equals("1")) {
+					if(room.equals("1")) {
+						vwtable("select * from tblclassroom");
+					}
+					else if (room.equals("2")) {
 						procAddclassroom();
-					} else if (room.equals("2")) {
-						procUpdateClassRoom();
 					} else if (room.equals("3")) {
+						procUpdateClassRoom();
+					} else if (room.equals("4")) {
 						procDeleteClassroom();
 					} else if (room.equals("0")) {
 						break;
@@ -118,68 +128,114 @@ public class AdminBasic {
 						System.out.println("\t\t\t잘못된 번호 입니다.");
 					}
 				}
-			} else if (num.equals("4")) {
+			} 
+			else if (num.equals("4")) {
+				 while(true) {
 				// 1.추가 2.수정 3.삭제
-				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				 System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t\t\t   교재 관리");
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-				System.out.println("\t\t\t1. 교재 추가");
-				System.out.println("\t\t\t2. 교재 수정");
-				System.out.println("\t\t\t3. 교재 삭제");
+				System.out.println("\t\t\t1. 교재 조회");
+				System.out.println("\t\t\t2. 교재 추가");
+				System.out.println("\t\t\t3. 교재 수정");
+				System.out.println("\t\t\t4. 교재 삭제");
 				System.out.println("\t\t\t0. 뒤로가기");
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t▷입력:");
 				String room = sc.nextLine();
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println();
-
-				if (room.equals("1")) {
+				
+				if(room.equals("1")) {
+					vwtable("select * from tblbook");
+				}
+				else if (room.equals("2")) {
 					procAddBook();
-				} else if (room.equals("2")) {
-					procUpdateBook();
 				} else if (room.equals("3")) {
-					procDeleteBook();
+					procUpdateBook();
+				} else if (room.equals("4")) {
+					 procDeleteBook();
 				} else if (room.equals("0")) {
 					break;
 				} else {
 					System.out.println("\t\t\t잘못된 번호 입니다.");
 				}
+				 }
 			} else if (num.equals("0")) {
 				break;
+			
 			}
 
 			else if (num.equals("5")) {
+				while(true) {
 				// 1.추가 2.수정 3.삭제
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t\t\t교육생 관리");
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-				System.out.println("\t\t\t1. 교육생 추가");
-				System.out.println("\t\t\t2. 교육생 수정");
-				System.out.println("\t\t\t3. 교육생 삭제");
+				System.out.println("\t\t\t1. 교육생 조회");
+				System.out.println("\t\t\t2. 교육생 추가");
+				System.out.println("\t\t\t3. 교육생 수정");
+				System.out.println("\t\t\t4. 교육생 삭제");
 				System.out.println("\t\t\t0. 뒤로가기");
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println("\t\t\t▷입력:");
 				String room = sc.nextLine();
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 				System.out.println();
-
-				if (room.equals("1")) {
-					procAddStudent();
-				} else if (room.equals("2")) {
-					procUpdateStudenttest();
+				
+				if(room.equals("1")) {
+					vwtable("select * from tblstudent");
+				}
+				else if (room.equals("2")) {
+					// procAddStudent();
 				} else if (room.equals("3")) {
-					procDeleteStudent();
+					// procUpdateStudent();
+				} else if (room.equals("4")) {
+					// procDeleteStudent();
 				} else if (room.equals("0")) {
 					break;
 				} else {
 					System.out.println("\t\t\t잘못된 번호 입니다.");
 				}
-			} else if (num.equals("0")) {
-				break;
-			} else {
-				System.out.println("\t\t\t잘못된 번호입니다.");
+				}
 			}
+			 else if (num.equals("0")) {
+				break;
+			 } else {
+				System.out.println("\t\t\t잘못된 번호입니다.");
+				}
+			}
+		
 		}
+
+	public void vwtable(String string) {
+		System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――");
+		Connection conn2 = null;
+		Statement stat2 = null;
+		ResultSet rs2 = null;
+		DBUtil util = new DBUtil();
+		try {
+			conn2 = util.open("211.63.89.64", "project", "java1234");
+			stat2 = conn2.createStatement();
+			
+			String sql2 = string;
+			rs2 = stat2.executeQuery(sql2);
+		    while (rs2.next()) {
+				System.out.printf("\t\t\t%s\t%-20s\t%s\n", rs2.getString(1)
+															, rs2.getString(2)
+															, rs2.getString(3));
+
+			}
+		    System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――");
+		    rs2.close();
+			stat2.close();
+			conn2.close();
+
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		
 	}
 
 	public void procAddStudent() {

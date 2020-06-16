@@ -194,8 +194,8 @@ public class AdminExam {
 	            String pbsNum = scan.nextLine();
 	            sql = "{ call procCheckEnrollScore(?,?,?)}";
 	            CallableStatement stat3 = conn.prepareCall(sql);
-	            stat3.setString(1, opencoursenum);
-	            stat3.setString(2, pbsNum);
+	            stat3.setString(1, pbsNum);
+	            stat3.setString(2, opencoursenum);
 	            stat3.registerOutParameter(3, OracleTypes.NUMBER);
 	            stat3.executeQuery();
 	            

@@ -45,7 +45,7 @@ public class TeacherMain {
 			// 출결 관리 및 출결 조회
 			else if (sel.equals("4")) {
 				TeacherAttendance attendance = new TeacherAttendance();
-				attendance.manageAttendance(teacherUser);
+				attendance.menu(teacherUser);
 			}
 			// 교사 평가 조회
 			else if (sel.equals("5")) {

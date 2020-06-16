@@ -55,7 +55,7 @@ public class AdminMain {
 			// 교육생 관리
 			else if (sel.equals("5")) {
 				AdminStudent student = new AdminStudent();
-				student.manageStuMenu();
+				student.menu();
 			}
 			// 시험 관리
 			else if (sel.equals("6")) {

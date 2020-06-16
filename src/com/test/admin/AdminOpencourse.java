@@ -20,8 +20,12 @@ import oracle.jdbc.OracleTypes;
 public class AdminOpencourse {
 
 	Scanner scan = new Scanner(System.in);
-
-
+	/*
+	public static void main(String[] args) {
+		AdminOpencourse m = new AdminOpencourse();
+		m.menu();
+	}
+	*/
 	/**
 	 * 개설 과정 관리 전체 메뉴입니다.
 	 */
@@ -29,6 +33,7 @@ public class AdminOpencourse {
 
 		Boolean loop = true;
 		while (loop) {
+			System.out.println();
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓  M E N U 〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t                          개설 과정 관리");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
@@ -41,7 +46,7 @@ public class AdminOpencourse {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷번호:");
 			String num = scan.nextLine();
-			
+
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			// 메뉴 선택 번호를 입력받음
@@ -78,14 +83,14 @@ public class AdminOpencourse {
 
 		while (true) {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t1. 개설 과정 정보 & 개설 과목 등록 여부, 교육생 등록 인원");
-			System.out.println("\t\t\t2. 특정 개설 과정 선택 출력(개설 과목 정보 & 교육생 정보)");
+			System.out.println("\t\t\t1. 개설 과정 정보 출력1");
+			System.out.println("\t\t\t2. 특정 개설 과정 선택 출력");
 			System.out.println("\t\t\t3. 개설 과정 조희");
 			System.out.println("\t\t\t0. 뒤로가기");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷입력:");
 			String sel = scan.nextLine();
-			
+
 			switch (sel) {
 			case "1":
 				vwopenCourseInfo();
@@ -116,10 +121,10 @@ public class AdminOpencourse {
 		DBUtil util = new DBUtil();
 
 		System.out.println(
-				"\t\t\t[openCourseNum]\t[openingCoursePeriod]\t[classroomName]\t[registerOpeningCourse]\t[traineeRegistrationPersonnel]\t[openingCourseName]");
+				"\t\t\t[개설과정번호]\t[개설과정기간]\t\t\t[강의실이름]\t[개설 과목 등록 여부]\t[교육생 등록 인원]\t\t\t[과정 이름]");
 		try {
 			conn = util.open("211.63.89.64", "project", "java1234");
-			//conn = util.open("localhost", "project", "java1234");
+			// conn = util.open("localhost", "project", "java1234");
 			stat = conn.createStatement(); // 쿼리를 날릴 수 있는 개체
 			String sql = "select * from vwopenCourseInfo";
 
@@ -135,7 +140,7 @@ public class AdminOpencourse {
 				System.out.println();
 
 				count++;
-				
+
 				if (count % 100 == 0) {
 					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 					System.out.println("\t\t\t           -1을 누르면 종료");
@@ -147,7 +152,7 @@ public class AdminOpencourse {
 					} else {
 						pause();
 					}
-				
+
 				}
 			}
 			conn.close();
@@ -185,11 +190,11 @@ public class AdminOpencourse {
 
 		try {
 			conn = util.open("211.63.89.64", "project", "java1234");
-			//conn = util.open("localhost", "project", "java1234");
+			// conn = util.open("localhost", "project", "java1234");
 			stat = conn.createStatement(); // 쿼리를 날릴 수 있는 개체
 			sql = "select * from vwopenCourseName";
 			rs = stat.executeQuery(sql);
-			System.out.println("\t\t\t[openCourseNum]\t[courseName]");
+			System.out.println("\t\t\t[개설과정번호]\t[과정이름]");
 			while (rs.next()) {
 				System.out.printf("\t\t\t%s\t\t", rs.getString("openCourseNum"));
 				System.out.printf("%s\t", rs.getString("courseName"));
@@ -197,18 +202,18 @@ public class AdminOpencourse {
 			}
 			System.out.print("\t\t\t▷과정 번호:");
 			String num = scan.nextLine();
-		
+
 			sql = String.format("select * from vwopenCourseSubjectSelect where num = %s", num);
 			int count = 0;
 			rs = stat.executeQuery(sql);
 			System.out.println();
 			System.out.println("\t\t\t*** 시행 과정 과목별 정보 ***");
-			System.out.println("\t\t\t[subjectName]\t[subjectDuration]\t[textBookName]\t[teacherName]");
+			System.out.println("\t\t\t[과목기간]\t\t\t[선생님이름]\t[과목이름]\t\t\t\t[교재]");
 			while (rs.next()) {
-				System.out.printf("\t\t\t%s\t\t", rs.getString("subjectName"));
-				System.out.printf("%s\t", rs.getString("SubjectDuration"));
-				System.out.printf("%s\t", rs.getString("textbookName"));
-				System.out.printf("%s", rs.getString("teacherName"));
+				System.out.printf("\t\t\t%s\t", rs.getString("SubjectDuration"));
+				System.out.printf("%s\t\t", rs.getString("teacherName"));
+				System.out.printf("%-10s\t", rs.getString("textbookName"));
+				System.out.printf("\t\t%s", rs.getString("subjectName"));
 				System.out.println();
 
 				count++;
@@ -224,21 +229,21 @@ public class AdminOpencourse {
 					} else {
 						pause();
 					}
-				
+
 				}
 			}
 			count = 0;
-			sql = String.format("\t\t\tselect * from vwopenCourseStudentSelect where num = %s", num);
+			sql = String.format("select * from vwopenCourseStudentSelect where num = %s", num);
 			System.out.println();
 			rs = stat.executeQuery(sql);
 			System.out.println("\t\t\t*** 시행 과정 과목별 학생정보 ***");
 			System.out
-					.println("\t\t\t[studentName]\t[studentSsn]\t[studentTel]\t[registrationDate]\t[completionStatus]");
+					.println("\t\t\t[학생이름]\t\t[학생 주민등록번호(뒷자리)]\t[학생 연락처]\t[등록일]\t\t[수료상태]");
 			while (rs.next()) {
 				System.out.printf("\t\t\t%s\t\t", rs.getString("studentName"));
-				System.out.printf("%s\t\t", rs.getString("studentSsn"));
+				System.out.printf("%s\t\t\t", rs.getString("studentSsn"));
 				System.out.printf("%s\t", rs.getString("studentTel"));
-				System.out.printf("%s\t\t", rs.getString("registrationDate"));
+				System.out.printf("%s\t", rs.getString("registrationDate"));
 				System.out.printf("%s", rs.getString("completionStatus"));
 				System.out.println();
 
@@ -255,7 +260,7 @@ public class AdminOpencourse {
 					} else {
 						pause();
 					}
-				
+
 				}
 			}
 
@@ -284,13 +289,13 @@ public class AdminOpencourse {
 		// *** 특정 개설 과정이 수료한 경우 등록된 교육생 전체에 대해서 수료날짜를 지정 ***
 		try {
 			conn = util.open("211.63.89.64", "project", "java1234");
-			//conn = util.open("localhost", "project", "java1234");
+			// conn = util.open("localhost", "project", "java1234");
 
 			stat1 = conn.createStatement();
 			sql = "select * from vwopenCourseSelectEndDate";
 			rs = stat1.executeQuery(sql);
 			int count = 0;
-			System.out.println("\t\t\t[courseHistoryNum]\t[openCourseNum]\t[status]\t[student name]\t[endDate]");
+			System.out.println("\t\t\t[수강내역번호]\t[개설과정번호]\t[수료 상태]\t[학생이름]\t[수료날짜]");
 			while (rs.next()) {
 				System.out.printf("\t\t\t%s\t\t\t", rs.getString("courseHistoryNum"));
 				System.out.printf("%s\t\t", rs.getString("openCourseNum"));
@@ -300,19 +305,19 @@ public class AdminOpencourse {
 				System.out.println();
 
 				count++;
-			
+
 				if (count % 100 == 0) {
 					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 					System.out.println("\t\t\t           -1을 누르면 종료");
 					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 					System.out.print("\t\t\t번호:");
 					String k = scan.nextLine();
-					if (k == "-1") {
+					if (k.equals("-1")) {
 						break;
 					} else {
 						pause();
 					}
-				
+
 				}
 
 			}
@@ -340,7 +345,7 @@ public class AdminOpencourse {
 			sql = "select * from vwopenCourseSelectEndDate";
 			rs = stat1.executeQuery(sql);
 			count = 0;
-			System.out.println("\t\t\t[courseHistoryNum]\t[openCourseNum]\t[status]\t[student name]\t[endDate]");
+			System.out.println("\t\t\t[수강내역번호]\t[개설과정번호]\t[수료상태]\t[학생이름]\t[수료날짜]");
 			while (rs.next()) {
 				System.out.printf("\t\t\t%s\t", rs.getString("courseHistoryNum"));
 				System.out.printf("%s\t", rs.getString("openCourseNum"));
@@ -357,12 +362,12 @@ public class AdminOpencourse {
 					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 					System.out.print("\t\t\t번호:");
 					String k = scan.nextLine();
-					if (k == "-1") {
+					if (k.equals("-1")) {
 						break;
 					} else {
 						pause();
 					}
-				
+
 				}
 
 			}
@@ -392,14 +397,13 @@ public class AdminOpencourse {
 		String pcourseCapacity = null;
 		String pcoursePeriod = null;
 		String sql = null;
-		ResultSet rs1 = null;
-		System.out.println("\t\t\t*** 개설 과정 정보 ****");
-		vwopenCourse();
+		//ResultSet rs1 = null;
+		
 		System.out.println();
 		int count = -1;
 		try {
-			conn = util.open("211.63.89.64","project","java1234");
-			//conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
+			// conn = util.open("localhost", "project", "java1234");
 
 			sql = "{ call procopenCourseInsert(?,?,?,?,?) }";
 			stat2 = conn.prepareCall(sql);
@@ -420,11 +424,11 @@ public class AdminOpencourse {
 			sql = "select * from vwallCourse1";
 			stat1 = conn.createStatement();
 			rs = stat1.executeQuery(sql);
-			System.out.println("\t\t\t[allCourseNum]\t[capacity]\t[coursePeriod]\t[courseName]");
+			System.out.println("\t\t\t[전체과정번호]\t[과정 정원]\t[과정 기간]\t[과정 이름]");
 			while (rs.next()) {
 				System.out.printf("\t\t\t%s\t\t", rs.getString("allCourseNum"));
-				System.out.printf("%s\t\t", rs.getString("capacity"));
-				System.out.printf("%s\t\t", rs.getString("coursePeriod"));
+				System.out.printf("%s\t", rs.getString("capacity"));
+				System.out.printf("%s\t", rs.getString("coursePeriod"));
 				System.out.printf("%s", rs.getString("courseName"));
 				System.out.println();
 			}
@@ -433,13 +437,12 @@ public class AdminOpencourse {
 			String pallCourseNum = scan.nextLine();
 			System.out.println();
 			System.out.println("\t\t\t*** 과정 번호에 해당하는 과목 정보 ***");
-			sql = String.format("select * from vwSubject where num = %s",pallCourseNum);
+			sql = String.format("select * from vwSubject where num = %s", pallCourseNum);
 			rs = stat1.executeQuery(sql);
-			System.out.println("\t\t\t[subjectPeriod]\t[subjectName]\t[coursePeriod]");
-			while(rs.next()) {
-				System.out.printf("\t\t\t%-10s\t\t",rs.getString("subjectPeriod"));
-				System.out.printf("%-15s\t",rs.getString("subjectName"));
-				System.out.printf("%s",rs.getString("coursePeriod"));
+			System.out.println("\t\t\t[과목기간]\t\t[과목이름]");
+			while (rs.next()) {
+				System.out.printf("\t\t\t%-10s\t", rs.getString("subjectPeriod"));
+				System.out.printf("%-15s\t", rs.getString("subjectName"));
 				System.out.println();
 			}
 
@@ -449,6 +452,7 @@ public class AdminOpencourse {
 				pcourseCapacity = rs.getString("courseCapacity");
 				pcoursePeriod = rs.getString("coursePeriod");
 			}
+			
 			sql = "{call procavailableClassRoom(?,?,?)}";
 			stat = conn.prepareCall(sql);
 			stat.setString(1, startDate);
@@ -461,7 +465,7 @@ public class AdminOpencourse {
 
 			System.out.println();
 			System.out.println("\t\t\t*** 가능한 교실 ***");
-			System.out.println("\t\t\t[classRoomNum]\t[classRoomName]\t[capacity]");
+			System.out.println("\t\t\t[강의실번호]\t[강의실이름]\t[강의실 인원]");
 			while (rs.next()) {
 				System.out.printf("\t\t\t%s\t\t", rs.getString("classRoomNum"));
 				System.out.printf("%s\t\t", rs.getString("classRoomName"));
@@ -499,7 +503,7 @@ public class AdminOpencourse {
 					rs2 = (ResultSet) stat3.getObject(2);
 
 					System.out.println("\t\t\t*** 가능한 선생님 ***");
-					System.out.println("\t\t\t[teacherNum]\t[teacherName]");
+					System.out.println("\t\t\t[선생님 번호]\t[선생님 이름]");
 					while (rs2.next()) {
 						System.out.printf("\t\t\t%s\t", rs2.getString("teacherNum"));
 						System.out.printf("%s", rs2.getString("teacherName"));
@@ -508,12 +512,15 @@ public class AdminOpencourse {
 					}
 					
 				}
-					//System.out.println(count);
-			}	if (cnt == 0) {
-					System.out.println("\t\t\t가능한 선생님이 없습니다.");
-					menu();
-				}
-
+				// System.out.println(count);
+			}
+			if (cnt == 0) {
+				System.out.println("\t\t\t가능한 선생님이 없습니다.");
+				// menu();
+				//return;
+			
+			} else {
+				stat3.close();
 				System.out.print("\t\t\t선생님 번호:");
 				String teacherNum = scan.nextLine();
 				// 선생님이 과정에서 과목을 정하면 선생님이 가능한 과목이 모두 포함되는 얘만 찾으면 되는데 이거는 개설 과목 관리에서
@@ -532,19 +539,24 @@ public class AdminOpencourse {
 				stat2.executeUpdate();
 
 				System.out.println("\t\t\t완료");
-				rs.close();
-				conn.close();
-				rs2.close();
-				stat1.close();
-				stat.close();
-				stat3.close();
-				stat2.close();
+				
+			
+			}
+			
+			rs.close();
+			conn.close();
+		
+			stat1.close();
+			stat.close();
+			
+			stat2.close();
+			
 		} catch (Exception e) {
 			System.out.println("\t\t\tAdminOpenCourse.procopenCourseInsert()");
 			System.out.println("\t\t\t개설 과정 정보에 대한 추가에 실패했습니다.");
 			e.printStackTrace();
 		}
-
+		
 	} // procopenCourseInsert()
 
 	/**
@@ -568,7 +580,7 @@ public class AdminOpencourse {
 		// 개설 과정 정보에 대한 수정 기능
 		try {
 			conn = util.open("211.63.89.64", "project", "java1234");
-			//conn = util.open("localhost", "project", "java1234");
+			// conn = util.open("localhost", "project", "java1234");
 
 			sql = "{ call procopenCourseSelect(?,?) }";
 			stat = conn.prepareCall(sql);
@@ -739,7 +751,7 @@ public class AdminOpencourse {
 		// *** 개설 과정 정보에 대한 삭제 기능 ***
 		try {
 			conn = util.open("211.63.89.64", "project", "java1234");
-			//conn = util.open("localhost", "project", "java1234");
+			// conn = util.open("localhost", "project", "java1234");
 
 			String sql = "{ call procopenCourseDelete(?) }";
 			stat = conn.prepareCall(sql);
@@ -772,17 +784,16 @@ public class AdminOpencourse {
 		// *** 개설 과정 정보에 대한 출력 기능 ***
 		try {
 			conn = util.open("211.63.89.64", "project", "java1234");
-			//conn = util.open("localhost", "project", "java1234");
+			// conn = util.open("localhost", "project", "java1234");
 			stat = conn.createStatement(); // 쿼리를 날릴 수 있는 개체
 			String sql = "select * from vwopenCourse";
 			rs = stat.executeQuery(sql);
-			System.out.println(
-					"\t\t\t[openCourseNum]\t[startDate]\t\t[endDate]\t\t[classRoomNum]\t[teacherNum]\t[allCourseNum]");
+			System.out.println("\t\t\t[개설과정 번호]\t[과정 기간]\t\t\t[강의실 번호]\t[선생님 번호]\t[전체과정번호]");
 			while (rs.next()) {
 
 				System.out.printf("\t\t\t%s\t\t", rs.getString("num"));
-				System.out.printf("%s\t\t", rs.getString("startDate").substring(0, 10));
-				System.out.printf("%s\t\t", rs.getString("endDate").substring(0, 10));
+				System.out.printf("%s~%s\t\t", rs.getString("startDate").substring(0, 10),
+						rs.getString("endDate").substring(0, 10));
 				System.out.printf("%s\t\t", rs.getString("classRoomNum"));
 				System.out.printf("%s\t\t", rs.getString("teacherNum"));
 				System.out.printf("%s\t", rs.getString("allCourseNum"));

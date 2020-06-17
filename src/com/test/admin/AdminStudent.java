@@ -29,7 +29,7 @@ public class AdminStudent {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t교육생 관리");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-			System.out.println("\t\t\t1. 취업완료 수료생 관리");
+			System.out.println("\t\t\t1. 수료생 관리");
 			System.out.println("\t\t\t2. 상담 관리");
 			System.out.println("\t\t\t3. 성적 우수자 관리");
 			System.out.println("\t\t\t4. 보강 수업 관리");
@@ -40,7 +40,7 @@ public class AdminStudent {
 			String sel = scan.nextLine();
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			
-			// 취업완료 수료생 관리
+			// 수료생 관리
 			if(sel.equals("1")) {
 				manageStudentmenu();
 			}
@@ -87,6 +87,7 @@ public class AdminStudent {
 		try {
 			
 			conn = util.open("211.63.89.64", "project" ,"java1234");
+			
 			String sql = "{ call procSelectMakeupClassStudent(?,?) }";
 			stat = conn.prepareCall(sql);
 			
@@ -292,6 +293,9 @@ public class AdminStudent {
 			String name = scan.nextLine();
 			procPrintConsultRqListByN(conn,name);
 			}
+		else if(courseOrName.equals("0")) {
+			break;
+		}
 		}
 	}
 
@@ -349,7 +353,7 @@ public class AdminStudent {
 			System.out.printf("\t\t\t%s\t\t%s\n",
 					stat.getString(2).substring(0,10),
 					stat.getString(3));
-			System.out.println("\t\t\t\n계속 하시려면 엔터를 입력해주세요");
+			System.out.print("\t\t\t\n계속 하시려면 엔터를 입력해주세요");
 			scan.nextLine();
 			
 		} catch (Exception e) {
@@ -430,8 +434,9 @@ public class AdminStudent {
 			System.out.println("\t\t\t1. 고용보험 여부 결과 수정");
 			System.out.println("\t\t\t2. 고용보험 여부 조회");
 			System.out.println("\t\t\t3. 취업완료 수료생 관리(추가,조회,수정,삭제)");
-			System.out.println("\t\t\t4. 연봉별 검색");
-			System.out.println("\t\t\t5. 회사명 검색");
+			System.out.println("\t\t\t4. 취업 활동 내역 관리");
+			System.out.println("\t\t\t5. 연봉별 검색");
+			System.out.println("\t\t\t6. 회사명 검색");
 
 			System.out.println("\t\t\t0. 뒤로가기");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
@@ -447,12 +452,15 @@ public class AdminStudent {
 				prochiredGraduatesSelect();
 				break;
 			case "3":
-				menu2();
+				manageSuccessStu();
 				break;
 			case "4":
-				prochiredgradesSalarySelect();
+				jobActivity();
 				break;
 			case "5":
+				prochiredgradesSalarySelect();
+				break;
+			case "6":
 				prochiredGradesSelectName();
 				break;
 			case "0":
@@ -466,6 +474,8 @@ public class AdminStudent {
 	} //menu1()
 
 	private void jobActivity() {
+		
+			
 		
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 수료생의 취업 활동 내역 〓〓〓〓〓〓〓〓〓");
 		System.out.println("\t\t\t1. 모든 수료생의 취업활동");
@@ -525,7 +535,8 @@ public class AdminStudent {
 				String sql = "{ call procStudentJobActivity(?,?) }";
 				
 				System.out.print("\t\t\t학생 번호 입력:");
-				String snum = sc.nextLine();
+				Scanner scan2 = new Scanner(System.in);
+				String snum = scan2.nextLine();
 				
 				
 				stat = conn.prepareCall(sql);
@@ -547,7 +558,9 @@ public class AdminStudent {
 				
 				stat.close();
 				conn.close();
-
+				
+				System.out.println("\t\t\t계속 하시려면 엔터를 입력해주세요.");
+				scan2.nextLine();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -612,6 +625,7 @@ public class AdminStudent {
 				
 			}
 		}
+	
 	}
 		
 	
@@ -762,13 +776,13 @@ public class AdminStudent {
 		
 		int count = 0;
 		try {
-			//conn = util.open("211.63.89.64","project","java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64","project","java1234");
+			//conn = util.open("localhost", "project", "java1234");
 			stat1 = conn.createStatement();
 			sql = "select * from vwhiredGraduatesSelect";
 			rs = stat1.executeQuery(sql);
 			
-			System.out.println("\t\t\t[고용보험 번호]\t\t[수강내역 번호]\t\t\t[연봉]\t\t[상태]\t\t[고용보험 여부]\t\t[회사]");
+			System.out.println("\t\t\t[취업완료 번호]\t\t[수강내역 번호]\t\t\t[연봉]\t\t[상태]\t\t[고용보험 여부]\t\t[회사]");
 				while (rs.next()) {
 					System.out.printf("\t\t\t%s\t\t\t", rs.getString("num"));
 					System.out.printf("%s\t\t\t", rs.getString("courseHistoryNum"));
@@ -797,6 +811,7 @@ public class AdminStudent {
 			rs.close();
 			
 			System.out.println("\t\t\t완료");
+			pause1();
 		} catch (Exception e) {
 			System.out.println("\t\t\tAdminStudent.prochiredGraduatesSelect()");
 			System.out.println("\t\t\t고용 보험 조회에 실패했습니다.");
@@ -809,7 +824,7 @@ public class AdminStudent {
 	 * 취업완료 수료생 관리 소메뉴(추가,조회,수정,삭제)입니다.
 	 */
 
-	public void menu2() {
+	public void manageSuccessStu() {
 
 		while (true) {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
@@ -862,7 +877,7 @@ public class AdminStudent {
 			sql = "select * from vwhiredGraduatesSelect";
 			rs = stat1.executeQuery(sql);
 			int count = 0;
-			System.out.println("\t\t\t[고용보험 번호]\t\t[수강내역 번호]\t\t\t[연봉]\t\t[상태]\t\t[고용보험 여부]\t\t[회사]");
+			System.out.println("\t\t\t[취업완료 번호]\t\t[수강내역 번호]\t\t\t[연봉]\t\t[상태]\t\t[고용보험 여부]\t\t[회사]");
 			while (rs.next()) {
 				System.out.printf("\t\t\t%s\t\t\t", rs.getString("num"));
 				System.out.printf("%s\t\t\t", rs.getString("courseHistoryNum"));
@@ -932,8 +947,8 @@ public class AdminStudent {
 		// *** 수정 기능 ***
 		vwhiredGradesManSelect();
 		try {
-			conn = util.open("211.63.89.64","project","java1234");
-			//conn = util.open("localhost", "project", "java1234");
+			//conn = util.open("211.63.89.64","project","java1234");
+			conn = util.open("localhost", "project", "java1234");
 			
 			sql = "{call prochiredGraduatesUpdateSelect(?,?)}";
 			stat = conn.prepareCall(sql);
@@ -1108,7 +1123,7 @@ public class AdminStudent {
 			stat.setString(1, company);
 			stat.executeQuery();
 			rs = (ResultSet) stat.getObject(2);
-			System.out.println("\t\t\t[고용보험 번호]\t[수강내역 번호]\t\t\t[연봉]\t\t[상태]\t[회사]");
+			System.out.println("\t\t\t[취업완료 번호]\t[수강내역 번호]\t\t\t[연봉]\t\t[상태]\t[회사]");
 			// 회사 이름을 포함한 취업 완료 수료생 리스트를 출력함
 			while (rs.next()) {
 				System.out.printf("\t\t\t%s\t\t\t", rs.getString("num"));
@@ -1250,7 +1265,7 @@ public class AdminStudent {
 			int count = 0;
 			// 취업 완료 수료생 리스트를 출력함
 		
-			System.out.println("\t\t\t[고용보험 번호]\t\t[수강내역 번호]\t\t[연봉]\t\t\t[상태]\t\t[회사]");
+			System.out.println("\t\t\t[취업완료 번호]\t\t[수강내역 번호]\t\t[연봉]\t\t\t[상태]\t\t[회사]");
 			while (rs.next()) {
 				System.out.printf("\t\t\t%s\t\t\t", rs.getString("num"));
 				System.out.printf("%s\t\t\t", rs.getString("courseHistoryNum"));
@@ -1276,7 +1291,7 @@ public class AdminStudent {
 			rs.close();
 			conn.close();
 			stat.close();
-
+			pause1();
 		} catch (Exception e) {
 			System.out.println("\t\t\tAdminStudent.vwhiredGradesManSelect()");
 			System.out.println("\t\t\t취업 완료 수료생 출력에 실패했습니다.");
@@ -1290,6 +1305,11 @@ public class AdminStudent {
 	 */
 	public void pause() {
 		System.out.println("\t\t\t100개를 계속 출력하실려면 엔터를 누르세요...");
+		scan.nextLine();
+	}
+	
+	public void pause1() {
+		System.out.println("\t\t\t계속 하실려면 엔터를 누르세요...");
 		scan.nextLine();
 	}
 

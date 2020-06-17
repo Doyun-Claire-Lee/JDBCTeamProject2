@@ -54,8 +54,8 @@ public class TeacherMain {
 			} 
 			// 상담 신청 관리
 			else if (sel.equals("6")) {
-			//	TeacherManageConsult manageConsult = new TeacherManageConsult();
-				//manageConsult.manageConsultRq();
+				TeacherManageConsult manageConsult = new TeacherManageConsult();
+				manageConsult.manageConsultRq();
 			}
 			// 뒤로 가기
 			else if (sel.equals("0")) {

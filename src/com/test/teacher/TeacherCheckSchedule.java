@@ -61,10 +61,11 @@ public class TeacherCheckSchedule {
 
 				System.out.println();
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-				System.out.println("\t\t\t과정 번호");
-				System.out.println("\t\t\t0. 뒤로가기");
+				System.out.println("\t\t\t\t과정번호를 입력해주세요.");
 				System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+				System.out.println("\t\t\t0. 뒤로가기");
 				System.out.print("\t\t\t▷ 입력:");
+				
 
 				
 					

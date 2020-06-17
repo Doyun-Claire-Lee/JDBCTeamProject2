@@ -30,7 +30,7 @@ public class TeacherAttendance {
 	 *  출결 관리 및 출결 조회 전체 메뉴입니다.
 	 * @param teacherNum 선생님 번호
 	 */ 
-	public void menu(TeacherUser teacherUser) {	//TeacherUser teacherUser
+	public void menu(TeacherUser teacherUser) {	//TeacherUser teacherUser (int pteacherNum)
 		boolean loop = true;
 		while(loop) {
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓   M E N U 〓〓〓〓〓〓〓〓");
@@ -50,10 +50,10 @@ public class TeacherAttendance {
 		// 선택 번호 입력 받음
 		switch(num) {
 		case "1": 
-			procteacherAttendance(teacherUser.getNum());
+			procteacherAttendance(teacherUser.getNum());  // pteacherNum
 		break;
 		case "2":
-			procteacherAttendance1(teacherUser.getNum());
+			procteacherAttendance1(teacherUser.getNum()); //pteacherNum
 		break;
 		case "3":
 			procteacherAttendanceSelect(teacherUser.getNum());
@@ -110,6 +110,7 @@ public class TeacherAttendance {
 			stat1 = conn.prepareCall(sql);
 			
 			// 개설 과정을 입력받아서 해당하는 교육생의 출결을 조회함
+		
 			System.out.print("\t\t\t▷개설 과정 번호:");
 			String num = scan.nextLine();
 
@@ -122,6 +123,7 @@ public class TeacherAttendance {
 			rs = (ResultSet)stat1.getObject(3); 
 			int count = 0;
 			System.out.println();
+			/*
 			System.out.println("\t\t\t[학생이름]\t[선생님이름]\t[과정기간]\t\t\t[수료상태]\t[출결상태]\t[입실시간]\t\t\t[퇴실시간]");
 			while(rs.next()) {
 				System.out.printf("\t\t\t%s\t",rs.getString("studentName"));
@@ -150,7 +152,7 @@ public class TeacherAttendance {
 				}
 		
 			}
-			
+			*/
 			sql = "{call procattendTeacherCourse1(?,?,?)}";
 			stat1= conn.prepareCall(sql);
 			stat1.registerOutParameter(1,OracleTypes.CURSOR); 
@@ -196,6 +198,7 @@ public class TeacherAttendance {
 			conn.close();
 			stat1.close();
 			rs.close();
+			pause1();
 		} catch (Exception e) {
 			System.out.println("\t\t\tteacherAttendacne.procteacherAttendance()");
 			System.out.println("\t\t\t교육생 출결 조회에 실패했습니다.");
@@ -218,10 +221,13 @@ public class TeacherAttendance {
 		String sql = null;
 		
 		//*** 선생님 출결 현황을 기간별(년, 월, 일) 조회 ***
+		boolean loop = true;
+		while(loop) {
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		System.out.println("\t\t\t1. 년 조회");
 		System.out.println("\t\t\t2. 월 조회");
 		System.out.println("\t\t\t3. 일 조회");
+		System.out.println("\t\t\t0. 뒤로가기");
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		System.out.print("\t\t\t▷입력: ");
 		String num = scan.nextLine();
@@ -245,6 +251,7 @@ public class TeacherAttendance {
 				stat.executeQuery(); // 다 넣고 업데이트임
 				rs = (ResultSet)stat.getObject(1);
 				int count = 0;
+				/*
 				System.out.println("\t\t\t[시행과정번호]\t[학생이름]\t\t\t[입실시간]\t\t\t[퇴실시간]\t\t\t[과정 상태]");
 				while(rs.next()) {
 					System.out.printf("\t\t\t%s\t\t",rs.getString("openCourseNum"));
@@ -271,10 +278,97 @@ public class TeacherAttendance {
 					}
 				
 				}
+				*/
 				sql = "{call procattendStatusYear(?,?,?)}";
 				stat= conn.prepareCall(sql);
 				stat.registerOutParameter(1,OracleTypes.CURSOR); 
 				stat.setString(2,year);
+				
+				stat.setInt(3, teacherNum);
+				stat.executeQuery();
+				
+				rs = (ResultSet)stat.getObject(1);
+				System.out.println();
+				
+				System.out.println("[학생이름]\t[정상 갯수]\t\t[지각 갯수]\t\t[조퇴 갯수]\t\t[결석 갯수]\t\t[외출 갯수]\t\t[병가 갯수]\t\t[기타]\t[시행과정번호]\t\t[과정 상태]");
+				count = 0;
+				while(rs.next()) {
+					System.out.printf("%s",rs.getString("studentName"));
+					System.out.printf("\t%s",rs.getString("normal"));
+					System.out.printf("\t\t%s",rs.getString("late"));
+					System.out.printf("\t\t%s",rs.getString("early"));
+					System.out.printf("\t\t%s",rs.getString("absent"));
+					System.out.printf("\t\t%s",rs.getString("outing"));
+					System.out.printf("\t\t%s",rs.getString("sickLeave"));
+					System.out.printf("\t\t%s",rs.getString("other"));
+					System.out.printf("\t\t%s",rs.getString("openCourseNum"));
+					System.out.printf("\t\t%s",rs.getString("courseStatus"));
+					System.out.println();
+					
+					count++;
+					if(count%100==0) {
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+						System.out.println("\t\t\t       -1을 누르면 종료");
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+						System.out.print("\t\t\t▷번호:");
+						String k = scan.nextLine();
+				
+						if (k.equals("-1")) {
+							break;
+						} else {
+							pause();
+						}
+					}
+					
+				}
+				pause1();
+				break;
+				// 월 조회
+			case "2":
+				sql = "{call procteacherAttendance2(?,?,?)}";
+				stat = conn.prepareCall(sql);
+				stat.registerOutParameter(1,OracleTypes.CURSOR); 
+				
+				//월을 입력 받음 
+				System.out.print("\t\t\t▷월(mm):");
+				String month = scan.nextLine();
+				
+				stat.setString(2,month);
+				stat.setInt(3, teacherNum);
+				stat.executeQuery(); 
+				rs = (ResultSet)stat.getObject(1);
+				count = 0;
+				/*
+				System.out.println("\t\t\t[시행과정번호]\t[학생이름]\t\t\t[입실시간]\t\t\t[퇴실시간]\t\t\t[과정 상태]");
+				while(rs.next()) {
+					System.out.printf("\t\t\t%s\t\t",rs.getString("openCourseNum"));
+					System.out.printf("%s\t\t",rs.getString("student name"));
+					System.out.printf("%s\t\t",rs.getString("enterTime"));
+					System.out.printf("%s\t\t",rs.getString("outTime"));
+					//System.out.printf("%s\t\t",rs.getString("attendance status"));
+					System.out.printf("%s",rs.getString("course status"));
+					System.out.println();
+					
+					count++;
+					if(count%100==0) {
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+						System.out.println("\t\t\t       -1을 누르면 종료");
+						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+						System.out.print("\t\t\t▷번호:");
+						String k = scan.nextLine();
+						
+						if (k.equals("-1")) {
+							break;
+						} else {
+							pause();
+						}
+					}
+				}
+				*/
+				sql = "{call procattendStatusMonth(?,?,?)}";
+				stat= conn.prepareCall(sql);
+				stat.registerOutParameter(1,OracleTypes.CURSOR); 
+				stat.setString(2,month);
 				
 				stat.setInt(3, teacherNum);
 				stat.executeQuery();
@@ -312,88 +406,7 @@ public class TeacherAttendance {
 					}
 					
 				}
-				break;
-				// 월 조회
-			case "2":
-				sql = "{call procteacherAttendance2(?,?,?)}";
-				stat = conn.prepareCall(sql);
-				stat.registerOutParameter(1,OracleTypes.CURSOR); 
-				
-				//월을 입력 받음 
-				System.out.print("\t\t\t▷월(mm):");
-				String month = scan.nextLine();
-				
-				stat.setString(2,month);
-				stat.setInt(3, teacherNum);
-				stat.executeQuery(); 
-				rs = (ResultSet)stat.getObject(1);
-				count = 0;
-				System.out.println("\t\t\t[시행과정번호]\t[학생이름]\t\t\t[입실시간]\t\t\t[퇴실시간]\t\t\t[과정 상태]");
-				while(rs.next()) {
-					System.out.printf("\t\t\t%s\t\t",rs.getString("openCourseNum"));
-					System.out.printf("%s\t\t",rs.getString("student name"));
-					System.out.printf("%s\t\t",rs.getString("enterTime"));
-					System.out.printf("%s\t\t",rs.getString("outTime"));
-					//System.out.printf("%s\t\t",rs.getString("attendance status"));
-					System.out.printf("%s",rs.getString("course status"));
-					System.out.println();
-					
-					count++;
-					if(count%100==0) {
-						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-						System.out.println("\t\t\t       -1을 누르면 종료");
-						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-						System.out.print("\t\t\t▷번호:");
-						String k = scan.nextLine();
-						
-						if (k.equals("-1")) {
-							break;
-						} else {
-							pause();
-						}
-					}
-				}
-				sql = "{call procattendStatusMonth(?,?,?)}";
-				stat= conn.prepareCall(sql);
-				stat.registerOutParameter(1,OracleTypes.CURSOR); 
-				stat.setString(2,month);
-				
-				stat.setInt(3, teacherNum);
-				stat.executeQuery();
-				
-				rs = (ResultSet)stat.getObject(1);
-				System.out.println();
-				System.out.println("[학생이름]\t[정상 갯수]\t\t[지각 갯수]\t\t[조퇴 갯수]\t\t[결석 갯수]\t\t[외출 갯수]\t\t[병가 갯수]\t\t[기타]\t[시행과정번호]\t\t[과정 상태]");
-				count = 0;
-				while(rs.next()) {
-					System.out.printf("%s",rs.getString("studentName"));
-					System.out.printf("\t\t\t%s",rs.getString("normal"));
-					System.out.printf("\t\t\t%s",rs.getString("late"));
-					System.out.printf("\t%s",rs.getString("early"));
-					System.out.printf("\t%s",rs.getString("absent"));
-					System.out.printf("\t%s",rs.getString("outing"));
-					System.out.printf("\t%s",rs.getString("sickLeave"));
-					System.out.printf("\t%s",rs.getString("other"));
-					System.out.printf("\t%s",rs.getString("openCourseNum"));
-					System.out.printf("\t%s",rs.getString("courseStatus"));
-					System.out.println();
-					
-					count++;
-					if(count%100==0) {
-						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-						System.out.println("\t\t\t       -1을 누르면 종료");
-						System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-						System.out.print("\t\t\t▷번호:");
-						String k = scan.nextLine();
-				
-						if (k.equals("-1")) {
-							break;
-						} else {
-							pause();
-						}
-					}
-					
-				}
+				pause1();
 				break;
 				// 일 조회
 			case "3":
@@ -411,6 +424,7 @@ public class TeacherAttendance {
 				stat.executeQuery();
 				rs = (ResultSet)stat.getObject(1);
 				count = 0;
+				/*
 				System.out.println("\t\t\t[시행과정번호]\t[학생이름]\t\t\t[입실시간]\t\t\t[퇴실시간]\t\t\t[과정 상태]");
 				while(rs.next()) {
 					System.out.printf("\t\t\t%s\t\t",rs.getString("openCourseNum"));
@@ -435,8 +449,9 @@ public class TeacherAttendance {
 							pause();
 						}
 					}
+					
 				}
-				
+				*/
 				sql = "{call procattendStatusDay(?,?,?)}";
 				stat= conn.prepareCall(sql);
 				stat.registerOutParameter(1,OracleTypes.CURSOR); 
@@ -447,19 +462,20 @@ public class TeacherAttendance {
 				
 				rs = (ResultSet)stat.getObject(1);
 				System.out.println();
+				
 				System.out.println("[학생이름]\t[정상 갯수]\t\t[지각 갯수]\t\t[조퇴 갯수]\t\t[결석 갯수]\t\t[외출 갯수]\t\t[병가 갯수]\t\t[기타]\t[시행과정번호]\t\t[과정 상태]");
 				count = 0;
 				while(rs.next()) {
 					System.out.printf("%s",rs.getString("studentName"));
-					System.out.printf("\t\t\t%s",rs.getString("normal"));
-					System.out.printf("\t\t\t%s",rs.getString("late"));
-					System.out.printf("\t%s",rs.getString("early"));
-					System.out.printf("\t%s",rs.getString("absent"));
-					System.out.printf("\t%s",rs.getString("outing"));
-					System.out.printf("\t%s",rs.getString("sickLeave"));
-					System.out.printf("\t%s",rs.getString("other"));
-					System.out.printf("\t%s",rs.getString("openCourseNum"));
-					System.out.printf("\t%s",rs.getString("courseStatus"));
+					System.out.printf("\t%s",rs.getString("normal"));
+					System.out.printf("\t\t%s",rs.getString("late"));
+					System.out.printf("\t\t%s",rs.getString("early"));
+					System.out.printf("\t\t%s",rs.getString("absent"));
+					System.out.printf("\t\t%s",rs.getString("outing"));
+					System.out.printf("\t\t%s",rs.getString("sickLeave"));
+					System.out.printf("\t\t%s",rs.getString("other"));
+					System.out.printf("\t\t%s",rs.getString("openCourseNum"));
+					System.out.printf("\t\t%s",rs.getString("courseStatus"));
 					System.out.println();
 					
 					count++;
@@ -478,10 +494,16 @@ public class TeacherAttendance {
 					}
 					
 				}
+				pause1();
 				break;
+			case "0": loop = false;
+			conn.close();
+			rs.close();
+					  break;
 				default: 
 					System.out.println("\t\t\t번호를 다시 입력해주세요.");
 			}
+			
 			System.out.println("\t\t\t완료");
 			stat.close();
 			conn.close();
@@ -490,8 +512,8 @@ public class TeacherAttendance {
 			System.out.println("\t\t\tteacherAttendance.procteacherAttendance1()");
 			System.out.println("\t\t\t출결 현황을 날짜별(년,월,일) 조회에 실패했습니다.");
 			e.printStackTrace();
+			}
 		}
-		
 		
 	} //procteacherAttendance1()
 	
@@ -551,6 +573,7 @@ public class TeacherAttendance {
 			stat.executeQuery();
 			rs = (ResultSet)stat.getObject(1);
 			System.out.println();
+			/*
 			System.out.println("\t\t\t[과정기간]\t\t\t[입실시간]\t\t\t[퇴실시간]\t\t\t[학생이름]\t\t[과정이름]");
 			// 입력받은 개설 강좌 번호, 학생 번호에 해당하는 출결을 조회를 함
 			while(rs.next()) {
@@ -561,7 +584,7 @@ public class TeacherAttendance {
 				System.out.printf("%s",rs.getString("course name"));
 				System.out.println();
 			}
-			
+			*/
 			sql = "{call procattendStatusCourse(?,?,?,?)}";
 			stat= conn.prepareCall(sql);
 			stat.registerOutParameter(1,OracleTypes.CURSOR); 
@@ -587,6 +610,7 @@ public class TeacherAttendance {
 				System.out.printf("\t\t%s",rs.getString("other"));
 				System.out.printf("\t\t%s",rs.getString("openCourseNum"));
 				System.out.printf("\t\t%s",rs.getString("courseStatus"));
+				
 				System.out.println();
 				
 				count++;
@@ -653,7 +677,7 @@ public void procteacherAttendanceStatus(int teacherNum) {
 			rs = (ResultSet)stat.getObject(1);
 			int count = 0;
 			System.out.println();
-			
+			/*
 			System.out.println("\t\t\t[학생이름]\t\t[입실시간]\t\t\t\t[퇴실시간]\t\t\t\t[시행과정번호]");
 			// 년과 월을 입력받아서 해당하는 출결을 조회를 함
 			while(rs.next()) {				
@@ -679,6 +703,7 @@ public void procteacherAttendanceStatus(int teacherNum) {
 					}
 				}
 			}
+			*/
 			sql = "{call procattendStatusYearMonth(?,?,?,?)}";
 			stat= conn.prepareCall(sql);
 			stat.registerOutParameter(1,OracleTypes.CURSOR); 
@@ -730,4 +755,9 @@ public void procteacherAttendanceStatus(int teacherNum) {
 
 	}
 
+
+	public void pause1() {
+		System.out.println("\t\t\t계속 하실려면 엔터를 누르세요...");
+		scan.nextLine();
+	}
 } //procteacherAttendanceStatus()

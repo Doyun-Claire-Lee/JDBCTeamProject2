@@ -26,7 +26,7 @@ public class StudentJob {
 			Scanner sc = new Scanner(System.in);
 			String cho = sc.nextLine();
 			if (cho.equals("1")) { // 취업 활동 내역 확인
-				procprintsupportlist(user.getNum());
+				procStudentjobActivity(user.getNum());
 			} else if (cho.equals("2")) { // 취업 활동 내역 입력
 				procAddJobActivity(user.getNum());
 			} else if (cho.equals("0")) {
@@ -89,13 +89,12 @@ public class StudentJob {
 			String content = sc.nextLine();
 
 			int name = i;
-			System.out.println(i);
 			stat.setInt(1, name);
 			stat.setString(2, content);
 			stat.registerOutParameter(3, OracleTypes.NUMBER);
 
-			int result = stat.getInt(3);
 			stat.executeUpdate();
+			int result = stat.getInt(3);
 
 			if (result == 1) {
 				System.out.println("\t\t\t취업활동 등록 완료!");
@@ -113,5 +112,45 @@ public class StudentJob {
 			}
 		}
 	}
-
+	private void procStudentjobActivity(int num) {
+		Connection conn = null;
+		CallableStatement stat = null;
+		DBUtil util = new DBUtil();
+		ResultSet rs = null;
+		Scanner scan = new Scanner(System.in);
+		
+		
+		try {
+			
+			
+			conn = util.open("211.63.89.64","project","java1234");
+			String sql = "{ call procStudentjobActivity(?,?) }";
+			stat = conn.prepareCall(sql);
+			
+		
+			int stn = num;
+			
+			stat.setInt(1,stn);
+			stat.registerOutParameter(2, OracleTypes.CURSOR);
+			stat.executeQuery();
+			
+			rs = (ResultSet)stat.getObject(2);
+			
+				System.out.println("\t\t\t[이름]\t[과정번호]\t[취업활동]");
+			while(rs.next()) {
+				System.out.printf("\t\t\t%s\t\t%s\t%s \n",
+													rs.getString(3),
+													rs.getInt(1),
+													rs.getString(2)
+													);																						
+			}
+		
+			
+		} catch (Exception e) {
+			System.out.println("Ex07_CallableStatment.m5()");
+			e.printStackTrace();
+		}
+		
+		
+	}
 }

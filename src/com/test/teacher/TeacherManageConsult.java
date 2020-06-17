@@ -44,11 +44,11 @@ public class TeacherManageConsult {
 		vwCheckConsultRequest();
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("\t\t\t상담번호: ");
+		System.out.print("\t\t\t상담번호: ");
 		String rqNum = scan.nextLine();
-		System.out.println("\t\t\t상담날짜: ");
+		System.out.print("\t\t\t상담날짜: ");
 		String conusultDate = scan.nextLine();
-		System.out.println("\t\t\t상담내용: ");
+		System.out.print("\t\t\t상담내용: ");
 		String consultContent = scan.nextLine();
 		
 		Connection conn = null;

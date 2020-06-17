@@ -1146,15 +1146,17 @@ public class AdminBasic {
 			conn = util.open("localhost", "project", "java1234");
 			conn.setAutoCommit(false);
 
-			String sql = "{call procdeleteclassroom(?)}";
+			String sql = "{call procdeleteclassroom(?,?)}";
 			stat = conn.prepareCall(sql);
 
 			System.out.print("\t\t\t삭제할 교재 번호:");
 			int cnum = sc.nextInt();
 
-			stat.setInt(1, cnum);
+			stat.setInt(2, cnum);
+			stat.registerOutParameter(1, OracleTypes.NUMBER);
 
-			int result = stat.executeUpdate();
+				stat.executeUpdate();
+				int result = stat.getInt(1);
 
 			if (result == 1) {
 				System.out.println("\t\t\t교재 삭제 완료!");
@@ -1329,7 +1331,7 @@ public class AdminBasic {
 			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
-			String sql = "{call procUpdateBook(?,?,?,?,?)}";
+			String sql = "{call procUpdateBook(?,?,?,?,?,?)}";
 			stat = conn.prepareCall(sql);
 
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
@@ -1355,8 +1357,10 @@ public class AdminBasic {
 			stat.setString(3, bname);
 			stat.setString(4, author);
 			stat.setString(5, publisher);
+			stat.registerOutParameter(6, OracleTypes.NUMBER);
 
-			int result = stat.executeUpdate();
+			stat.executeUpdate();
+			int result = stat.getInt(6);
 
 			if (result == 1) {
 				System.out.println("\t\t\t교재 수정 완료!");
@@ -1550,7 +1554,7 @@ public class AdminBasic {
 			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
-			String sql = "{call procAddBook(?,?,?,?)}";
+			String sql = "{call procAddBook(?,?,?,?,?)}";
 			stat = conn.prepareCall(sql);
 
 			String sql2 = "select * from tblsubject";
@@ -1576,8 +1580,10 @@ public class AdminBasic {
 			stat.setString(2, bname);
 			stat.setString(3, author);
 			stat.setString(4, publisher);
+			stat.registerOutParameter(5, OracleTypes.NUMBER);
 
-			int result = stat.executeUpdate();
+				stat.executeUpdate();
+				int result = stat.getInt(5); 
 
 			if (result == 1) {
 				System.out.println("\t\t\t교재 추가 완료");

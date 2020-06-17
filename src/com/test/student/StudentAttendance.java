@@ -356,7 +356,8 @@ public class StudentAttendance {
 
 			while (rs.next()) {
 				System.out.printf("                          %s         %s    %s   %s\n", rs.getString("name"),
-						rs.getString("entertime"), rs.getString("outtime"), rs.getString("status"));
+						rs.getString("entertime"),
+						rs.getString("outtime")==null ? "\t       --\t   " : rs.getString("outtime"), rs.getString("status"));
 			}
 
 			stat.close();

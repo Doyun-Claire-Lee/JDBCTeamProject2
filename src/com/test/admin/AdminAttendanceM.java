@@ -66,7 +66,7 @@ public void procPrintAttendanceStudent() {
 		System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――");
 		while(rs.next()) {
 			System.out.printf("\t\t\t[이름]:%s,[총일수]:%s \n"
-					+ "\t\t\t[정상]:%s[지각]:%s\t[조퇴]:%s\t[결석]:%s\t[외출]:%s\t[병가]:%s\t[기타]%s\n",
+					+ "\t\t\t[정상]:%s[지각]:%s[조퇴]:%s\t[결석]:%s\t[외출]:%s\t[병가]:%s\t[기타]%s\n",
 												rs.getString("name"), //이름
 												rs.getString("total"),   //총 일수
 												rs.getString("normal"),	 //퇴실시각

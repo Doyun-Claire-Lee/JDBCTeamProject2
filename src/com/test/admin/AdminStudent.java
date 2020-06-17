@@ -508,8 +508,8 @@ public class AdminStudent {
 				rs = stat.executeQuery(sql);
 				
 				while(rs.next()) {
-					System.out.println("\t\t\t[강의번호]\t[활동]\t[학생명]");
-					System.out.printf("\t\t\t%s\t%s\t%s\n"
+					System.out.println("\t\t\t[강의번호]\t[학생번호]\t[활동]");
+					System.out.printf("\t\t\t%8s\t%5s\t\t%s\n"
 														,rs.getInt(1)
 														,rs.getString(2)
 														,rs.getString(3)
@@ -548,11 +548,11 @@ public class AdminStudent {
 				rs =(ResultSet)stat.getObject(2);
 				
 				while(rs.next()) {
-					System.out.println("\t\t\t[강의번호]\t[활동]\t[학생명]");
-					System.out.printf("\t\t\t%s\t%s\t%s\n"
+					System.out.println("\t\t\t[강의번호]\t[학생명]\t[활동내역]");
+					System.out.printf("\t\t\t%8s\t%5s\t%-15s\n"
 														,rs.getInt("coursenum")
-														,rs.getString("activity")
 														,rs.getString("studentname")
+														,rs.getString("activity")
 														);	
 				}
 				
@@ -578,7 +578,8 @@ public class AdminStudent {
 				
 				System.out.print("\t\t\t강의 번호 입력:");
 				String cnum = sc.nextLine();
-				
+				Scanner sc1 = new Scanner(System.in);
+				cnum = sc.nextLine();
 				stat = conn.prepareCall(sql);
 				stat.registerOutParameter(1, OracleTypes.CURSOR);
 				stat.setString(2, cnum);
@@ -587,7 +588,7 @@ public class AdminStudent {
 				rs =(ResultSet)stat.getObject(1);
 				while(rs.next()) {
 					System.out.println("\t\t\t[강의번호]\t[활동]\t\t[학생명]");
-					System.out.printf("\t\t\t%s\t%s\t%s\n"
+					System.out.printf("\t\t\t%4s\t%-20s\t%-10s\n"
 														,rs.getString(1)
 														,rs.getString(2)
 														,rs.getString(3)
@@ -640,7 +641,7 @@ public class AdminStudent {
 
 		try {
 			conn = util.open("211.63.89.64","project","java1234");
-			String sql = "{ call procinsertSupport(?,?) }";
+			String sql = "{ call procinsertSupport(?,?,?) }";
 			
 			conn.setAutoCommit(false);
 			stat = conn.prepareCall(sql);
@@ -655,9 +656,11 @@ public class AdminStudent {
 		
 			stat.setInt(1,Integer.parseInt(snum));
 			stat.setInt(2,Integer.parseInt(scon));
+			stat.registerOutParameter(3, OracleTypes.NUMBER);
 			
 			
-			int result = stat.executeUpdate();
+			stat.executeUpdate();
+			int result = stat.getInt(3);
 			
 			if(result == 1) {
 				System.out.println("지원 내용 입력 완료!");
@@ -702,7 +705,7 @@ public class AdminStudent {
 		    rs =(ResultSet)stat.getObject(1);
 		    System.out.println("\t\t\t[학생명]\t[학생 번호]\t[취업 지원 내용]");
 		    while(rs.next()) {
-		    	System.out.printf("\t\t\t%s\t\t\t%s\t%s \n",
+		    	System.out.printf("\t\t\t%s\t%s\t\t%s \n",
 		    							rs.getString(1)
 		    							,rs.getString(2)
 		    							,rs.getString(3));
@@ -728,7 +731,7 @@ public class AdminStudent {
 
 		try {
 			conn = util.open("211.63.89.64","project","java1234");
-			String sql = "{ call procAddSupportList(?) }";
+			String sql = "{ call procAddSupportList(?,?) }";
 			
 			conn.setAutoCommit(false);
 			stat = conn.prepareCall(sql);
@@ -740,9 +743,10 @@ public class AdminStudent {
 			
 		
 			stat.setString(1,scon);
+			stat.registerOutParameter(2, OracleTypes.NUMBER);
 			
-			
-			int result = stat.executeUpdate();
+					stat.executeUpdate();
+					int result = stat.getInt(2);
 			
 			if(result == 1) {
 				System.out.println("\t\t\t지원 내용 입력 완료!");

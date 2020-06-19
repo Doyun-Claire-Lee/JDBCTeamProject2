@@ -7,9 +7,17 @@ import java.sql.Statement;
 import java.util.Scanner;
 import oracle.jdbc.OracleTypes;
 
+
+/**
+ * 관리자 -> 교사 계정 관리에 관련된 메소드들을 멤버로 갖는 클래스입니다.
+ * @author Doyun Lee
+ *
+ */
 public class AdminTeacher {
 	
-	
+	/**
+	 * 교사 계정 관리 메뉴 출력 메소드입니다.
+	 */
 	public void manageTeacherMenu() {
 	//이도윤	
 		
@@ -82,7 +90,10 @@ public class AdminTeacher {
 		}//while
 	}//mainMenu()
 	
-	
+	/**
+	 * 이름, 연락처, 주민번호를 입력받아 교사를 추가하는 메소드입니다.
+	 * 프로시저 실행 후 추가 성공 여부를 출력합니다.
+	 */
 	public void procAddTeacher() {
 	//이도윤	
 		
@@ -156,6 +167,10 @@ public class AdminTeacher {
 		}
 	}//procAddTeacher()
 	
+	/**
+	 * 교사 정보를 수정하는 메소드입니다.
+	 * 프로시저 실행 후 수정 성공 여부를 출력합니다.
+	 */
 	public void procUpdateTeacherInfo() {
 	//이도윤			
 		
@@ -264,7 +279,10 @@ public class AdminTeacher {
 		}
 	}
 	
-	
+	/**
+	 * 교사를 삭제상태로 변경하고, 강의가능과목에서 해당 교사의 내역을 삭제하는 메소드입니다.
+	 * 프로시저 실행 후 변경 및 삭제 성공 여부를 출력합니다.
+	 */
 	public void procDeleteTeacher() {
 	//이도윤		
 		
@@ -322,6 +340,10 @@ public class AdminTeacher {
 		}
 	}
 	
+	/**
+	 * 과목 목록을 출력한 뒤, 교사번호와 과목번호를 입력받아 교사별 강의가능과목을 추가하는 메소드입니다.
+	 * 프로시저 실행 후 추가 성공 여부를 출력합니다.
+	 */
 	public void procAddAvailableSubject() {
 	//이도윤		
 		
@@ -429,6 +451,9 @@ public class AdminTeacher {
 		
 	}
 	
+	/**
+	 * 전체 교사의 이름, 주민번호 뒷자리(비밀번호), 전화번호, 강의가능 과목을 출력하는 메소드입니다.
+	 */
 	public void procAvailableByTeacher() {
 	//이도윤	
 		
@@ -511,7 +536,9 @@ public class AdminTeacher {
 		}//try-catch
 	}
 	
-	
+	/**
+	 * 전체 교사의 강의내역과 교사 목록을 출력한 후, 교사번호를 입력받아 세부 강의 스케줄을 출력하는 메소드입니다.
+	 */
 	public void procCourseSubjectsByTeacher() {
 	//이도윤
 		
@@ -632,66 +659,69 @@ public class AdminTeacher {
 		}
 	}
 	
-	   public void procPrintAllteacherRating() {
-		   
-		      
-		      Connection conn = null;
-		      CallableStatement stat = null;
-		      DBUtil util = new DBUtil();
-		      ResultSet rs = null;
-		      Scanner scan = new Scanner(System.in);
-		            
-		      try {
-		         
-		               
-		         String sql = "{ call procPrintAllteacherRating(?) }";
+	/**
+	 * 전체 교사의 강의별 교사평가 평균 점수를 출력하는 메소드입니다.
+	 */
+	public void procPrintAllteacherRating() {
+	   
+	      
+	      Connection conn = null;
+	      CallableStatement stat = null;
+	      DBUtil util = new DBUtil();
+	      ResultSet rs = null;
+	      Scanner scan = new Scanner(System.in);
+	            
+	      try {
+	         
+	               
+	         String sql = "{ call procPrintAllteacherRating(?) }";
 
-		         conn = util.open("211.63.89.64","project","java1234");
-		         stat = conn.prepareCall(sql);
-		         
-		         stat.registerOutParameter(1, OracleTypes.CURSOR);
-		         
-		         stat.executeQuery();
-		                  
-		         rs = (ResultSet)stat.getObject(1); 
-		         
-		         //헤더 출력
-		         System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-		         System.out.println("\t\t\t\t\t교사평가 점수 조회");
-		         System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+	         conn = util.open("211.63.89.64","project","java1234");
+	         stat = conn.prepareCall(sql);
+	         
+	         stat.registerOutParameter(1, OracleTypes.CURSOR);
+	         
+	         stat.executeQuery();
+	                  
+	         rs = (ResultSet)stat.getObject(1); 
+	         
+	         //헤더 출력
+	         System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+	         System.out.println("\t\t\t\t\t교사평가 점수 조회");
+	         System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
-		         //교사이름, 과정번호, 종합(항목:1,2,3,4,5,6)평균점수
-		         System.out.println("\t\t\t[번호]\t[이름]\t[과정번호]\t[종합평균점수]");
-		         System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
-		         
-		         int num = 1;
-		         
-		         while(rs.next()) {
-		            
-		            System.out.printf("\t\t\t%3d\t%s\t%5s\t\t%6s점\n"
-		                                    , num
-		                                    , rs.getString("teacherName")
-		                                    , rs.getString("openCourseNum")
-		                                    , rs.getString("score"));
-		            num++;
-		         }
-		         System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
-		         
-		         rs.close();
-		         stat.close();
-		         conn.close();
-		         
-		      } catch (Exception e) {
-		         System.out.println("\t\t\t교사 평가 점수 조회를 실패했습니다.");
-		      }
-		      
-		      //뒤로가기 전 pause
-		      System.out.println();
-		      System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
-		      scan.nextLine();
-		      
-		   }//관리자가 모든 교사 평가 점수(끝)
-	
+	         //교사이름, 과정번호, 종합(항목:1,2,3,4,5,6)평균점수
+	         System.out.println("\t\t\t[번호]\t[이름]\t[과정번호]\t[종합평균점수]");
+	         System.out.println("\t\t\t――――――――――――――――――――――――――――――――――――――――――――");
+	         
+	         int num = 1;
+	         
+	         while(rs.next()) {
+	            
+	            System.out.printf("\t\t\t%3d\t%s\t%5s\t\t%6s점\n"
+	                                    , num
+	                                    , rs.getString("teacherName")
+	                                    , rs.getString("openCourseNum")
+	                                    , rs.getString("score"));
+	            num++;
+	         }
+	         System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+	         
+	         rs.close();
+	         stat.close();
+	         conn.close();
+	         
+	      } catch (Exception e) {
+	         System.out.println("\t\t\t교사 평가 점수 조회를 실패했습니다.");
+	      }
+	      
+	      //뒤로가기 전 pause
+	      System.out.println();
+	      System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
+	      scan.nextLine();
+	      
+	   }//관리자가 모든 교사 평가 점수(끝)
+
 	
 	
 }

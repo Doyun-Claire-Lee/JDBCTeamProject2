@@ -2,8 +2,17 @@ package com.test.student;
 
 import java.util.Scanner;
 
+/**
+ * 교육생 메인 메뉴를 출력하는 메소드를 멤버로 갖는 클래스입니다.
+ * @author Doyun Lee
+ *
+ */
 public class StudentMain {
 	
+	/**
+	 * 메인 메뉴를 출력하고 번호를 입력받는 메소드입니다.
+	 * @param studentUser 로그인 시 생성된 StudentUser를 매개변수로 받아와 세부 메뉴의 메소드에 매개 변수로 다시 넘겨줍니다.
+	 */
 	public void StudentMainmenu(StudentUser studentUser) {
 		
 		// 우리가 메뉴에서 사용할 학생 유저
@@ -14,9 +23,9 @@ public class StudentMain {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓  M E N U 〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t1. 성적 조회");
 			System.out.println("\t\t\t2. 출결 관리");
-			System.out.println("\t\t\t3. 상담신청");
-			System.out.println("\t\t\t4. 교사평가");
-			System.out.println("\t\t\t5. 취업활동");
+			System.out.println("\t\t\t3. 상담 신청");
+			System.out.println("\t\t\t4. 교사 평가");
+			System.out.println("\t\t\t5. 취업 활동");
 			System.out.println("\t\t\t0. 로그아웃");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			// 사용자에게 번호 입력받음

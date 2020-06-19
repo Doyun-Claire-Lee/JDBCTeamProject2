@@ -9,9 +9,17 @@ import com.test.admin.DBUtil;
 
 import oracle.jdbc.OracleTypes;
 
+/**
+ * 교육생 성적 조회와 관련된 메소드들을 멤버로 갖는 클래스입니다.
+ * @author Doyun Lee
+ *
+ */
 public class StudentCheckScore {
 
-	
+	/**
+	 * 교육생 성적 조회의 메뉴를 출력하는 메소드입니다.
+	 * @param studentUser 로그인시 생성된 StudentUser를 StudentMain에서 매개변수로 받아오고, 또 세부 메뉴에 StudentUser를 매개변수로 넘겨줍니다.
+	 */
 	public void studentScoreMain(StudentUser studentUser) {
 
 		Scanner scan = new Scanner(System.in);
@@ -61,7 +69,10 @@ public class StudentCheckScore {
 		
 	}//studentScoreMain
 	
-	
+	/**
+	 * 로그인한 학생의 배점이 반영된 과목별 최종 시험점수와 상세 시험점수를 출력해주는 메소드입니다.
+	 * @param studentUser 로그인시 생성된 StudentUser객체를 매개변수로 받아옵니다.
+	 */
 	public void procScoreByStudent(StudentUser studentUser) {
 	//이도윤
 		
@@ -154,7 +165,10 @@ public class StudentCheckScore {
 		
 	}
 	
-	
+	/**
+	 * 로그인한 학생의 과목별 시험 정보(배점, 시험 날짜 등)을 출력하는 메소드입니다.
+	 * @param studentUser 로그인시 생성된 StudentUser객체를 매개변수로 받아옵니다.
+	 */
 	public void procTestInfoByStudent(StudentUser studentUser) {		
 	//이도윤
 	
@@ -219,7 +233,10 @@ public class StudentCheckScore {
 			}
 	}
 	
-	
+	/**
+	 * 로그인한 학생이 응시한 시험의 문제를 과목별로 출력하는 메소드입니다.
+	 * @param studentUser 로그인시 생성된 StudentUser객체를 매개변수로 받아옵니다.
+	 */
 	public void procQuestionBySubject(StudentUser studentUser) {
 	//이도윤
 		

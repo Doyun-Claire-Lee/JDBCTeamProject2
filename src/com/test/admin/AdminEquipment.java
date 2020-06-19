@@ -8,15 +8,16 @@ import java.util.Scanner;
 
 import oracle.jdbc.OracleTypes;
 
+/**
+ * 관리자 - 기자재 관리 관련 메소드를 멤버로 갖는 클래스입니다.
+ * @author Doyun Lee
+ *
+ */
 public class AdminEquipment {
 	
-	
-	public static void main(String[] args) {
-		AdminEquipment e = new AdminEquipment();
-		e.manageEquipMenu();
-		
-		
-	}
+	/**
+	 * 기자재 관리 메뉴를 출력하는 메소드입니다.
+	 */
 	public void manageEquipMenu() {
 	//이도윤
 		
@@ -75,7 +76,9 @@ public class AdminEquipment {
 		
 	}//main
 	
-	
+	/**
+	 * 강의실 번호를 입력받아 강의실별 기자재를 조회하는 메소드입니다.
+	 */
 	public void procEquipmentByClassroom() {
 	//이도윤
 		
@@ -152,7 +155,9 @@ public class AdminEquipment {
 		
 	}//procEquipmentByDate
 	
-	
+	/**
+	 * 기간을 입력받아 구입 날짜별로 기자재를 조회하는 메소드입니다.
+	 */
 	public void procEquipmentByDate() {
 	//이도윤
 		
@@ -244,7 +249,10 @@ public class AdminEquipment {
 
 	}//procEquipmentByDate
 	
-	
+	/**
+	 * 강의실 번호, 기자재 번호, 수량, 구입일을 입력받아 기자재 내역을 추가하는 메소드입니다.
+	 * 프로시저 실행 후 추가 성공 여부를 출력합니다.
+	 */
 	public void procInsertEquipmentByClassroom() {
 	//이도윤
 		
@@ -384,7 +392,10 @@ public class AdminEquipment {
 		
 	}
 	
-	
+	/**
+	 * 강의실번호, 기자재번호, 수량을 입력받아 기자재 내역을 수정하는 메소드입니다.
+	 * 프로시저 실행 후 수정 성공 여부를 출력합니다.
+	 */
 	public void procUpdateEquipByRoom() {		
 	//이도윤
 	
@@ -502,11 +513,6 @@ public class AdminEquipment {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}//try-catch
-	
-		
-		
-		
-		
 		
 	}
 	

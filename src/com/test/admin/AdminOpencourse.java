@@ -14,7 +14,8 @@ import oracle.jdbc.OracleTypes;
 
 /**
  * 
- * @author siyeon 관리자가 개설 과정 관리하는 클래스입니다.
+ * @author siyeon 
+ * 관리자가 개설 과정 관리하는 클래스입니다.
  */
 
 public class AdminOpencourse {
@@ -173,11 +174,16 @@ public class AdminOpencourse {
 	 * 계속 할려면 엔터를 눌러야 합니다.
 	 */
 
+	/**
+	 * 100개를 출력 후 계속 출력 하려면 엔터를 눌러야지 계속 할 수 있는 기능입니다.
+	 */
 	public void pause() {
 		System.out.println("\t\t\t100개를 계속 출력하실려면 엔터를 누르세요...");
 		scan.nextLine();
 	}
-
+	/**
+	 *  계속할려면 엔터를 눌러야 하는 기능입니다.
+	 */
 	public void pause1() {
 		System.out.println("\t\t\t계속 하실려면 엔터를 누르세요...");
 		scan.nextLine();
@@ -328,7 +334,7 @@ public class AdminOpencourse {
 
 			}
 
-			System.out.print("\t\t\t▷개설 과정 번호:");
+			System.out.print("\t\t\t▷개설과정번호:");
 			String openCourseNum = scan.nextLine();
 			System.out.println("\t\t\t[과정 수료 날짜]");
 			System.out.print("\t\t\t▷과정 수료 년(yyyy):");
@@ -517,6 +523,7 @@ public class AdminOpencourse {
 						cnt++;
 					}
 					
+					stat3.close();
 				}
 				// System.out.println(count);
 			}
@@ -526,7 +533,7 @@ public class AdminOpencourse {
 				//return;
 			
 			} else {
-				stat3.close();
+				
 				System.out.print("\t\t\t선생님 번호:");
 				String teacherNum = scan.nextLine();
 				// 선생님이 과정에서 과목을 정하면 선생님이 가능한 과목이 모두 포함되는 얘만 찾으면 되는데 이거는 개설 과목 관리에서
@@ -551,7 +558,7 @@ public class AdminOpencourse {
 			
 			rs.close();
 			conn.close();
-		
+			stat3.close();
 			stat1.close();
 			stat.close();
 			
@@ -584,6 +591,8 @@ public class AdminOpencourse {
 		String oallCourseNum = null;
 		vwopenCourse();
 		// 개설 과정 정보에 대한 수정 기능
+		boolean loop = true;
+		while(loop) {
 		try {
 			conn = util.open("211.63.89.64", "project", "java1234");
 			//conn = util.open("localhost", "project", "java1234");
@@ -616,6 +625,8 @@ public class AdminOpencourse {
 			System.out.println("\t\t\t3. 과정 강의실 번호 수정");
 			System.out.println("\t\t\t4. 선생님 번호 수정");
 			System.out.println("\t\t\t5. 과정 번호 수정");
+			System.out.println("\t\t\t0. 뒤로가기");
+		
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷입력:");
 			String sel = scan.nextLine();
@@ -730,7 +741,12 @@ public class AdminOpencourse {
 				stat.close();
 				System.out.println("\t\t\t완료");
 				break;
-
+				case "0":
+					loop = false;
+					break;
+				default : 
+					System.out.println("번호를 다시 입력해주세요.");
+					
 			}
 			stat.close();
 			conn.close();
@@ -739,8 +755,8 @@ public class AdminOpencourse {
 			System.out.println("\t\t\tAdminOpenCourse.procopenCourseUpdate()");
 			System.out.println("\t\t\t개설 과정 정보 수정에 실패했습니다.");
 			e.printStackTrace();
+			}
 		}
-
 	} // procopenCourseUpdate()
 
 	/**
@@ -756,8 +772,8 @@ public class AdminOpencourse {
 		vwopenCourse();
 		// *** 개설 과정 정보에 대한 삭제 기능 ***
 		try {
-			conn = util.open("211.63.89.64", "project", "java1234");
-			// conn = util.open("localhost", "project", "java1234");
+			//conn = util.open("211.63.89.64", "project", "java1234");
+			conn = util.open("localhost", "project", "java1234");
 
 			String sql = "{ call procopenCourseDelete(?) }";
 			stat = conn.prepareCall(sql);

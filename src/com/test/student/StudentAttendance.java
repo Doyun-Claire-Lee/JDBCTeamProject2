@@ -11,8 +11,17 @@ import com.test.admin.DBUtil;
 
 import oracle.jdbc.OracleTypes;
 
+/**
+ * 교육생 - 출결 관리 관련 메소드를 멤버로 갖는 클래스입니다.
+ * @author Yerim Choi
+ *
+ */
 public class StudentAttendance {
-
+	
+	/**
+	 * 출결 관리 메뉴를 출력하는 메소드입니다.
+	 * @param 교육생 계정 로그인 시 학생 정보
+	 */
 	public void printAttendanceMenu(StudentUser studentUser) {
 
 		Scanner scan = new Scanner(System.in);
@@ -68,7 +77,11 @@ public class StudentAttendance {
 		}
 
 	}// main
-
+	
+	/**
+	 * 현재 시각으로 교육생의 입실 기록이 등록됩니다.
+	 * @param studentUser 교육생 번호
+	 */
 	// 1. 입실기록
 	public void procAddAttendanceEntertime(StudentUser studentUser) {
 
@@ -116,7 +129,12 @@ public class StudentAttendance {
 		scan.nextLine();
 
 	}// procAddAttendanceEntertime();
-
+	
+	
+	/**
+	 * 현재 시각으로 교육생의 퇴실 기록이 등록됩니다.
+	 * @param studentUser 교육생 번호
+	 */
 	// 2.퇴실 기록
 	public void procAddAttendanceOuttime(StudentUser studentUser) {
 
@@ -165,8 +183,10 @@ public class StudentAttendance {
 
 	}// procAddAttendanceOuttime();
 
+	/**
+	 * 출력된 근태리스트의 번호와 변경할 근태 상태를 입력 받아 해당 리스트의 근태 상태를 업데이트합니다. 
+	 */
 	// 3-1. 근태 상태 업데이트
-
 	public void procUpdateAttendanceStatus() {
 
 		Connection conn = null;
@@ -218,9 +238,13 @@ public class StudentAttendance {
 		scan.nextLine();
 
 	}// procUpdateAttendanceStatus()
-
+	
+	
+	/**
+	 * 근태 신청할 날짜를 입력 받아 해당 교육생의 출결 리스트를 출력합니다.
+	 * @param studentUser 교육생 번호
+	 */
 	// 3.근태 신청
-
 	public void procSelectAttendanceStatus(StudentUser studentUser) {
 
 		Connection conn = null;
@@ -288,8 +312,11 @@ public class StudentAttendance {
 
 	}// procSelectAttendanceStatus();
 
+	/**
+	 * 조회하고 싶은 날짜의 시작일, 종료일을 입력 받아 해당 기간의 출결 기록을 조회합니다.
+	 * @param studentUser 교육생 번호
+	 */
 	// 4.근태 기록 조회
-
 	public void procStudentAttendanceByDate(StudentUser studentUser) {
 
 		Connection conn = null;

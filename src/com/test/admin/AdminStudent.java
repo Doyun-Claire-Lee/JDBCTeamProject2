@@ -23,6 +23,9 @@ public class AdminStudent {
 		s1.menu();
 	}
 	*/
+	/**
+	 *  관리자 - 교육생 관리 메뉴 출력
+	 */
 	public void menu() {
 		
 		while (true) {
@@ -73,7 +76,10 @@ public class AdminStudent {
 	} // menu()
 	
 	
-
+	/**
+	 *  과목 번호를 입력받아 해당 과목의 보강 수업 교육생 리스트를 출력합니다.
+	 */
+	// 보강수업 교육생 리스트 조회
 	private void procSelectMakeupClassStudent() {
 		
 
@@ -138,7 +144,12 @@ public class AdminStudent {
 		System.out.println("\t\t\t엔터를 입력하시면 이전 페이지로 돌아갑니다.");
 		scan.nextLine();
 	}
-
+	
+	/**
+	 * 과목 번호를 입력받아 해당 과목의 성적 우수자 교육생 리스트를 출력합니다.
+	 * 이후 상장 지급 여부를 추가로 수정할 수 있습니다.
+	 */
+	//성적 우수자 교육생 리스트
 	private void procsSelectOutstandingReward() {
 		
 		Connection conn = null;
@@ -202,6 +213,10 @@ public class AdminStudent {
 		procsUpdateOutstandingReward();
 	}
 
+	/**
+	 *  성적 우수자 리스트에서 성적 번호를 입력받아 해당 리스트의 지급 여부를 변경할 수 있습니다.
+	 */
+	// 성적우수자 교육생 조회 후 지급여부 변경 실행
 	private void procsUpdateOutstandingReward() {
 
 		

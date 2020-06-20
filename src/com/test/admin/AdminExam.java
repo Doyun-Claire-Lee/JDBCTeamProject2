@@ -10,9 +10,15 @@ import oracle.jdbc.OracleTypes;
 
 public class AdminExam {
 	
-	
+	/**
+	 *  관리자 - 시험관리 및 성적 조회 관련 메소드를 멤버로 갖는 클래스입니다. 
+	 * 
+	 */
 	public void manageExamMenu() {
 		
+		/**
+		 *  관리자 - 시험관리 및 성적 조회 메뉴 출력
+		 */
 		Scanner scan = new Scanner(System.in);
 		
 		
@@ -216,6 +222,9 @@ public class AdminExam {
 
 	//3. 개설 과목별 성적 조회
 	
+	/**
+	 * 해당 과목이 포함된 과정 리스트에서 과정 번호를 입력받아 수강한 교육생들의 성적을 출력합니다.
+	 */
 	private static void procScoreInfoBySubject() {
 		
 		Connection conn = null;
@@ -280,7 +289,10 @@ public class AdminExam {
 	}//procScoreInfoBySubject()
 
 
-
+	/**
+	 * 과목 번호를 입력받아 개설 과목별 성적 조회 전 해당 과목이 포함된 과정 리스트를 출력합니다.
+	 * @return 과목 번호
+	 */
 	private static String procScoreBasicInfoBySubject() {
 		
 		Connection conn = null;
@@ -348,6 +360,9 @@ public class AdminExam {
 	
 	//4. 교육생 개인별 성적 조회
 	
+	/**
+	 *  해당 교육생이 수강한 과목과 기간 출력 후 교육생의 성적이 마지막으로 출력됩니다.
+	 */
 	private static void procScoreInfoByStudent() {
 		
 		
@@ -412,7 +427,10 @@ public class AdminExam {
 
 	
 
-
+	/**
+	 * 해당 교육생 수강 정보 출력 후 교육생이 수강한 과목과 기간을 추가로 출력합니다.
+	 * @return 교육생 번호
+	 */
 	private static String procScoreInfoTnameByStudent() {
 
 		Connection conn = null;
@@ -473,7 +491,10 @@ public class AdminExam {
 	}//procScoreInfoTnameByStudent()
 
 
-
+	/**
+	 * 교육생 번호를 입력 받아 교육생 개인별 성적을 조회 전 수강 정보를 출력합니다.
+	 * @return 교육생 번호
+	 */
 	private static String procScoreBasicInfoByStudent() {
 
 		Connection conn = null;

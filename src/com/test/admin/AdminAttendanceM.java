@@ -62,7 +62,7 @@ public void procPrintAttendanceStudent() {
 		 * procPrintAttendanceStudent 프로시저를 호출해
 		 * 입력받은 학생번호와 과정번호에 맞는 학생의 출결내역 출력
 		 */
-		conn = util.open("localhost","project","java1234");
+		conn = util.open("211.63.89.64","project","java1234");
 		String sql = "{ call procPrintAttendanceStudent(?,?,?) }";
 		stat = conn.prepareCall(sql);
 		
@@ -116,7 +116,7 @@ private void PROCPRINTATTENDANCEDATE() {
 	
 	
 	try {
-		conn = util.open("localhost","project","java1234");
+		conn = util.open("211.63.89.64","project","java1234");
 		/**
 		 * 날짜(년,월,일)를 입력하고 
 		 * PROCPRINTATTENDANCEDATE 프로시저 호출 

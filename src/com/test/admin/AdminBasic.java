@@ -105,7 +105,7 @@ public class AdminBasic {
 			 */
 			else if(num.equals("2")) {
 				while (true) {
-			Connection conn =  new DBUtil().open("localhost", "project", "java1234");
+			Connection conn =  new DBUtil().open("211.63.89.64", "project", "java1234");
 			// 1.추가 2.수정 3.삭제
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t   과목 관리");
@@ -323,16 +323,16 @@ public class AdminBasic {
 				else if (room.equals("2")) {
 					/**
 					 * 2입력시
-					 * procAddStudent 프로시저를 호출해 교재 추가
+					 * procAddStudent 프로시저를 호출해 교육생 추가
 					 */
 					procAddStudent();
 				} else if (room.equals("3")) {
 					/**
 					 * 3입력시
 					 * 
-					 * tblStudent에서 삭제상태가 0 인 교재 출력
+					 * tblStudent에서 삭제상태가 0 인 교육생 출력
 					 * 삭제상태가 1이면삭제된 데이터
-					 * procUpdateStudent 프로시저를 호출해 교재 수정
+					 * procUpdateStudent 프로시저를 호출해 교육생 수정
 					 */
 					vwtable("select * from tblstudent");
 					procUpdateStudenttest();
@@ -340,7 +340,7 @@ public class AdminBasic {
 					/**
 					 * 4입력시
 					 * 
-					 * tblStudent에서 삭제상태가 0 인 과목 출력
+					 * tblStudent에서 삭제상태가 0 인 교육생 출력
 					 * 삭제상태가 1이면삭제된 데이터
 					 * procDeleteStudent 프로시저를 호출해 deleteStatus를 1로 바꿈
 					 */
@@ -372,7 +372,7 @@ public class AdminBasic {
 		ResultSet rs2 = null;
 		DBUtil util = new DBUtil();
 		try {
-			conn2 = util.open("localhost", "project", "java1234");
+			conn2 = util.open("211.63.89.64", "project", "java1234");
 			stat2 = conn2.createStatement();
 			
 			String sql2 = string;
@@ -406,7 +406,7 @@ public class AdminBasic {
 
 		try {
 
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 
 			String sql = "{ call procAddStudent(?,?,?) }";
 
@@ -460,7 +460,7 @@ public class AdminBasic {
 
 		try {
 
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 
 			String sql = "{ call procDeleteStudent(?) }";
 
@@ -514,7 +514,7 @@ public class AdminBasic {
 		try {
 
 			while (true) {
-				conn = util.open("localhost", "project", "java1234");
+				conn = util.open("211.63.89.64", "project", "java1234");
 
 				String sql = "{ call procPrinetBasicStudent(?,?) }";
 
@@ -539,7 +539,6 @@ public class AdminBasic {
 				while (rs.next()) {
 
 					// 학생 정보 출력
-
 					System.out.print("\t\t\t");
 					System.out.print(rs.getString("name"));
 					System.out.print("\t");
@@ -595,11 +594,11 @@ public class AdminBasic {
 					String sql1 = "{ call procUpdateStudent(?,?,?,?,?) }";
 					stat = conn.prepareCall(sql1);
 
-					stat.setInt(1, pnum); // 수정할 학생번호
-					stat.setString(2, name); // 수정할 이름
-					stat.setString(3, otel); // 기존값
-					stat.setString(4, ossn); // 기존값
-					stat.setString(5, oresultOregisterdate); // 기존값
+					stat.setInt(1, pnum); 					// 수정할 학생번호
+					stat.setString(2, name); 				// 수정할 이름
+					stat.setString(3, otel); 				// 기존값
+					stat.setString(4, ossn); 				// 기존값
+					stat.setString(5, oresultOregisterdate);// 기존값
 
 					stat.executeUpdate();
 					stat.close();
@@ -614,11 +613,11 @@ public class AdminBasic {
 					sql1 = "{ call procUpdateStudentTest(?,?,?,?,?) }";
 					stat = conn.prepareCall(sql1);
 
-					stat.setInt(1, pnum);
-					stat.setString(2, oname);
-					stat.setString(3, tel);
-					stat.setString(4, ossn);
-					stat.setString(5, oresultOregisterdate);
+					stat.setInt(1, pnum); 					//수정할 학생번호
+					stat.setString(2, oname); 				//기존값
+					stat.setString(3, tel); 				//수정할 번호
+					stat.setString(4, ossn);				//기존값
+					stat.setString(5, oresultOregisterdate);//기존값
 
 					stat.executeUpdate();
 					stat.close();
@@ -633,11 +632,11 @@ public class AdminBasic {
 					sql1 = "{ call procUpdateStudentTest(?,?,?,?,?) }";
 					stat = conn.prepareCall(sql1);
 
-					stat.setInt(1, pnum);
-					stat.setString(2, oname);
-					stat.setString(3, otel);
-					stat.setString(4, ssn);
-					stat.setString(5, oresultOregisterdate);
+					stat.setInt(1, pnum);					//수정할 학생번호
+					stat.setString(2, oname);				//기존값
+					stat.setString(3, otel);				//기존값
+					stat.setString(4, ssn);					//수정할 주민번호
+					stat.setString(5, oresultOregisterdate);//기존값
 
 					stat.executeUpdate();
 					stat.close();
@@ -656,15 +655,15 @@ public class AdminBasic {
 					sql1 = "{ call procUpdateStudentTest(?,?,?,?,?) }";
 					stat = conn.prepareCall(sql1);
 
-					stat.setInt(1, pnum);
-					stat.setString(2, oname);
-					stat.setString(3, otel);
-					stat.setString(4, ossn);
+					stat.setInt(1, pnum);		//수정할 학생번호
+					stat.setString(2, oname);	//기존값
+					stat.setString(3, otel);	//기존값
+					stat.setString(4, ossn);	//기존값
 
 					// 2020년 입력 하면 -> 20으로 짤라주는거
 					String registerdateYearReal = registerdateYear.substring(2, 4);
 
-					stat.setString(5, registerdateYearReal + registerdateMonth + registerdateday);
+					stat.setString(5, registerdateYearReal + registerdateMonth + registerdateday); //수정할 최초등록일
 
 					stat.executeUpdate();
 					stat.close();
@@ -707,7 +706,7 @@ public class AdminBasic {
 
 		try {
 
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 
 			String sql = "{ call procPrintBasicStudent(?) }";
 
@@ -763,7 +762,7 @@ public class AdminBasic {
 
 			// Database Connection
 			DBUtil util = new DBUtil();
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t전체 과목 관리");
@@ -1015,7 +1014,7 @@ public class AdminBasic {
 		Scanner scan = new Scanner(System.in);
 
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			String sql = "{ call procopenCourseUpdate(?,?,?,?,?,?) }";
 
 			conn.setAutoCommit(false);
@@ -1081,7 +1080,7 @@ public class AdminBasic {
 		Scanner scan = new Scanner(System.in);
 
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			String sql = "{ call procopenCourseInsert(?,?,?,?,?) }";
 
 			conn.setAutoCommit(false);
@@ -1142,7 +1141,7 @@ public class AdminBasic {
 		DBUtil util = new DBUtil();
 
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			stat = conn.createStatement();
 
 			String sql = String.format("select * from vwAllattendance");
@@ -1179,7 +1178,7 @@ public class AdminBasic {
 
 		try {
 
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			String sql = "{ call procPrintAttendanceStudent(?,?,?) }";
 			stat = conn.prepareCall(sql);
 
@@ -1220,7 +1219,7 @@ public class AdminBasic {
 		Scanner scan = new Scanner(System.in);
 
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t\t\t기간별 출결 조회");
@@ -1272,7 +1271,7 @@ public class AdminBasic {
 		Scanner sc = new Scanner(System.in);
 		boolean chk = true;
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
 			String sql = "{call procdeletesubject(?,?)}";
@@ -1323,7 +1322,7 @@ public class AdminBasic {
 		Scanner sc = new Scanner(System.in);
 		boolean chk = true;
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
 			String sql = "{call procdeletebook(?,?)}";
@@ -1370,7 +1369,7 @@ public class AdminBasic {
 		Scanner sc = new Scanner(System.in);
 		boolean chk = true;
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
 			String sql = "{call procdeleteclassroom(?,?)}";
@@ -1414,7 +1413,7 @@ public class AdminBasic {
 		Scanner sc = new Scanner(System.in);
 		boolean chk = true;
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
 			String sql = "{call procdeleteallcourse(?,?)}";
@@ -1461,7 +1460,7 @@ public class AdminBasic {
 		Scanner sc = new Scanner(System.in);
 		boolean chk = true;
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
 			String sql = "{call procUpdateAllcourse(?,?,?,?,?,?)}";
@@ -1521,7 +1520,7 @@ public class AdminBasic {
 		Scanner sc = new Scanner(System.in);
 		boolean chk = true;
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
 			String sql = "{call procUpdateBook(?,?,?,?,?,?)}";
@@ -1584,7 +1583,7 @@ public class AdminBasic {
 		Scanner sc = new Scanner(System.in);
 		boolean chk = true;
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
 			String sql = "{call procUpdateSubject(?,?,?,?)}";
@@ -1646,7 +1645,7 @@ public class AdminBasic {
 		Scanner sc = new Scanner(System.in);
 		boolean chk = true;
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
 			String sql = "{call procUpdateClassroom(?,?,?,?)}";
@@ -1705,7 +1704,7 @@ public class AdminBasic {
 		Scanner sc = new Scanner(System.in);
 
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
 			String sql = "{call procAllCourse(?,?,?,?,?)}";
@@ -1755,7 +1754,7 @@ public class AdminBasic {
 		DBUtil util = new DBUtil();
 		Scanner sc = new Scanner(System.in);
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
 			String sql = "{call procAddBook(?,?,?,?,?)}";
@@ -1818,7 +1817,7 @@ public class AdminBasic {
 		Scanner sc = new Scanner(System.in);
 		boolean chk = true;
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
 			String sql = "{call procAddSubject(?,?,?)}";
@@ -1878,7 +1877,7 @@ public class AdminBasic {
 		DBUtil util = new DBUtil();
 		Scanner sc = new Scanner(System.in);
 		try {
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			conn.setAutoCommit(false);
 
 			String sql = "{call procAddClassroom(?,?,?)}";

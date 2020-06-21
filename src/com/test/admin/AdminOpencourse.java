@@ -773,7 +773,7 @@ public class AdminOpencourse {
 		// *** 개설 과정 정보에 대한 삭제 기능 ***
 		try {
 			//conn = util.open("211.63.89.64", "project", "java1234");
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 
 			String sql = "{ call procopenCourseDelete(?) }";
 			stat = conn.prepareCall(sql);

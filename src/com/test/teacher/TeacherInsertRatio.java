@@ -344,7 +344,7 @@ public class TeacherInsertRatio {
 		Scanner scan = new Scanner(System.in);
 
 		try {
-			conn = util.open("localhost","project","java1234");
+			conn = util.open("211.63.89.64","project","java1234");
 			String sql = "{ call procPrintRatio(?,?,?)}";
 			
 			conn.setAutoCommit(false);

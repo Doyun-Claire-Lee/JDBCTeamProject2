@@ -233,7 +233,7 @@ public class AdminSubject {
 
 		try {
 
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 
 			// 헤더 출력
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
@@ -301,7 +301,7 @@ public class AdminSubject {
 			System.out.println();
 
 			// 프로시저 호출 준비
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			String sql = "{ call procUpdateDistrByOpenCourse(?,?,?) }";
 			stat = conn.prepareCall(sql);
 
@@ -365,7 +365,7 @@ public class AdminSubject {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 
 			// 프로시저 호출 준비
-			conn = util.open("localhost", "project", "java1234");
+			conn = util.open("211.63.89.64", "project", "java1234");
 			String sql = "{ call procUpdateDistrByStudent(?,?,?) }";
 			stat = conn.prepareCall(sql);
 

@@ -33,7 +33,6 @@ public class AdminStudent {
 			System.out.println("\t\t\t3. 성적 우수자 관리");
 			System.out.println("\t\t\t4. 보강 수업 관리");
 			System.out.println("\t\t\t0. 뒤로가기");
-
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷입력:");
 			String sel = scan.nextLine();
@@ -390,7 +389,6 @@ public class AdminStudent {
 			System.out.println("\t\t\t3. 취업완료 수료생 관리(추가,조회,수정,삭제)");
 			System.out.println("\t\t\t4. 연봉별 검색");
 			System.out.println("\t\t\t5. 회사명 검색");
-
 			System.out.println("\t\t\t0. 뒤로가기");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷입력:");
@@ -424,7 +422,9 @@ public class AdminStudent {
 	} // menu1()
 
 	private void jobActivity() {
-
+		/**
+		 * 수료생의 취업활동과 취업지원 내역을 확인하는 메뉴입니다.
+		 */
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 수료생의 취업 활동 내역 〓〓〓〓〓〓〓〓〓");
 		System.out.println("\t\t\t1. 모든 수료생의 취업활동");
 		System.out.println("\t\t\t2. 학생별 취업 활동");
@@ -437,6 +437,9 @@ public class AdminStudent {
 		int cho = sc.nextInt();
 
 		if (cho == 1) {
+			/**
+			 * 모든 취업활동을 출력합니다.
+			 */
 			Connection conn = null;
 			Statement stat = null;
 			ResultSet rs = null;
@@ -471,6 +474,9 @@ public class AdminStudent {
 			DBUtil util = new DBUtil();
 
 			try {
+				/**
+				 * 입력받은 학생번호를 가진 수료생의 활동을 조회합니다.
+				 */
 				conn = util.open("211.63.89.64", "project", "java1234");
 
 				String sql = "{ call procStudentJobActivity(?,?) }";
@@ -499,6 +505,9 @@ public class AdminStudent {
 				e.printStackTrace();
 			}
 		} else if (cho == 3) {
+			/**
+			 * 강의 별 취업활동을 조회합니다.
+			 */
 			Connection conn = null;
 			CallableStatement stat = null;
 			ResultSet rs = null;
@@ -530,7 +539,9 @@ public class AdminStudent {
 				e.printStackTrace();
 			}
 		} else if (cho == 4) {
-
+			/**
+			 * 센터에서 지원한 내역을 확인하는 메뉴입니다.
+			 */
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓 취업 지원 〓〓〓〓〓〓〓〓〓");
 			System.out.println("\t\t\t1. 취업 지원 활동 추가");
 			System.out.println("\t\t\t2. 학생별 취업 지원 조회");
@@ -551,7 +562,9 @@ public class AdminStudent {
 			}
 		}
 	}
-
+	/**
+	 * 취업지원 활동을 추가합니다.
+	 */
 	private void procinsertSupport() {
 
 		Connection conn = null;
@@ -593,7 +606,9 @@ public class AdminStudent {
 		}
 
 	}
-
+	/**
+	 * 취업지원 활동 목록을 출력합니다.
+	 */
 	private void procprintsupportlist() {
 
 		Connection conn = null;
@@ -630,7 +645,9 @@ public class AdminStudent {
 		}
 
 	}
-
+	/**
+	 * 취업지원 활동을 추가합니다.
+	 */
 	private void procAddSupportList() {
 
 		Connection conn = null;

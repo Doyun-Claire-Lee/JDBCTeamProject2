@@ -11,7 +11,10 @@ import com.test.admin.DBUtil;
 import oracle.jdbc.OracleTypes;
 
 public class StudentJob {
-	
+	/**
+	 * 취업활동을 확인하고 추가할 수 있는 메뉴입니다.
+	 * @param user
+	 */
 	public void procStudentjobActivity(StudentUser user) {
 		while (true) {
 			Scanner scan = new Scanner(System.in);
@@ -34,6 +37,10 @@ public class StudentJob {
 			}
 		}
 	}
+	/**
+	 * 로그인 한 학생의 취업지원 내역 확인하는 메뉴입니다.
+	 * @param 학생 번호
+	 */
 	public void procprintsupportlist(int i) {
 		Connection conn = null;
 		CallableStatement stat = null;
@@ -70,7 +77,10 @@ public class StudentJob {
 			System.out.println(e);
 		} 
 	}
-
+	/**
+	 * 학생의 취업활동을 추가할 수 있습니다.
+	 * @param 학생번호
+	 */
 	public void procAddJobActivity(int i) {
 		Connection conn = null;
 		CallableStatement stat = null;
@@ -112,6 +122,10 @@ public class StudentJob {
 			}
 		}
 	}
+	/**
+	 * 로그인 한 학생의 취업활동을 조회합니다.
+	 * @param 학생번호
+	 */
 	private void procStudentjobActivity(int num) {
 		Connection conn = null;
 		CallableStatement stat = null;

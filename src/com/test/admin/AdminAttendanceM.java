@@ -8,10 +8,17 @@ import java.util.Scanner;
 import oracle.jdbc.OracleTypes;
 
 public class AdminAttendanceM {
-
+/**
+ * @author 김찬우
+ * 
+ * 관리자가 학생들의 출결을 확인하는 메뉴
+ */
 public void manageAttendanceMenu() {
 
 	while(true) {
+		/**
+		 * 메뉴 번호에 따라 메소드 출력
+		 */
 		Scanner sc = new Scanner(System.in);
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓출결 관리〓〓〓〓〓〓〓〓〓〓〓");
 		System.out.println("\t\t\t1. 학생별 출결 조회");
@@ -35,6 +42,10 @@ public void manageAttendanceMenu() {
 		}
 	}
 }
+/**
+ * 학생번호와 과정번호를 입력받고 
+ * 조건에 맞는 학생의 출결 내역을 출력 
+ */
 public void procPrintAttendanceStudent() {
 	System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 	System.out.println("\t\t\t학생별 출결 내역 확인");
@@ -47,8 +58,11 @@ public void procPrintAttendanceStudent() {
 	
 	
 	try {
-		
-		conn = util.open("211.63.89.64","project","java1234");
+		/**
+		 * procPrintAttendanceStudent 프로시저를 호출해
+		 * 입력받은 학생번호와 과정번호에 맞는 학생의 출결내역 출력
+		 */
+		conn = util.open("localhost","project","java1234");
 		String sql = "{ call procPrintAttendanceStudent(?,?,?) }";
 		stat = conn.prepareCall(sql);
 		
@@ -66,7 +80,7 @@ public void procPrintAttendanceStudent() {
 		System.out.println("\t\t\t―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――");
 		while(rs.next()) {
 			System.out.printf("\t\t\t[이름]:%s,[총일수]:%s \n"
-					+ "\t\t\t[정상]:%s[지각]:%s[조퇴]:%s\t[결석]:%s\t[외출]:%s\t[병가]:%s\t[기타]%s\n",
+					+ "\t\t\t[정상]:%s[지각]:%s\t[조퇴]:%s\t[결석]:%s\t[외출]:%s\t[병가]:%s\t[기타]%s\n",
 												rs.getString("name"), //이름
 												rs.getString("total"),   //총 일수
 												rs.getString("normal"),	 //퇴실시각
@@ -86,7 +100,9 @@ public void procPrintAttendanceStudent() {
 	}
 	
 }
-
+/**
+ * 입력받은 날짜에 기록된 학생목록 출력
+ */
 private void PROCPRINTATTENDANCEDATE() {
 	System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 	System.out.println("\t\t\t\t날짜별 출결 내역 확인");
@@ -100,8 +116,11 @@ private void PROCPRINTATTENDANCEDATE() {
 	
 	
 	try {
-		conn = util.open("211.63.89.64","project","java1234");
-		
+		conn = util.open("localhost","project","java1234");
+		/**
+		 * 날짜(년,월,일)를 입력하고 
+		 * PROCPRINTATTENDANCEDATE 프로시저 호출 
+		 */
 			
 		System.out.print("\t\t\t날짜입력(YY):");
 		String year = scan.nextLine();

@@ -10,7 +10,10 @@ import com.test.admin.DBUtil;
 import oracle.jdbc.OracleTypes;
 
 public class TeacherInsertRatio {
-
+	/**
+	 * 선생님이 배점을 관리할 수 있는 메뉴입니다.
+	 * @param 교수정보
+	 */
 	public void insertRatio(TeacherUser user) {
 		while (true) {
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
@@ -64,7 +67,9 @@ public class TeacherInsertRatio {
 		}
 
 	}
-	
+	/**
+	 * procAddQuestion 프로시저를 호출해 문제를 추가는 메뉴입니다.
+	 */
 	public void procAddQuestion() {
 		Connection conn = null;
 		CallableStatement stat = null;
@@ -122,7 +127,9 @@ public class TeacherInsertRatio {
 			System.out.println(e);
 		}
 	}
-	
+	/**
+	 * procAddTestdate 프로시저를 호출해 시험 날짜를 추가합니다.
+	 */
 	public void  procAddTestdate() {
 		Connection conn = null;
 		CallableStatement stat = null;
@@ -172,7 +179,10 @@ public class TeacherInsertRatio {
 		}
 
 	}
-	
+	/**
+	 * 자신이 강의하는 과목번호,과목명,교재,과목의 기간,과정명을 출력합니다.
+	 * @param 교사번호
+	 */
 	public void procsubjectlist2(int i) {
 		Connection conn = null;
 		CallableStatement stat = null;
@@ -210,7 +220,10 @@ public class TeacherInsertRatio {
 			System.out.println(e);
 		} 
 	}
-	
+	/**
+	 * 로그인한 교사가 강의한 강의실명,과정기간,과정명을 출력합니다.
+	 * @param 교사번호
+	 */
 	public void procsubjectlist1(int i) {
 		Connection conn = null;
 		CallableStatement stat = null;
@@ -245,7 +258,10 @@ public class TeacherInsertRatio {
 			System.out.println(e);
 		} 
 	}
-	
+	/**
+	 * 로그인 한 강사가 강의를 마친 시험의 배점을 입력합니다.
+	 * @param 강사번호
+	 */
 	public void procInputTestRatio(int i) {
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		System.out.println("\t\t\t시험 배점 입력");
@@ -313,7 +329,10 @@ public class TeacherInsertRatio {
 		}
 		
 	}
-	
+	/**
+	 * 로그인 강사가 강의한 과목 별 배점을 확인합니다.
+	 * @param i
+	 */
 	public void ProcPrintRatio(int i) {
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
 		System.out.println("\t\t\t과목별 시험 배점 확인");

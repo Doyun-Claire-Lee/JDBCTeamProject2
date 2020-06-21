@@ -13,6 +13,11 @@ import com.test.admin.AdminUser;
 import com.test.admin.DBUtil;
 import com.test.student.StudentMain;
 
+/**
+ *  교사 로그인 및 데이터 입력을 위한 메소드입니다.
+ * @author leeho
+ *
+ */
 public class TeacherUser {
 
 	int num;
@@ -20,7 +25,11 @@ public class TeacherUser {
 	String tel;
 	String ssn;
 	boolean loginFlag = false;
-
+	
+	/**
+	 * 로그인 유효성 검사 및 객체에 대한 데이터 입력을 위한 메소드입니다.
+	 * @param teacherUser 로그인 성공 시 데이터를 입력하기 위한 객체입니다. 
+	 */
 	public void login(TeacherUser teacherUser) {
 
 		// Database connection

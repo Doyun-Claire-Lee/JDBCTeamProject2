@@ -78,6 +78,9 @@ public class AdminExam {
 	}//mainMenu()
 	
 	
+	/**
+	 * 과목별 시험문제의 등록 여부를 출력하는 메소드입니다.
+	 */
 	private void checkQuestionRegister() {
 		
 		Connection conn = new DBUtil().open("211.63.89.64", "project", "java1234");
@@ -122,7 +125,9 @@ public class AdminExam {
 		}
 		
 	}
-
+	/**
+	 * 과목별 성적 등록 여부를 출력하는 메소드입니다.
+	 */
 	private void checkScoreRegister() {
 
 

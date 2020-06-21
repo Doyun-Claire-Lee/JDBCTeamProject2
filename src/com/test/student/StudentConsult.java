@@ -7,8 +7,17 @@ import java.sql.Statement;
 
 import com.test.admin.DBUtil;
 
+/**
+ * 상담 신청을 위한 클래스입니다.
+ * @author leeho
+ *
+ */
 public class StudentConsult {
 
+	/**
+	 * 상담 신청 메소드입니다.
+	 * @param studentUser 로그인 시 데이터가 입력된 학생 개체
+	 */
 	public void requestConsulting(StudentUser studentUser) {
 		
 		// declare variable

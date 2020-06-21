@@ -9,28 +9,38 @@ import com.test.admin.DBUtil;
 
 import oracle.jdbc.OracleTypes;
 
+/**
+ * 교사의 성적 입출력을 위한 클래스입니다.
+ * @author leeho
+ *
+ */
 public class TeacherInsertScore {
 	int examPknum;
+	Scanner scan = new Scanner(System.in);
 	
-	
-	public void insertScoreMenu(TeacherUser user, Scanner scan) {
+	/**
+	 * 성적 관리 메뉴를 출력하는 메소드입니다.
+	 * @param teacherUser 로그인 시 데이터를 입력받은 객체
+	 */
+	public void insertScoreMenu(TeacherUser teacherUser) {
 		
 		while(true) {
-			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓");
+			System.out.println("\t\t\t〓〓〓 성적 관리 〓〓〓〓");
 			System.out.println("\t\t\t1. 목록 조회");
 			System.out.println("\t\t\t2. 성적 입력");
 			System.out.println("\t\t\t0. 뒤로가기");
 			System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓");
 			System.out.print("\t\t\t▷ 입력: \n");
+			
 			String sel = scan.nextLine();
 			
 			// print
 			if(sel.equals("1")) {
-				scorePrint(user);
+				scorePrint(teacherUser);
 			}
 			// insert
 			else if(sel.equals("2")) {
-				insertScore(user,scan);
+				insertScore(teacherUser);
 			}
 			//exit
 			else if(sel.equals("0")) {
@@ -39,8 +49,12 @@ public class TeacherInsertScore {
 		}
 	}
 
-	private void insertScore(TeacherUser user, Scanner scan) {
-		scorePrint(user);
+	/**
+	 * 성적을 입력하는 메소드입니다.
+	 * @param teacherUser teacherUser 로그인 시 데이터를 입력받은 객체
+	 */
+	private void insertScore(TeacherUser teacherUser) {
+		scorePrint(teacherUser);
 		
 		
 		System.out.println("\n〓〓〓〓〓〓〓〓〓〓〓 성적 입력 〓〓〓〓〓〓〓〓〓");
@@ -77,7 +91,11 @@ public class TeacherInsertScore {
 		
 	}
 
-	public void scorePrint(TeacherUser user) {
+	/**
+	 * 현재 교사가 강의중인 과목들의 시험 관련 정보를 출력하는 메소드입니다.
+	 * @param teacherUser
+	 */
+	public void scorePrint(TeacherUser teacherUser) {
 		Connection conn = null;
 		CallableStatement stat = null;
 		CallableStatement stat2 = null;
@@ -101,7 +119,7 @@ public class TeacherInsertScore {
 
 		// 변수 선언
 		Scanner scan = new Scanner(System.in);
-		int teachernum = user.getNum();
+		int teachernum = teacherUser.getNum();
 		String opencoursenum = "";
 		try {
 			conn = util.open("211.63.89.64", "project", "java1234");

@@ -13,6 +13,11 @@ import com.test.admin.DBUtil;
 
 import oracle.jdbc.OracleTypes;
 
+/**
+ * 교육생 로그인 및 데이터 입력을 위한 메소드입니다.
+ * @author leeho
+ *
+ */
 public class StudentUser {
 
 	int num;
@@ -22,6 +27,10 @@ public class StudentUser {
 	String registerDate; 
 	boolean loginFlag = false;
 	
+	/**
+	 * 로그인 유효성 검사 및 객체에 대한 데이터 입력을 위한 메소드입니다.
+	 * @param studentUser 로그인 성공 시 데이터를 입력하기 위한 객체입니다. 
+	 */
 	public void login(StudentUser studentUser) {
 
 		// Database connection

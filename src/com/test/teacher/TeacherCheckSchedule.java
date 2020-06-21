@@ -9,9 +9,17 @@ import com.test.admin.DBUtil;
 
 import oracle.jdbc.OracleTypes;
 
+/**
+ * 강의 스케줄 조희를 위한 메소드입니다.
+ * @author heeJ
+ *
+ */
 public class TeacherCheckSchedule {
-
-	// 강의 스케줄(시작)
+	
+	/**
+	 * 해당 교사의 스케줄을 출력하는 메소드입니다.
+	 * @param tuser 로그인 시 데이터를 입력받은 객체
+	 */
 	public void procCheckTeaching(TeacherUser tuser) {
 
 		Scanner scan = new Scanner(System.in);
@@ -66,12 +74,6 @@ public class TeacherCheckSchedule {
 				System.out.println("\t\t\t0. 뒤로가기");
 				System.out.print("\t\t\t▷ 입력:");
 				
-
-				
-					
-				//010-3385-7130
-				//1951320
-				
 				// 사용자 한테 입력 받는 값
 				String cho = scan.nextLine();
 
@@ -120,6 +122,10 @@ public class TeacherCheckSchedule {
 
 //==============================================================================================================	
 
+	/**
+	 * 입력받은 과목번호에 수강중인 교육생 정보를 출력하는 메소드
+	 * @param cho2 사용자가 입력한 교육생 번호
+	 */
 	// 과목번호 입력시 해당 학생들 출력
 	private static void procCheckStdInfo(String cho2) {
 

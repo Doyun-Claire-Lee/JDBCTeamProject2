@@ -2,10 +2,17 @@ package com.test.teacher;
 
 import java.util.Scanner;
 
+/**
+ * 교사 메인 메뉴를 위한 클래스입니다.
+ * @author leeho
+ *
+ */
 public class TeacherMain {
 	
-	
-
+	/**
+	 * 교사 메인 메뉴를 출력하는 메소드입니다.
+	 * @param teacherUser 로그인 시 데이터를 입력받은 객체
+	 */
 	public void TeacherMainmenu(TeacherUser teacherUser) {
 		
 		
@@ -40,7 +47,7 @@ public class TeacherMain {
 			// 성적 입출력
 			else if (sel.equals("3")) {
 				TeacherInsertScore score = new TeacherInsertScore();
-				score.insertScoreMenu(teacherUser,scan);
+				score.insertScoreMenu(teacherUser);
 			}
 			// 출결 관리 및 출결 조회
 			else if (sel.equals("4")) {

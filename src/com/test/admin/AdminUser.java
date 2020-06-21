@@ -8,12 +8,22 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * 관리자 로그인 검사 및 데이터 삽입을 위한 클래스입니다. 
+ * @author leeho
+ *
+ */
 public class AdminUser {
 
 	int num;
 	String id;
 	String pw;
 	boolean loginFlag = false;
+	
+	/**
+	 * 로그인 유효성 검사 및 객체에 대한 데이터 입력을 위한 메소드입니다.
+	 * @param adminUser 로그인 성공 시 데이터를 입력하기 위한 객체입니다. 
+	 */
 	public void login(AdminUser adminUser) {
 
 		// Database connection
@@ -36,8 +46,6 @@ public class AdminUser {
 
 			String sql = String.format("select * from tbladmin");
 			rs = stat.executeQuery(sql);
-			
-			// 여기만 삭제하고 주석 풀면 됨
 			
 			// Insert info to loginInfo map
 			// 데이터 입력

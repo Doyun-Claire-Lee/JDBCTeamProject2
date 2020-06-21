@@ -3,11 +3,15 @@ import java.util.Scanner;
 import com.test.admin.AdminUser;
 import com.test.student.StudentUser;
 import com.test.teacher.TeacherUser;
-
+/**
+ * 메인 메뉴 시작을 위한 클래스입니다.
+ * @author Team 2
+ *
+ */
 public class main {
 	
 	public static void main(String[] args) {
-
+		
 		Scanner scan = new Scanner(System.in);
 		
 		while (true) {

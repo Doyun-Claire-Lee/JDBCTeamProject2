@@ -14,14 +14,9 @@ import oracle.jdbc.OracleTypes;
  *  관리자가 교육생 관리하는 클래스입니다.
  */
 public class AdminStudent {
-
+	Connection conn = new DBUtil().open("211.63.89.64","project","java1234");
 	Scanner scan = new Scanner(System.in);
 
-	/*
-	  public static void main(String[] args) { 
-		  AdminStudent s1 = new AdminStudent(); 
-		  s1.menu(); }
-	  */
 	public void menu() {
 
 		while (true) {
@@ -221,6 +216,9 @@ public class AdminStudent {
 
 	}
 
+	/**
+	 * 상담 내역를 관리하기 위한 메소드입니다.
+	 */
 	private void manangeConsulting() {
 
 		// declare variable
@@ -242,37 +240,54 @@ public class AdminStudent {
 
 			// search by course
 			if (courseOrName.equals("1")) {
-
-				// print list of open course
-				vwOpencourse(conn);
-
-				// input course num
-				System.out.print("\t\t\t과정 번호:");
-				String courseNum = scan.nextLine();
-
-				// print consult request list by course num
-				procPrintConsultRqList(conn, courseNum);
-
-				// input course num
-				System.out.print("\t\t\t상담 번호:");
-				String requestNum = scan.nextLine();
-				procPrintConsultContent(conn, requestNum);
+				searchByCourse();
 			}
 
 			// search by name
 			else if (courseOrName.equals("2")) {
-				System.out.print("\t\t\t이름:");
-				String name = scan.nextLine();
-				procPrintConsultRqListByN(conn, name);
+				searchByName();
 			}
 		}
 	}
 
-	private void procPrintConsultRqListByN(Connection conn, String name) {
+	/**
+	 * 이름별 상담내역 조회 메소드입니다.
+	 */
+	private void searchByName() {
+		System.out.print("\t\t\t이름:");
+		String name = scan.nextLine();
+		procPrintConsultRqListByN(name);
+	}
+	
+	/**
+	 * 과정별 학생의 상담 내역을 출력하는 메소드입니다.
+	 */
+	private void searchByCourse() {
+		// print list of open course
+		vwOpencourse();
+
+		// input course num
+		System.out.print("\t\t\t과정 번호:");
+		String courseNum = scan.nextLine();
+
+		// print consult request list by course num
+		procPrintConsultRqList(courseNum);
+
+		// input course num
+		System.out.print("\t\t\t상담 번호:");
+		String requestNum = scan.nextLine();
+		procPrintConsultContent(requestNum);
+	}
+
+	/**
+	 * 입력받은 이름과 일치하는 교육생의 상담번호
+	 * @param name
+	 */
+	private void procPrintConsultRqListByN( String name) {
 
 		CallableStatement stat = null;
 		ResultSet rs = null;
-
+		
 		try {
 
 			String sql = "{call procPrintConsultRqListByN(?,?)}";
@@ -290,7 +305,7 @@ public class AdminStudent {
 			}
 			System.out.print("\t\t\t상담 번호:");
 			String requestNum = scan.nextLine();
-			procPrintConsultContent(conn, requestNum);
+			procPrintConsultContent(requestNum);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -298,10 +313,14 @@ public class AdminStudent {
 
 	}
 
-	private void procPrintConsultContent(Connection conn, String requestNum) {
+	/**
+	 * 입력받은 요청번호에 대한 상담 내역을 출력하는 메소드입니다.
+	 * @param requestNum 사용자에게 입력받은 상담 요청 번호
+	 */
+	private void procPrintConsultContent( String requestNum) {
 
 		CallableStatement stat = null;
-
+		Connection conn = new DBUtil().open("211.63.89.64","project","java1234");
 		try {
 
 			String sql = "{call procPrintConsultContent(?,?,?)}";
@@ -321,12 +340,16 @@ public class AdminStudent {
 		}
 
 	}
-
-	private void procPrintConsultRqList(Connection conn, String coursenum) {
+	
+	/**
+	 * 과정별 상담요청번호를 출력하는 메소드입니다.
+	 * @param coursenum 사용자가 입력한 시행과정 번호
+	 */
+	private void procPrintConsultRqList( String coursenum) {
 
 		CallableStatement stat = null;
 		ResultSet rs = null;
-
+		Connection conn = new DBUtil().open("211.63.89.64","project","java1234");
 		try {
 			String sql = "{call procPrintConsultRqList(?,?)}";
 			stat = conn.prepareCall(sql);
@@ -351,10 +374,14 @@ public class AdminStudent {
 
 	}
 
-	private void vwOpencourse(Connection conn) {
+	/**
+	 * 현재 시행중인 과정을 출력하는 메소드입니다.
+	 */
+	private void vwOpencourse() {
 		Statement stat;
 		ResultSet rs;
 		try {
+			Connection conn = new DBUtil().open("211.63.89.64","project","java1234");
 			// Database connection
 			String sql = "select * from vwOpencourseList";
 			stat = conn.createStatement();

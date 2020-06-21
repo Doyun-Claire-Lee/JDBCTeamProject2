@@ -2,8 +2,17 @@ package com.test.admin;
 
 import java.util.Scanner;
 
+/**
+ * 관리자 로그인 시 메인 메뉴 클래스입니다.
+ * @author leeho
+ *
+ */
 public class AdminMain {
 
+	/**
+	 * 관리자 메뉴 목록을 출력하는 메소드입니다.
+	 * @param adminUser
+	 */
 	public void mainmenu(AdminUser adminUser) {
 		
 		

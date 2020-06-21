@@ -11,7 +11,7 @@ public class AdminAttendanceM {
 /**
  * @author 김찬우
  * 
- * 관리자가 학생들의 출결을 확인하는 메뉴
+ * 관리자가 교육생들의 출결을 확인하는 메뉴
  */
 public void manageAttendanceMenu() {
 

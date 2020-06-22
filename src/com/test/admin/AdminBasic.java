@@ -317,8 +317,10 @@ public class AdminBasic {
 					 * tblStudent에서 삭제상태가 0 인 교육생 출력
 					 * 삭제상태가 1이면삭제된 데이터
 					 */
-					System.out.println("\t\t\t교육생 조회");					
-					vwtable("select * from tblstudent");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					System.out.println("\t\t\t 교육생 조회");
+					System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
+					procPrintBasicStudent();
 				}
 				else if (room.equals("2")) {
 					/**
@@ -333,8 +335,7 @@ public class AdminBasic {
 					 * tblStudent에서 삭제상태가 0 인 교육생 출력
 					 * 삭제상태가 1이면삭제된 데이터
 					 * procUpdateStudent 프로시저를 호출해 교육생 수정
-					 */
-					vwtable("select * from tblstudent");
+					 */					
 					procUpdateStudenttest();
 				} else if (room.equals("4")) {
 					/**

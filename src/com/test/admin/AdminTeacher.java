@@ -9,7 +9,7 @@ import oracle.jdbc.OracleTypes;
 
 
 /**
- * 관리자 -> 교사 계정 관리에 관련된 메소드들을 멤버로 갖는 클래스입니다.
+ * 관리자의 교사 계정 관리에 관련된 메소드들을 멤버로 갖는 클래스입니다.
  * @author Doyun Lee
  *
  */

@@ -13,8 +13,8 @@ import oracle.jdbc.OracleTypes;
 
 /**
  * 교사의 상담 관리를 위한 클래스입니다.
- * 
  * @author leeho
+ * 
  *
  */
 public class TeacherManageConsult {

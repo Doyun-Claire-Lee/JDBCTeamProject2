@@ -14,7 +14,7 @@ import com.test.admin.DBUtil;
 import oracle.jdbc.OracleTypes;
 
 /**
- * 교육생 로그인 및 데이터 입력을 위한 메소드입니다.
+ * 교육생 로그인 및 데이터 입력을 위한 클래스입니다.
  * @author leeho
  *
  */

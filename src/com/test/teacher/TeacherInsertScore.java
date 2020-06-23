@@ -93,7 +93,7 @@ public class TeacherInsertScore {
 
 	/**
 	 * 현재 교사가 강의중인 과목들의 시험 관련 정보를 출력하는 메소드입니다.
-	 * @param teacherUser
+	 * @param teacherUser 교사 객체
 	 */
 	public void scorePrint(TeacherUser teacherUser) {
 		Connection conn = null;

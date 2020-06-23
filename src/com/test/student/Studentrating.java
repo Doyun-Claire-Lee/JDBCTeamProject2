@@ -12,14 +12,16 @@ import oracle.jdbc.OracleTypes;
 
 
 /**
- * 교육생 -> 교육생이 교사평가를 하기 위해 필요한 메소드를 가지고있는 클래스 입니다.
- * @param 
- * 
+ * 교사평가 클래스입니다.
+ * @author 희준
+ *
  */
 public class Studentrating {
 	
 	/**
-	 * 현재 로그인한 학생번호를 가지고 학생의 수료상태를 반환하는 메소드
+	 * 수료상태를 출력하는 메소드
+	 * @param suser 교육생 객체
+	 * @return  학생의 수료상태
 	 */
 	public String proCouresStatusFinish(StudentUser suser) {
 	
@@ -67,10 +69,11 @@ public class Studentrating {
 
 		return "반환실패";
 
-	}// 수강내역을 넣어 수료상태 결과(끝)
+	}// 수강내역을 넣어 수료상태 결과(끝) 
 
 	/**
 	 * 수료한 학생이 교사평가를 하는 메소드
+	 * @param suser 교육생 객체
 	 */
 	public void procAddSocreByRating(StudentUser suser) {
 

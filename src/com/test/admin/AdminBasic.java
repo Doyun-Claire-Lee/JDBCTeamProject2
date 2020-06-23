@@ -8,7 +8,12 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 import oracle.jdbc.OracleTypes;
-
+/**
+ * 
+ * 기초데이터 관련 메소드를 멤버로 갖는 클래스입니다.
+ * @author 김찬우
+ *
+ */
 public class AdminBasic {
 	/**
 	 * 기초데이터에 대한 관리를 하는 메뉴
@@ -363,7 +368,7 @@ public class AdminBasic {
 		}
 	/**
 	 * sql문을 입력받아 결과를 출력해줍니다.6
-	 * @param sql문
+	 * @param string sql query
 	 *
 	 */
 	public void vwtable(String string) {

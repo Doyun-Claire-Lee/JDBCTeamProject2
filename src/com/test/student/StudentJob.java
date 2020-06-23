@@ -10,10 +10,15 @@ import com.test.admin.DBUtil;
 
 import oracle.jdbc.OracleTypes;
 
+/**
+ * 취업활동 관련 메소드를 멤버로 갖는 클래스입니다.
+ * @author 김찬우
+ *
+ */
 public class StudentJob {
 	/**
 	 * 취업활동을 확인하고 추가할 수 있는 메뉴입니다.
-	 * @param user
+	 * @param user 교육생 객체
 	 */
 	public void procStudentjobActivity(StudentUser user) {
 		while (true) {
@@ -39,7 +44,7 @@ public class StudentJob {
 	}
 	/**
 	 * 로그인 한 학생의 취업지원 내역 확인하는 메뉴입니다.
-	 * @param 학생 번호
+	 * @param i 학생 번호
 	 */
 	public void procprintsupportlist(int i) {
 		Connection conn = null;
@@ -79,7 +84,7 @@ public class StudentJob {
 	}
 	/**
 	 * 학생의 취업활동을 추가할 수 있습니다.
-	 * @param 학생번호
+	 * @param i 학생번호
 	 */
 	public void procAddJobActivity(int i) {
 		Connection conn = null;

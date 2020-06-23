@@ -11,7 +11,7 @@ public class AdminMain {
 
 	/**
 	 * 관리자 메뉴 목록을 출력하는 메소드입니다.
-	 * @param adminUser
+	 * @param adminUser 관리자 객체
 	 */
 	public void mainmenu(AdminUser adminUser) {
 		

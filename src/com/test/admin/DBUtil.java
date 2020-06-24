@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 
 	//JAVA DOC 주석
 	/**
-	 * 
-	 * @author 김찬우
 	 * 오라클 연결 클래스입니다.
+	 * @author 김찬우
+	 * 
 	 */
 	public class DBUtil {
 

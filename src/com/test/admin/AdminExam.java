@@ -8,6 +8,11 @@ import java.util.Scanner;
 
 import oracle.jdbc.OracleTypes;
 
+/**
+ * 시험관련 메소드를 멤버로 갖는 클래스입니다.
+ * @author Team 2
+ *
+ */
 public class AdminExam {
 	
 	/**

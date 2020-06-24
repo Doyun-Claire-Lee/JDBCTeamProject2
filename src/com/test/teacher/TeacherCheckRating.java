@@ -11,15 +11,17 @@ import com.test.admin.DBUtil;
 import oracle.jdbc.OracleTypes;
 
 /**
- * 교사 -> 교사가 과정별 받은 평가 점수를 조회하는 클래스
- * @param 
+ * 교사 - 교사평가 조회 클래스입니다.
+ * @author 희준
+ *
  */
 public class TeacherCheckRating {
 
    
-   /**
-    * 교사 자신이 자신의 평가 점수 조회
-    */
+ /**
+  * 
+  * @param tuser 선생님 객체
+  */
    public void procPrintTeacherMyRating(TeacherUser tuser) {
 
       Connection conn = null;

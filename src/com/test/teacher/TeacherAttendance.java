@@ -11,9 +11,9 @@ import com.test.admin.DBUtil;
 import oracle.jdbc.OracleTypes;
 
 /**
- * 
- * @author siyeon 
  * 선생님이 출결 관리 및 출결 조회를 할 수 있는 클래스입니다.
+ * @author siyeon 
+ * 
  */
 public class TeacherAttendance {
 
@@ -28,7 +28,7 @@ public class TeacherAttendance {
 	/**
 	 * 출결 관리 및 출결 조회 전체 메뉴입니다.
 	 * 
-	 * @param teacherNum 선생님 번호
+	 * @param teacherUser 선생님 객체
 	 */
 	public void menu(TeacherUser teacherUser) { // TeacherUser teacherUser (int pteacherNum)
 		boolean loop = true;

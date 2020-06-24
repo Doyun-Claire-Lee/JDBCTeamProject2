@@ -11,7 +11,7 @@ import oracle.jdbc.OracleTypes;
 
 /**
  * 강의 스케줄 조희를 위한 메소드입니다.
- * @author heeJ
+ * @author 희준
  *
  */
 public class TeacherCheckSchedule {

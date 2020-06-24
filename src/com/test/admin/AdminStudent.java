@@ -9,9 +9,9 @@ import java.util.Scanner;
 import oracle.jdbc.OracleTypes;
 
 /**
- * 
- * @author siyeon
  *  관리자가 교육생 관리하는 클래스입니다.
+ * @author siyeon
+ * 
  */
 public class AdminStudent {
 	Connection conn = new DBUtil().open("211.63.89.64","project","java1234");

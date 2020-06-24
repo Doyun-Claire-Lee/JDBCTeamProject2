@@ -9,10 +9,15 @@ import com.test.admin.DBUtil;
 
 import oracle.jdbc.OracleTypes;
 
+/**
+ * 배점관리 관련 메소드를 멤버로 갖는 클래스입니다.
+ * @author 김찬우
+ *
+ */
 public class TeacherInsertRatio {
 	/**
 	 * 선생님이 배점을 관리할 수 있는 메뉴입니다.
-	 * @param 교수정보
+	 * @param user 교사 객체
 	 */
 	public void insertRatio(TeacherUser user) {
 		while (true) {
@@ -181,7 +186,7 @@ public class TeacherInsertRatio {
 	}
 	/**
 	 * 자신이 강의하는 과목번호,과목명,교재,과목의 기간,과정명을 출력합니다.
-	 * @param 교사번호
+	 * @param i 교사번호
 	 */
 	public void procsubjectlist2(int i) {
 		Connection conn = null;
@@ -220,9 +225,10 @@ public class TeacherInsertRatio {
 			System.out.println(e);
 		} 
 	}
+	
 	/**
-	 * 로그인한 교사가 강의한 강의실명,과정기간,과정명을 출력합니다.
-	 * @param 교사번호
+	 * 
+	 * @param i 교사번호
 	 */
 	public void procsubjectlist1(int i) {
 		Connection conn = null;
@@ -260,7 +266,7 @@ public class TeacherInsertRatio {
 	}
 	/**
 	 * 로그인 한 강사가 강의를 마친 시험의 배점을 입력합니다.
-	 * @param 강사번호
+	 * @param i 강사번호
 	 */
 	public void procInputTestRatio(int i) {
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");
@@ -331,7 +337,7 @@ public class TeacherInsertRatio {
 	}
 	/**
 	 * 로그인 강사가 강의한 과목 별 배점을 확인합니다.
-	 * @param i
+	 * @param i 강사번호
 	 */
 	public void ProcPrintRatio(int i) {
 		System.out.println("\t\t\t〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓〓");

@@ -20,7 +20,7 @@ public class StudentAttendance {
 	
 	/**
 	 * 출결 관리 메뉴를 출력하는 메소드입니다.
-	 * @param 교육생 계정 로그인 시 학생 정보
+	 * @param studentUser 교육생 객체
 	 */
 	public void printAttendanceMenu(StudentUser studentUser) {
 

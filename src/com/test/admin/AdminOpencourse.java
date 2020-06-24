@@ -14,8 +14,8 @@ import oracle.jdbc.OracleTypes;
 
 /**
  * 
- * @author siyeon 
  * 관리자가 개설 과정 관리하는 클래스입니다.
+ * @author siyeon 
  */
 
 public class AdminOpencourse {

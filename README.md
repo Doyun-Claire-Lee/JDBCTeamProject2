@@ -5,7 +5,7 @@
 ### 👋 Introduction
 <table>
     <tr>
-        <th>프로젝트 명 </th>
+        <th width="11%">프로젝트 명 </th>
         <th>LMS Joo</th>
         <th>개발기간</th>
         <th>2020.05.29. ~ 2020.06.17.</th>
@@ -15,7 +15,7 @@
         <th>Oracle DBMS & JDBC api를 활용한 콘솔 프로그램</th>
         <th>개발인원</th>
         <th>팀 / 6명<br>
-             김찬우｜한시연｜이도윤｜최예림｜오희준 | 이 호
+            <a href="https://github.com/leeho1110">이호</a> | <a href="https://github.com/chanu2757">김찬우</a>｜<a href="https://github.com/ithansiyeon">한시연</a>｜<a href="https://github.com/Doyun-Claire-Lee">이도윤</a>｜<a href="https://github.com/Yerim-Choi">최예림</a>｜<a href="https://github.com/12345hejun">오희준</a> 
         </th>
     </tr>
     <tr>
